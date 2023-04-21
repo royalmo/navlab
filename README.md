@@ -43,3 +43,16 @@ Open two terminals to run the two processes:
 python3 app.py
 npm run create-css
 ```
+
+## Misc
+
+How to activate a user, or make it admin from the sqlite console.
+Look that we first find the id of the user to activate and then update it.
+
+```
+$ sqlite3 app/navlab.db
+sqlite> select id from user where email="isaac@isaaciglesias.net";
+2
+sqlite> update user set active=1 where id=2;
+sqlite> update user set admin=1 where id=2;
+```
