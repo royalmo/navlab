@@ -18,6 +18,11 @@ sudo apt install python3
 sudo apt install nodejs npm
 ```
 
+- Sqlite3
+```
+sudo apt install sqlite3
+```
+
 ## Install dependencies
 
 Change directory to project base path and run:

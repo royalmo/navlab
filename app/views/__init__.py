@@ -10,7 +10,7 @@ app.register_blueprint(users_view, url_prefix='')
 def index():
     return redirect(url_for('.dashboard'))
 
-@app.route('/dashboard', methods=['GET', 'POST'])
+@app.route('/dashboard')
 @login_required
 def dashboard():
     return render_template('pages/dashboard.html.j2', title="Dashboard", current_user=current_user)
