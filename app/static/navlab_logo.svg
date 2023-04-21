@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 220 57" xmlns="http://www.w3.org/2000/svg">
+  <text style="fill: rgb(30, 86, 160); font-family: Tahoma; font-size: 38px; font-weight: 700; font-style: italic; letter-spacing: 3.1px; paint-order: fill; stroke: rgb(22, 49, 114); stroke-miterlimit: 1; stroke-width: 0px; word-spacing: 6.4px; white-space: pre;" x="24.539" y="48.239" dx="0 0 0 3.692" dy="0 0 0 -1.582">NavLab</text>
+  <path style="fill: none; stroke: rgb(22, 49, 114); paint-order: stroke; stroke-linecap: round; stroke-linejoin: round; stroke-width: 4px;" d="M 190.933 51.925 C 207.614 51.925 13.551 52.774 13.551 52.774 L 13.551 19.674 L 3.79 20.098 L 24.584 3.548 L 44.105 17.976"/>
+</svg>

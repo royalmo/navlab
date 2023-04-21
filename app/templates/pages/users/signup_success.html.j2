@@ -1,0 +1,34 @@
+{% extends 'base/logged_out.html.j2' %}
+
+{% block width %}sm:max-w-lg{% endblock %}
+
+{% block body %}
+
+<!-- <img src="images/navlab_logo.svg" alt="NavLab Logo" class=""/> -->
+<h1 class="text-lp-4 text-center text-3xl font-bold leading-tight tracking-tight">
+    Account created ...
+    <br/>
+    <span class="text-lg">... but not activated!</span>
+</h1>
+
+<p class="text-md text-center font-light text-gray-500">
+    Your account has been created, <b class="font-bold">{{ name }}</b>, but it first need to be reviewed by an administrator.
+</p>
+
+<p class="text-md text-center font-light text-gray-500">
+    Once your account will be activated by an admin, you will be able to
+    <a href="{{ url_for('.login') }}" class="text-lp-4 font-medium text-primary-600 hover:underline">log in</a>
+    to NavLab!
+</p>
+
+<h2 class="text-lp-4 text-center font-bold text-lg">
+    What do I need to do?
+</h2>
+
+<p class="text-md text-center font-light text-gray-500">
+    Nothing, you just need to wait. If you're in a hurry, however, you can send a mail to
+    <a href="mailto:eric@ericroy.net" class="text-lp-4 font-medium text-primary-600 hover:underline">eric@ericroy.net</a>,
+    indicating the reason of your hurry.
+</p>
+
+{% endblock %}

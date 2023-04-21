@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html class="min-h-full relative">
+  {% include 'includes/head.html.j2' %}
+
+  <body class="mb-20 font-mono">
+
+    {% include 'includes/navbar.html.j2' %}
+    
+    <main class="p-7 justify-center items-center pb-14 bg-transparent">
+      {% block body %}{% endblock %}
+    </main>
+
+    {% include 'includes/footer.html.j2' %}
+    {% include 'includes/background.html.j2' %}
+  </body>
+</html>

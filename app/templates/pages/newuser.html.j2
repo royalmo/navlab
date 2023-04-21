@@ -1,0 +1,85 @@
+{% extends 'base/logged_in.html.j2' %}
+
+{% block body %}
+
+<section class="py-2">
+<div class="w-full bg-slate-400 bg-opacity-90 lg:w-8/12 mx-auto mt-6">
+  <div
+    class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+    <div class="flex items-center justify-between rounded-t bg-white mb-0 px-6 py-6">
+      <h6 class="text-blueGray-700 text-xl font-bold">Add New User</h6>
+      <button type="button"
+        class="relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit
+        User</button>
+    </div>
+  </div>
+  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+    <form>
+      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+        User Information
+      </h6>
+      <div class="flex flex-wrap items-center">
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+              Username
+            </label>
+            <input type="text"
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="user123">
+          </div>
+        </div>
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+              Email address
+            </label>
+            <input type="email"
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="user123@domain.com">
+          </div>
+        </div>
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+              First Name
+            </label>
+            <input type="text"
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="Anonymous">
+          </div>
+        </div>
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+              Last Name
+            </label>
+            <input type="text"
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+              placeholder="User">
+          </div>
+        </div>
+
+        <div class="w-full lg:w-6/12 px-4">
+          <div class="relative w-full mb-3">
+            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+              Preferred Language:
+            </label>
+            <select name="langs" id="langscroll"
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              <option value="es">Spanish</option>
+              <option value="en">English</option>
+              <option value="it">Italian</option>
+              <option value="fr">French</option>
+              <option value="cat">Catalan</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+</section>
+
+{% endblock %}

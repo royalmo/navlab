@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/*
+@font-face {
+    font-family: 'Bold Oblique';
+    src: url('fonts/bold_oblique.otf') format("otf");
+    }
+*/
+@layer components {
+    /* ============================================= */
+    header {
+        @apply bg-lp-1 p-4 shadow-md flex flex-wrap items-center justify-center md:justify-between;
+    }
+
+    header p {
+        @apply xm:m-auto xm:text-center;
+    }
+
+    /* ============================================= */
+    #card-list {
+        @apply flex flex-wrap items-center justify-center my-0 mx-auto p-0 max-w-[1250px];
+    }
+
+    #card-list article {
+        @apply align-middle my-[0.5rem] mx-[1em] min-h-[200px] bg-white rounded border-2 border-black
+        lg:w-[30%] xm:max-w-[400px] xm:w-full w-[40%] cursor-pointer
+        transition transform hover:scale-105 bg-opacity-80;
+        
+    }
+
+    #card-list h2 {
+        @apply text-2xl font-bold text-gray-500;
+    }
+
+    #card-list article div {
+        @apply p-4 h-auto;
+    }
+
+    #card-list image {
+        @apply w-full h-auto;
+    }
+
+    #card-list>article:last-child {
+        @apply border-dashed bg-opacity-50 relative;
+    }
+
+    #card-list>article:last-child a {
+        @apply h-full w-full absolute top-0 left-0 flex items-center;
+    }
+
+    #card-list>article:last-child h2 {
+        @apply text-7xl text-center w-full;
+    }
+
+    #card-list button {
+        @apply transition;
+    }
+
+    /* ============================================= */
+    footer {
+        @apply absolute bottom-0 h-20 inset-x-0 p-4 shadow md:flex md:items-center md:justify-between md:p-6 bg-gray-800 xm:text-center text-gray-400 box-border;
+    }
+
+    footer>span {
+        @apply text-sm xm:m-auto ml-4 md:ml-6;
+    }
+
+    footer>span a {
+        @apply hover:underline;
+    }
+
+    footer>ul {
+        @apply flex flex-wrap w-max xm:m-auto items-center list-none justify-start mt-3 text-sm sm:mt-0;
+    }
+
+    footer>ul>li>a {
+        @apply mr-4 hover:underline md:mr-6;
+    }
+}
+
+
+

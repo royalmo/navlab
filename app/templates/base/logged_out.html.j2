@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  {% include 'includes/head.html.j2' %}
+
+  <body class="font-mono">
+    <div class="bg-transparent flex flex-col items-center justify-center px-6 py-8">
+      <div class="w-full bg-white border-2 border-black rounded-lg shadow {% block width %}{% endblock %} xl:p-0">
+          <main class="p-6 space-y-4 md:space-y-6 sm:p-8">
+            {% block body %}{% endblock %}
+          </main>
+      </div>
+    </div>
+    {% include 'includes/background.html.j2' %}
+  </body>
+</html>

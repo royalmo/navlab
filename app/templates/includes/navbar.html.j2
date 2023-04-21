@@ -1,0 +1,32 @@
+<header>
+  <p>
+    <a href="dashboard.html">
+      <img class="inline" width="200px" src="{{ url_for('static', filename='navlab_logo.svg') }}" alt="NavLab Logo"/>
+    </a>
+  </p>
+  <nav class="flex bg-transparent px-2 py-2.5">
+    <div class="flex flex-wrap items-center justify-between mx-auto">
+      <div class="items-center justify-between flex flex-wrap w-auto order-1">
+        <ul class="flex p-4 flex-row space-x-8 mt-0 text-sm font-medium border-0">
+          <li>
+            <a href="./dashboard.html"
+              class="block py-2 pl-3 pr-2 bg-transparent text-blue-700"
+              aria-current="page">Dashboard</a>
+          </li>
+          <li>
+            <a href="./users.html"
+              class="block py-2 pl-3 pr-2 bg-transparent text-black">User</a>
+          </li>
+          <li>
+            <a href="./statistics.html"
+              class="block py-2 pl-3 pr-2 bg-transparent text-black">Monitoring</a>
+          </li>
+          <li>
+            <a href="./login.html"
+              class="block py-2 pl-3 pr-2 bg-transparent text-black">Log Out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
