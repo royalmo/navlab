@@ -6,70 +6,64 @@
   <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">Registered users
     <input type="text" placeholder="Search" class="text-black font-medium rounded-lg text-sm px-5 py-1.5 border-black border placeholder:text-black">
   </h1>
-  <a href="newuser.html">
-    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">New user</button>
-  </a>
 </div>
+{% if not_admin %}
+  <h1 class="text-lp-4 text-center text-2xl font-bold">
+  <span class="bg-white rounded border-2 border-black">
+    You must be admin to have access.
+  </span>
+  </h1>
+{% else %}
 <table class="w-full xs:px-0">
   <thead class="bg-gray-200 border-2 border-gray-300 font-bold text-gray-500">
     <tr class="h-12">
       <th class="hidden lg:table-cell"></th>
       <th>NAME</th>
       <th class="hidden lg:table-cell">MAIL</th>
-      <th class="hidden md:table-cell">LAST ACCESS</th>
+      <th class="hidden md:table-cell">ADMIN</th>
+      <th class="hidden md:table-cell">ACTIVE</th>
       <th>ACTIONS</th>
     </tr>
   </thead>
   <tbody class="bg-white">
-    <tr class="hover:bg-gray-200 border-2 border-gray-300 hover:cursor-pointer" onclick="window.location='newuser.html'">
-      <th class="hidden lg:table-cell">
-        <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-          <span class="font-medium text-gray-600 dark:text-gray-300">ER</span>
-        </div>
-      </th>
-      <th class="font-normal">Eric Roy</th>
-      <th class="font-normal hidden lg:table-cell">ericroy@gmail.com</th>
-      <th class="font-normal hidden md:table-cell">24/02/2023</th>
-      <th>
-        <div class="my-5 w-42">
-          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-          <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-        </div>
-      </th>
-    </tr>
-    <tr class="hover:bg-gray-200 border-2 border-gray-300 hover:cursor-pointer" onclick="window.location='newuser.html'">
-      <th class="hidden lg:table-cell">
-        <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-          <span class="font-medium text-gray-600 dark:text-gray-300">II</span>
-        </div>
-      </th>
-      <th class="font-normal">Isaac Iglesias</th>
-      <th class="font-normal hidden lg:table-cell">isaaciglesias@gmail.com</th>
-      <th class="font-normal hidden md:table-cell">23/02/2023</th>
-      <th>
-        <div class="my-5 w-42">
-          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-          <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-        </div>
-      </th>
-    </tr>
-    <tr class="hover:bg-gray-200 border-2 border-gray-300 hover:cursor-pointer" onclick="window.location='newuser.html'">
-      <th class="hidden lg:table-cell">
-        <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-          <span class="font-medium text-gray-600 dark:text-gray-300">JS</span>
-        </div>
-      </th>
-      <th class="font-normal">Joel Santana</th>
-      <th class="font-normal hidden lg:table-cell">joelantana@gmail.com</th>
-      <th class="font-normal hidden md:table-cell">27/02/2023</th>
-      <th>
-        <div class="my-5 w-42">
-          <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-          <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-        </div>
-      </th>
-    </tr>
+    {% for eachuser in userlist %}
+      <tr class="hover:bg-gray-200 border-2 border-gray-300 hover:cursor-pointer">
+        <th class="hidden lg:table-cell">
+          <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+            <span class="font-medium text-gray-600 dark:text-gray-300">{{ eachuser.name[0] }}</span>
+          </div>
+        </th>
+        <th class="font-normal">{{ eachuser.name }}</th>
+        <th class="font-normal hidden lg:table-cell">{{ eachuser.email }}</th>
+        {% if eachuser.admin %}
+          <th class="font-normal hidden md:table-cell">Yes</th>
+        {% else %}
+          <th class="font-normal hidden md:table-cell">No</th>
+        {% endif %}
+        {% if eachuser.active %}
+          <th class="font-normal hidden md:table-cell">Yes</th>
+        {% else %}
+          <th class="font-normal hidden md:table-cell">No</th>
+        {% endif %}
+        <th>
+          <div class="my-5 w-42">
+            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
+            <button type="button" class="delete_button focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+            <script>
+              const button = document.querySelector('.delete_button');
+              button.addEventListener('click', function(event) {
+                event.preventDefault();
+                const isConfirmed = confirm('Are you sure you want to delete this user?');
+                if (isConfirmed) {
+                  window.location.href = '{{url_for('.userslist')+'/delete/'+eachuser.id|string}}';
+                }
+              });
+            </script>
+          </div>
+        </th>
+      </tr>
+    {% endfor %}
   </tbody>
 </table>
-
+{% endif %}
 {% endblock %}
