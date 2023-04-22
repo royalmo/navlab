@@ -44,10 +44,6 @@ def register():
 def userslist():
     if current_user.admin:
         users = User.query.all()
-        #users_time=[]
-        #for user in users:
-            #last_seen = datetime.now()
-            #users_time.append([user,last_seen.strftime('%Y-%m-%d %H:%M:%S.%f')[:-10]])
         return render_template('pages/userlist.html.j2', userlist=users)
 
     return render_template('pages/userlist.html.j2', not_admin=True)
@@ -60,3 +56,18 @@ def delete(id):
         db.session.delete(user)
         db.session.commit()
     return redirect(url_for('.userslist'))
+
+@app.route('/userslist/edit/<int:user_id>', methods=['GET', 'POST'])
+@login_required
+def edit_user(user_id):
+    user = User.query.get(user_id)
+    if request.method == 'POST':
+        user.name = request.form['name']
+        user.email = request.form['email']
+        if request.form['password']:
+            user.password = bcrypt.generate_password_hash(request.form['password'])
+        user.admin = 'admin' in request.form
+        user.active = 'active' in request.form
+        db.session.commit()
+        return redirect(url_for('.userslist'))
+    return render_template('pages/newuser.html.j2', user=user)
