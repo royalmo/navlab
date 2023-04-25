@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, url_for, redirect, request
 from flask_login import login_user, login_required, logout_user, current_user #############
 
 from ..extensions import db, bcrypt
-from ..models import User, LoginForm, RegisterForm
+from ..models import User, LoginForm, RegisterForm, SearchForm
 
 app = Blueprint('users', __name__)
 
@@ -42,11 +42,19 @@ def register():
 @app.route('/userslist', methods=['GET'])
 @login_required
 def userslist():
-    if current_user.admin:
-        users = User.query.all()
-        return render_template('pages/userlist.html.j2', userlist=users)
+    
+    search_form = SearchForm(request.form)
+    search_query = request.args.get('search')
 
-    return render_template('pages/userlist.html.j2', not_admin=True)
+    if current_user.admin:
+        if request.method == 'GET' and search_query:
+            users = User.query.filter(User.name.contains(search_query))
+        else:
+            users = User.query.all()
+        
+        return render_template('pages/userlist.html.j2', userlist=users, search_form=search_form)
+
+    return render_template('pages/userlist.html.j2', not_admin=True, search_form=search_form)
 
 @app.route('/userslist/delete/<int:id>')
 @login_required
