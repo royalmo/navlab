@@ -72,10 +72,12 @@ def edit_user(user_id):
     if request.method == 'POST':
         user.name = request.form['name']
         user.email = request.form['email']
-        if request.form['password']:
+        if request.form['password'] and request.form['password']==request.form['password_confirm']:
             user.password = bcrypt.generate_password_hash(request.form['password'])
         user.admin = 'admin' in request.form
         user.active = 'active' in request.form
         db.session.commit()
         return redirect(url_for('.userslist'))
     return render_template('pages/newuser.html.j2', user=user)
+
+
