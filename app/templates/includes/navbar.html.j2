@@ -9,12 +9,12 @@
       <div class="items-center justify-between flex flex-wrap w-auto order-1">
         <ul class="flex p-4 flex-row space-x-8 mt-0 text-sm font-medium border-0">
           <li>
-            <a href="./dashboard.html"
+            <a href="{{ url_for('main.dashboard') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-blue-700"
               aria-current="page">Dashboard</a>
           </li>
           <li>
-            <a href="./users.html"
+            <a href="{{ url_for('main.users.userslist') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">User</a>
           </li>
           <li>
@@ -22,7 +22,7 @@
               class="block py-2 pl-3 pr-2 bg-transparent text-black">Monitoring</a>
           </li>
           <li>
-            <a href="./login.html"
+            <a href="{{ url_for('main.users.logout') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">Log Out</a>
           </li>
         </ul>
