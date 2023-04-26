@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, request
+from flask import Blueprint, render_template, url_for, redirect, request, make_response
 from flask_login import login_user, login_required, logout_user, current_user #############
 
 from ..extensions import db
@@ -18,14 +18,13 @@ def newserver():
         return redirect(url_for('main.dashboard'))
     return render_template('pages/newserver.html.j2', title="Server", current_user=current_user, server=form, new=True)
 
-
-
-@app.route('/server/edit/<string:name>', methods=['GET', 'POST'])
+@app.route('/server/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
-def edit(name):
-    server = Server.query.get(name)
+def edit(id):
+    server = Server.query.get_or_404(id)
     server_form=ServerForm(obj=server)
     if request.method == 'POST':
+        server.id = request.form['id']
         server.name = request.form['name']
         server.image = request.form['image']
         server.description = request.form['description']
@@ -42,3 +41,9 @@ def remove(name):
     Server.query.filter(Server.name == name).delete()
     db.session.commit()
     return redirect(url_for('main.dashboard'))
+
+@app.route('/server/start/<int:id>', methods=['GET', 'POST'])
+@login_required
+def start(id):
+    return make_response("Server started", 200)
+

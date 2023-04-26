@@ -13,7 +13,7 @@
     </h1>
     <a href="{{ url_for('.servers.newserver') }}">
       <button type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">New
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5">New
         service</button>
     </a>
   </div>
@@ -21,15 +21,17 @@
 <div id="card-list" class="flex justify-center items-center">
   {% for eachserver in serverlist %}
   <article>
-    <a href={{ url_for('.servers.edit', name=eachserver.name|string) }}>
+    <a href="{{ url_for( '.servers.edit' , id=eachserver.id|int ) }}">
       <h2 class="p-2">{{ eachserver.name }}</h2>
       <div class="flex">
         <div class="w-8/12">
           <span class="text-red-500 text-xl"><i class="fa fa-times"></i> Off</span>
           <br />
           <br />
-          <button class="bg-slate-400 p-2 rounded text-white hover:bg-slate-600"><i class="fa fa-question"></i>
-            Start</button>
+          <button class="bg-green-400 hover:bg-green-600 p-2 rounded text-white status-button" data-id="{{ eachserver.id }}">
+            <i class="fa fa-power-off"></i>
+            Start
+          </button>
         </div>
         <div class="w-4/12 flex justify-center items-center image-ajax" data-src="{{ eachserver.image }}" data-alt="{{ eachserver.name }}">
           <div class="text-center">
@@ -57,6 +59,28 @@
     </a>
   </article>
 </div>
+
+<script>
+  const buttons = document.querySelectorAll('.status-button');
+  
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      event.preventDefault(); 
+      const url = `/server/start/${button.dataset.id}`;
+      
+      fetch(url)
+        .then(response => {
+          if (response.ok) {
+            button.innerText= 'Shutdown';
+            button.classList.remove('bg-green-400 hover:bg-green-600');
+            button.classList.add('bg-red-400 hover:bg-red-600');
+          }
+        })
+        .catch(error => console.log(error));
+    });
+  });
+</script>
+
 
 <script>
   const imgParent = document.querySelectorAll('.image-ajax');

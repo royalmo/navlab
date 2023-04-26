@@ -68,7 +68,7 @@ def delete(id):
 @app.route('/userslist/edit/<int:user_id>', methods=['GET', 'POST'])
 @login_required
 def edit_user(user_id):
-    user = User.query.get(user_id)
+    user = User.query.get_or_404(user_id)
     if request.method == 'POST':
         user.name = request.form['name']
         user.email = request.form['email']
