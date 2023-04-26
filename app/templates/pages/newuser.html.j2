@@ -46,7 +46,26 @@
               class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
           </div>
         </div>
-        <div class="mr-1">
+        <div class="w-full lg:w-6/12 px-4" style="margin-top:1rem">
+          <div class="relative w-full mb-3">
+            <label for="password_confirm" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+              Confirm password
+            </label>
+            <input type="password" id="password_confirm"" name="password_confirm""
+              class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150">
+              <div id="passwordErrorConf" class="text-red-600 text-sm">
+                Passwords do not match<br>
+              </div>
+          </div>
+        </div>
+        <div id="passwordError" class="text-red-600 text-sm">
+        - Password must be at least 8 characters long<br>
+        - Password must contain at least one uppercase letter<br>
+        - Password must contain at least one lowercase letter<br>
+        - Password must contain at least one number<br>
+        - Password must contain at least one special character (!@#$%^&*()_+)
+        </div>
+        <div style="margin:2rem">
           <label for="admin">Admin:</label>
             <input type="checkbox" id="admin" name="admin" {% if user.admin %}checked{% endif %}/><br>
         </div>
@@ -56,6 +75,7 @@
         </div>
       </div>
 </form>
+<script class="text-green-600" src="{{ url_for('static', filename='js/register_check.js') }}"></script>
 </div>
 </div>
 </div>
