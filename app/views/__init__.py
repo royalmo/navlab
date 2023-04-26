@@ -25,3 +25,7 @@ def dashboard():
         servers = Server.query.all()
 
     return render_template('pages/dashboard.html.j2', title="Dashboard", current_user=current_user, serverlist=servers, search_form=search_form)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('errors/404.html.j2', title='404 Error'), 404
