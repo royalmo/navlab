@@ -71,9 +71,9 @@
       fetch(url)
         .then(response => {
           if (response.ok) {
-            button.innerText= 'Shutdown';
-            button.classList.remove('bg-green-400 hover:bg-green-600');
-            button.classList.add('bg-red-400 hover:bg-red-600');
+            button.innerHTML= '<i class="fa fa-power-off"></i> Shutdown';
+            button.classList.replace('bg-green-400', 'bg-red-400')
+            button.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
           }
         })
         .catch(error => console.log(error));
