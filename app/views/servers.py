@@ -47,3 +47,9 @@ def remove(name):
 def start(id):
     return make_response("Server started", 200)
 
+@app.route('/server/stop/<int:id>', methods=['GET', 'POST'])
+@login_required
+def stop(id):
+    return make_response("Server stopped", 200)
+
+

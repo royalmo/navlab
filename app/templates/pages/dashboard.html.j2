@@ -28,7 +28,7 @@
           <span class="text-red-500 text-xl"><i class="fa fa-times"></i> Off</span>
           <br />
           <br />
-          <button class="bg-green-400 hover:bg-green-600 p-2 rounded text-white status-button" data-id="{{ eachserver.id }}">
+          <button class="bg-green-400 hover:bg-green-600 p-2 rounded text-white status-off status-button" data-id="{{ eachserver.id }}">
             <i class="fa fa-power-off"></i>
             Start
           </button>
@@ -62,24 +62,68 @@
 
 <script>
   const buttons = document.querySelectorAll('.status-button');
-  
+
   buttons.forEach(button => {
     button.addEventListener('click', () => {
-      event.preventDefault(); 
-      const url = `/server/start/${button.dataset.id}`;
-      
-      fetch(url)
-        .then(response => {
-          if (response.ok) {
-            button.innerHTML= '<i class="fa fa-power-off"></i> Shutdown';
-            button.classList.replace('bg-green-400', 'bg-red-400')
-            button.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
-          }
-        })
-        .catch(error => console.log(error));
+      event.preventDefault();
+
+      if (button.classList.contains('status-on')) {
+        turnOff(button);
+      } else if (button.classList.contains('status-off')) {
+        turnOn(button);
+      }
     });
   });
+
+  function turnOn(button) {
+    const url = `/server/start/${button.dataset.id}`;
+
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          button.innerHTML = '<i class="fa fa-power-off"></i> Shutdown';
+          button.classList.replace('bg-green-400', 'bg-red-400');
+          button.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
+          button.classList.remove('status-off');
+          button.classList.add('status-on');
+        } else {
+          warningStatus(button);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        warningStatus(button);
+      });
+  }
+
+  function turnOff(button) {
+    const url = `/server/stop/${button.dataset.id}`;
+
+    fetch(url)
+      .then(response => {
+        if (response.ok) {
+          button.innerHTML = '<i class="fa fa-power-off"></i> Start';
+          button.classList.replace('bg-red-400', 'bg-green-400');
+          button.classList.replace('hover:bg-red-600', 'hover:bg-green-600');
+          button.classList.remove('status-on');
+          button.classList.add('status-off');
+        } else {
+          warningStatus(button);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        warningStatus(button);
+      });
+  }
+
+  function warningStatus(button) {
+    button.innerHTML = 'Warning';
+    button.classList.replace('bg-green-400', 'bg-orange-400');
+    button.classList.replace('hover:bg-green-600', 'hover:bg-orange-600');
+  }
 </script>
+
 
 
 <script>
