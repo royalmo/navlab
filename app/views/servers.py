@@ -45,11 +45,11 @@ def remove(name):
 @app.route('/server/start/<int:id>', methods=['GET', 'POST'])
 @login_required
 def start(id):
-    return make_response("Server started", 200)
+    return make_response("Server started", 204)
 
 @app.route('/server/stop/<int:id>', methods=['GET', 'POST'])
 @login_required
 def stop(id):
-    return make_response("Server stopped", 200)
+    return make_response("Server stopped", 204)
 
 
