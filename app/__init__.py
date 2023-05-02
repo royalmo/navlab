@@ -1,5 +1,6 @@
-from flask import Flask, render_template, url_for
-from .extensions import db, bcrypt, login_manager
+from flask import Flask, render_template, request
+from flask_login import user_logged_in, current_user
+from .extensions import db, bcrypt, login_manager, babel
 from .views import app as main
 
 app = Flask(__name__)
@@ -9,10 +10,16 @@ app.config.from_pyfile('settings/development.py')
 db.init_app(app)
 bcrypt.init_app(app)
 login_manager.init_app(app)
+babel.init_app(app)
 
 app.register_blueprint(main, url_prefix='')
 
-@app.errorhandler(403)
+@babel.localeselector
+def get_locale():
+    if user_logged_in: return current_user.lang
+    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())
+
+@app.errorhandler(404)
 def page_not_found(error):
     return render_template('errors/404.html.j2', title='404 Error'), 404
 

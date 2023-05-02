@@ -22,3 +22,5 @@ sqlparse==0.4.2
 Werkzeug==2.0.3
 WTForms==3.0.0
 zipp==3.6.0
+flask-babelex==0.9.4
+speaklater==1.3

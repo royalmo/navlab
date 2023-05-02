@@ -1,0 +1,14 @@
+msgid "widgets.navbar.dashboard"
+msgstr "Dashboard"
+
+msgid "widgets.navbar.profile"
+msgstr "Profile"
+
+msgid "widgets.navbar.users"
+msgstr "Users"
+
+msgid "widgets.navbar.monitoring"
+msgstr "Monitoring"
+
+msgid "widgets.navbar.logout"
+msgstr "Log Out"

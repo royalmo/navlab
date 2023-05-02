@@ -40,6 +40,14 @@ Again, from the same project directory.
 python3 db_init.py
 ```
 
+## Compile translations
+
+Run each time you change some literals. Server needs to be restarted.
+
+```
+./parse_translations.sh
+```
+
 ## Run
 
 Open two terminals to run the two processes:

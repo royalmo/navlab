@@ -1,6 +1,6 @@
 <header>
   <p>
-    <a href="dashboard.html">
+    <a href="/">
       <img class="inline" width="200px" src="{{ url_for('static', filename='navlab_logo.svg') }}" alt="NavLab Logo"/>
     </a>
   </p>
@@ -11,19 +11,33 @@
           <li>
             <a href="{{ url_for('main.dashboard') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-blue-700"
-              aria-current="page">Dashboard</a>
+              aria-current="page">
+              {{ _('widgets.navbar.dashboard') }}
+            </a>
           </li>
           <li>
             <a href="{{ url_for('main.users.userslist') }}"
-              class="block py-2 pl-3 pr-2 bg-transparent text-black">User</a>
+              class="block py-2 pl-3 pr-2 bg-transparent text-black">
+              {{ _('widgets.navbar.monitoring') }}
+            </a>
           </li>
           <li>
-            <a href="./statistics.html"
-              class="block py-2 pl-3 pr-2 bg-transparent text-black">Monitoring</a>
+            <a href="{{ url_for('main.users.userslist') }}"
+              class="block py-2 pl-3 pr-2 bg-transparent text-black">
+              {{ _('widgets.navbar.profile') }}
+            </a>
+          </li>
+          <li>
+            <a href="{{ url_for('main.users.userslist') }}"
+              class="block py-2 pl-3 pr-2 bg-transparent text-black">
+              {{ _('widgets.navbar.users') }}
+            </a>
           </li>
           <li>
             <a href="{{ url_for('main.users.logout') }}"
-              class="block py-2 pl-3 pr-2 bg-transparent text-black">Log Out</a>
+              class="block py-2 pl-3 pr-2 bg-transparent text-black">
+              {{ _('widgets.navbar.logout') }}
+            </a>
           </li>
         </ul>
       </div>
