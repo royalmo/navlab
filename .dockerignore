@@ -1,0 +1,8 @@
+**/__pycache__/
+env
+app/navlab.db
+node_modules
+app/static/css/main.css
+app/static/.webassets-cache
+app/translations/*/LC_MESSAGES/messages.mo
+venv
