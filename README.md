@@ -2,6 +2,14 @@
 
 Work in progress!
 
+## Easy start using Docker
+
+Start the server on local port 5000:
+
+```
+docker run -p 5000:5000 -d royalmo/navlab
+```
+
 ## Prerequisites
 
 - Python 3.6 or higher installed:
