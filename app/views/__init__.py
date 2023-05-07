@@ -24,4 +24,17 @@ def dashboard():
     else:
         servers = Server.query.all()
 
-    return render_template('pages/dashboard.html.j2', title="Dashboard", current_user=current_user, serverlist=servers, search_form=search_form)
+    return render_template('pages/dashboard.html.j2',
+                           title="Dashboard",
+                           current_user=current_user,
+                           serverlist=servers,
+                           search_form=search_form,
+                           navbar_highlight_dashboard=True)
+
+@app.route('/monitoring')
+@login_required
+def monitoring():
+    return render_template('pages/monitoring.html.j2',
+                           title="Monitoring",
+                           current_user=current_user,
+                           navbar_highlight_monitoring=True)

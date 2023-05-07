@@ -56,9 +56,12 @@ def userslist():
         else:
             users = User.query.all()
         
-        return render_template('pages/userlist.html.j2', userlist=users, search_form=search_form)
+        return render_template('pages/userlist.html.j2',
+                               userlist=users,
+                               search_form=search_form,
+                               navbar_highlight_users=True)
 
-    return render_template('pages/userlist.html.j2', not_admin=True, search_form=search_form)
+    return redirect('/')
 
 @app.route('/userslist/delete/<int:id>')
 @login_required
@@ -86,7 +89,7 @@ def edit_user(user_id):
         user.active = 'active' in request.form
         db.session.commit()
         return redirect(url_for('main.dashboard'))
-    return render_template('pages/newuser.html.j2', user=user)
+    return render_template('pages/newuser.html.j2', user=user, navbar_highlight_profile=True)
 
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
