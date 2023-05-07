@@ -85,7 +85,12 @@ def edit_user(user_id):
         user.admin = 'admin' in request.form
         user.active = 'active' in request.form
         db.session.commit()
-        return redirect(url_for('.userslist'))
+        return redirect(url_for('main.dashboard'))
     return render_template('pages/newuser.html.j2', user=user)
+
+@app.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    return redirect('/userslist/edit/'+str(current_user.id))
 
 

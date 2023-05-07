@@ -22,17 +22,19 @@
             </a>
           </li>
           <li>
-            <a href="{{ url_for('main.users.userslist') }}"
+            <a href="{{ url_for('main.users.profile') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">
               {{ _('widgets.navbar.profile') }}
             </a>
           </li>
+          {% if current_user.admin %}
           <li>
             <a href="{{ url_for('main.users.userslist') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">
               {{ _('widgets.navbar.users') }}
             </a>
           </li>
+          {% endif %}
           <li>
             <a href="{{ url_for('main.users.logout') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">

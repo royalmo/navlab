@@ -73,6 +73,7 @@
             <option value="Catalan">
           </datalist>
         </div>
+        {% if current_user.admin %}
         <div style="margin:2rem">
           <label for="admin">Admin:</label>
             <input type="checkbox" id="admin" name="admin" {% if user.admin %}checked{% endif %}/><br>
@@ -81,6 +82,7 @@
           <label for="active">Active:</label>
             <input type="checkbox" id="active" name="active" {% if user.active %}checked{% endif %}/><br>
         </div>
+        {% endif %}
       </div>
 </form>
 <script class="text-green-600" src="{{ url_for('static', filename='js/register_check.js') }}"></script>
