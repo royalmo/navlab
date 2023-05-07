@@ -9,6 +9,7 @@ class RegisterForm(FlaskForm):
     email = EmailField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": "user@example.com"})
     password = PasswordField(validators=[InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "••••••••"})
     password_confirm = PasswordField(validators=[], render_kw={"placeholder": "••••••••"})
+    language = StringField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": "English"})
     submit = SubmitField('Register')
 
     def validate_email(self, email):

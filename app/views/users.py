@@ -32,7 +32,11 @@ def register():
 
     if form.validate_on_submit() and form.password.data == form.password_confirm.data:
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password)
+        if form.language.data=='English':
+            lan='en'
+        else:
+            lan='ca'
+        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password,lang=lan)
         db.session.add(new_user)
         db.session.commit()
         return render_template('pages/users/signup_success.html.j2', name=form.name.data)
@@ -74,6 +78,10 @@ def edit_user(user_id):
         user.email = request.form['email']
         if request.form['password'] and request.form['password']==request.form['password_confirm']:
             user.password = bcrypt.generate_password_hash(request.form['password'])
+        if request.form['language']=='English':
+            user.lang='en'
+        elif request.form['language']=='Catalan':
+            user.lang='ca'
         user.admin = 'admin' in request.form
         user.active = 'active' in request.form
         db.session.commit()

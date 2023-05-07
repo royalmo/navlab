@@ -26,12 +26,13 @@
       <th class="hidden lg:table-cell">MAIL</th>
       <th class="hidden md:table-cell">ADMIN</th>
       <th class="hidden md:table-cell">ACTIVE</th>
+      <th class="hidden lg:table-cell">LANGUAGE</th>
       <th>ACTIONS</th>
     </tr>
   </thead>
   <tbody class="bg-white">
     {% for eachuser in userlist %}
-      <tr class="hover:bg-gray-200 border-2 border-gray-300 hover:cursor-pointer">
+      <tr class="hover:bg-gray-200 border-2 border-gray-300">
         <th class="hidden lg:table-cell">
           <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
             <span class="font-medium text-gray-600 dark:text-gray-300">{{ eachuser.name[0] }}</span>
@@ -49,6 +50,7 @@
         {% else %}
           <th class="font-normal hidden md:table-cell">No</th>
         {% endif %}
+        <th class="font-normal hidden lg:table-cell">{{ eachuser.lang }}</th>
         <th>
           <div class="my-5 w-42">
             <button type="button" id="{{ 'edit_button'+eachuser.id|string }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>

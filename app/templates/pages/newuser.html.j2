@@ -65,6 +65,14 @@
         - Password must contain at least one number<br>
         - Password must contain at least one special character (!@#$%^&*()_+)
         </div>
+        <div style="margin:1rem">
+          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">LANGUAGE </label>
+          <input class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" name="language" id="language" list="lan" type="text" pattern="English|Catalan" title="Language must be English or Catalan"/>
+          <datalist id="lan">
+            <option value="English">
+            <option value="Catalan">
+          </datalist>
+        </div>
         <div style="margin:2rem">
           <label for="admin">Admin:</label>
             <input type="checkbox" id="admin" name="admin" {% if user.admin %}checked{% endif %}/><br>
