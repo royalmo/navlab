@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 16:15+0200\n"
+"POT-Creation-Date: 2023-05-07 18:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ca\n"
@@ -18,6 +18,22 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
+
+#: app/templates/includes/footer.html.j2:3
+msgid "All Rights Reserved"
+msgstr "Tots els drets reservats"
+
+#: app/templates/includes/footer.html.j2:7
+msgid "About"
+msgstr "Sobre nosaltres"
+
+#: app/templates/includes/footer.html.j2:10
+msgid "Privacy Policy"
+msgstr "Política de privacitat"
+
+#: app/templates/includes/footer.html.j2:13
+msgid "Contact"
+msgstr "Contacte"
 
 #: app/templates/includes/navbar.html.j2:15
 msgid "Dashboard"
@@ -38,4 +54,200 @@ msgstr "Usuaris"
 #: app/templates/includes/navbar.html.j2:41
 msgid "Log Out"
 msgstr "Sortir"
+
+#: app/templates/pages/dashboard.html.j2:8
+msgid "Service list"
+msgstr "Llista de Serveis"
+
+#: app/templates/pages/dashboard.html.j2:16
+msgid "New service"
+msgstr "Servei Nou"
+
+#: app/templates/pages/dashboard.html.j2:27
+msgid "Off"
+msgstr "Inactiu"
+
+#: app/templates/pages/dashboard.html.j2:32
+#: app/templates/pages/dashboard.html.j2:104
+msgid "Start"
+msgstr "Inicia"
+
+#: app/templates/pages/dashboard.html.j2:83
+msgid "Shutdown"
+msgstr "Atura"
+
+#: app/templates/pages/newserver.html.j2:10
+#, fuzzy
+msgid "Add New Service"
+msgstr "Afegir Servei Nou"
+
+#: app/templates/pages/newserver.html.j2:12
+#, fuzzy
+msgid "Modify Service"
+msgstr "Modifcar Servei"
+
+#: app/templates/pages/newserver.html.j2:19
+msgid "Server Information"
+msgstr "Informació del Servidor"
+
+#: app/templates/pages/newserver.html.j2:25
+msgid "Server Name"
+msgstr "Nom del Servidor"
+
+#: app/templates/pages/newserver.html.j2:33
+msgid "Server Image URL"
+msgstr "URL Imatge Servidor"
+
+#: app/templates/pages/newserver.html.j2:44
+msgid "Server Description"
+msgstr "Descripció del servidor"
+
+#: app/templates/pages/newserver.html.j2:54
+msgid "Server Commands"
+msgstr "Comandes del servidor"
+
+#: app/templates/pages/newserver.html.j2:61
+msgid "Starting Command"
+msgstr "Comanda per iniciar"
+
+#: app/templates/pages/newserver.html.j2:72
+msgid "Stop Command"
+msgstr "Comanda per aturar"
+
+#: app/templates/pages/newserver.html.j2:83
+msgid "Status Command"
+msgstr "Comanda per estat"
+
+#: app/templates/pages/newserver.html.j2:94
+msgid "Add Healthcheck"
+msgstr "Afegir Healthcheck"
+
+#: app/templates/pages/newserver.html.j2:99
+msgid "Healthcheck Command"
+msgstr "Comanda Healthcheck"
+
+#: app/templates/pages/newserver.html.j2:113
+#, fuzzy
+msgid "Remove Service"
+msgstr "Eliminar Servei"
+
+#: app/templates/pages/newuser.html.j2:11
+msgid "Edit User"
+msgstr "Edita Usuari"
+
+#: app/templates/pages/newuser.html.j2:12
+msgid "Save"
+msgstr "Desa"
+
+#: app/templates/pages/newuser.html.j2:17
+#, fuzzy
+msgid "User Information"
+msgstr "Informació del Servidor"
+
+#: app/templates/pages/newuser.html.j2:23
+msgid "Name"
+msgstr "Nom"
+
+#: app/templates/pages/newuser.html.j2:33
+msgid "Email address"
+msgstr "Adreça de correu"
+
+#: app/templates/pages/newuser.html.j2:43
+msgid "Password"
+msgstr "Contrasenya"
+
+#: app/templates/pages/newuser.html.j2:52
+msgid "Confirm password"
+msgstr "Confirma la contrasenya"
+
+#: app/templates/pages/newuser.html.j2:57
+msgid "Passwords do not match"
+msgstr "Les contrasenyes no coincideixen"
+
+#: app/templates/pages/newuser.html.j2:62
+msgid "Password must be at least 8 characters long"
+msgstr "La contrasenya ha de tenir una llargada mínima de 8 caràcters"
+
+#: app/templates/pages/newuser.html.j2:63
+msgid "Password must contain at least one uppercase letter"
+msgstr "La contrasenya ha de tenir al menys una lletra majúscula"
+
+#: app/templates/pages/newuser.html.j2:64
+msgid "Password must contain at least one lowercase letter"
+msgstr "La contrasenya ha de tenir al menys una lletra minúscula"
+
+#: app/templates/pages/newuser.html.j2:65
+msgid "Password must contain at least one number"
+msgstr "La contrasenya ha de tenir al menys un número"
+
+#: app/templates/pages/newuser.html.j2:66
+msgid "Password must contain at least one special character"
+msgstr "La contrasenya ha de tenir al menys un caràcter especial"
+
+#: app/templates/pages/newuser.html.j2:69
+#: app/templates/pages/userlist.html.j2:29
+msgid "LANGUAGE"
+msgstr "IDIOMA"
+
+#: app/templates/pages/newuser.html.j2:70
+msgid "Language must be English or Catalan"
+msgstr "L'idioma ha de ser 'English' o 'Catalan'"
+
+#: app/templates/pages/newuser.html.j2:78
+msgid "Admin:"
+msgstr "Administrador:"
+
+#: app/templates/pages/newuser.html.j2:82
+msgid "Active:"
+msgstr "Actiu:"
+
+#: app/templates/pages/userlist.html.j2:6
+msgid "Registered users"
+msgstr "Usuaris Registrats"
+
+#: app/templates/pages/userlist.html.j2:17
+msgid "You must be admin to have access"
+msgstr "Has de ser administrador per tenir accés"
+
+#: app/templates/pages/userlist.html.j2:25
+msgid "NAME"
+msgstr "NOM"
+
+#: app/templates/pages/userlist.html.j2:26
+msgid "MAIL"
+msgstr "CORREU"
+
+#: app/templates/pages/userlist.html.j2:27
+msgid "ADMIN"
+msgstr "ADMIN"
+
+#: app/templates/pages/userlist.html.j2:28
+msgid "ACTIVE"
+msgstr "ACTIU"
+
+#: app/templates/pages/userlist.html.j2:30
+msgid "ACTIONS"
+msgstr "ACCIONS"
+
+#: app/templates/pages/userlist.html.j2:44
+#: app/templates/pages/userlist.html.j2:49
+msgid "Yes"
+msgstr "Sí"
+
+#: app/templates/pages/userlist.html.j2:46
+#: app/templates/pages/userlist.html.j2:51
+msgid "No"
+msgstr "No"
+
+#: app/templates/pages/userlist.html.j2:56
+msgid "Edit"
+msgstr "Edita"
+
+#: app/templates/pages/userlist.html.j2:57
+msgid "Delete"
+msgstr "Elimina"
+
+#: app/templates/pages/userlist.html.j2:62
+msgid "Are you sure you want to delete this user?"
+msgstr "Estás segur que vols eliminar aquest usuari?"
 

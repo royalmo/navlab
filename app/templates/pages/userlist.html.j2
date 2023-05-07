@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="bg-white bg-opacity-90 border-black border rounded p-4 flex items-center mb-7 justify-between">
-  <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">Registered users
+  <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">{{ _('Registered users') }}
 {% if not not_admin %}
     <form id="search_form" method="get" action="">
       {{ search_form.search(class_="text-black font-medium rounded-lg text-sm px-5 py-1.5 border-black border placeholder:text-black") }}
@@ -14,7 +14,7 @@
 {% if not_admin %}
   <h1 class="text-lp-4 text-center text-2xl font-bold">
   <span class="bg-white rounded border-2 border-black">
-    You must be admin to have access.
+    {{ _('You must be admin to have access') }}.
   </span>
   </h1>
 {% else %}
@@ -22,12 +22,12 @@
   <thead class="bg-gray-200 border-2 border-gray-300 font-bold text-gray-500">
     <tr class="h-12">
       <th class="hidden lg:table-cell"></th>
-      <th>NAME</th>
-      <th class="hidden lg:table-cell">MAIL</th>
-      <th class="hidden md:table-cell">ADMIN</th>
-      <th class="hidden md:table-cell">ACTIVE</th>
-      <th class="hidden lg:table-cell">LANGUAGE</th>
-      <th>ACTIONS</th>
+      <th>{{ _('NAME') }}</th>
+      <th class="hidden lg:table-cell">{{ _('MAIL') }}</th>
+      <th class="hidden md:table-cell">{{ _('ADMIN') }}</th>
+      <th class="hidden md:table-cell">{{ _('ACTIVE') }}</th>
+      <th class="hidden lg:table-cell">{{ _('LANGUAGE') }}</th>
+      <th>{{ _('ACTIONS') }}</th>
     </tr>
   </thead>
   <tbody class="bg-white">
@@ -41,25 +41,25 @@
         <th class="font-normal">{{ eachuser.name }}</th>
         <th class="font-normal hidden lg:table-cell">{{ eachuser.email }}</th>
         {% if eachuser.admin %}
-          <th class="font-normal hidden md:table-cell">Yes</th>
+          <th class="font-normal hidden md:table-cell">{{ _('Yes') }}</th>
         {% else %}
-          <th class="font-normal hidden md:table-cell">No</th>
+          <th class="font-normal hidden md:table-cell">{{ _('No') }}</th>
         {% endif %}
         {% if eachuser.active %}
-          <th class="font-normal hidden md:table-cell">Yes</th>
+          <th class="font-normal hidden md:table-cell">{{ _('Yes') }}</th>
         {% else %}
-          <th class="font-normal hidden md:table-cell">No</th>
+          <th class="font-normal hidden md:table-cell">{{ _('No') }}</th>
         {% endif %}
         <th class="font-normal hidden lg:table-cell">{{ eachuser.lang }}</th>
         <th>
           <div class="my-5 w-42">
-            <button type="button" id="{{ 'edit_button'+eachuser.id|string }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Edit</button>
-            <button type="button" id="{{ 'delete_button'+eachuser.id|string }}" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
+            <button type="button" id="{{ 'edit_button'+eachuser.id|string }}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{ _('Edit') }}</button>
+            <button type="button" id="{{ 'delete_button'+eachuser.id|string }}" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">{{ _('Delete') }}</button>
             <script>
               const {{ 'delete_button'+eachuser.id|string }} = document.querySelector('{{ '#delete_button'+eachuser.id|string }}');
               {{ 'delete_button'+eachuser.id|string }}.addEventListener('click', function(event) {
                 event.preventDefault();
-                const isConfirmed = confirm('Are you sure you want to delete this user?');
+                const isConfirmed = confirm('{{ _('Are you sure you want to delete this user?') }}');
                 if (isConfirmed) {
                   window.location.href = '{{url_for('.userslist')+'/delete/'+eachuser.id|string}}';
                 }

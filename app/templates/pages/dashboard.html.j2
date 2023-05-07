@@ -5,7 +5,7 @@
 <div>
   <div
     class="bg-white bg-opacity-90 max-w-[1250px] mx-auto border-black border rounded p-4 flex items-center mb-7 justify-between">
-    <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">Service list
+    <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">{{ _('Service list') }}
       <form id="search_form" method="get" action="">
         {{ search_form.search(class_="text-black font-medium rounded-lg text-sm px-5 py-1.5 border-black border
         placeholder:text-black") }}
@@ -13,8 +13,7 @@
     </h1>
     <a href="{{ url_for('.servers.newserver') }}">
       <button type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5">New
-        service</button>
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5">{{ _('New service') }}</button>
     </a>
   </div>
 </div>
@@ -25,12 +24,12 @@
       <h2 class="p-2">{{ eachserver.name }}</h2>
       <div class="flex">
         <div class="w-8/12">
-          <span class="text-red-500 text-xl"><i class="fa fa-times"></i> Off</span>
+          <span class="text-red-500 text-xl"><i class="fa fa-times"></i> {{ _('Off') }}</span>
           <br />
           <br />
           <button class="bg-green-400 hover:bg-green-600 p-2 rounded text-white status-off status-button" data-id="{{ eachserver.id }}">
             <i class="fa fa-power-off"></i>
-            Start
+            {{ _('Start') }}
           </button>
         </div>
         <div class="w-4/12 flex justify-center items-center image-ajax" data-src="{{ eachserver.image }}" data-alt="{{ eachserver.name }}">
@@ -81,7 +80,7 @@
     fetch(url)
       .then(response => {
         if (response.ok) {
-          button.innerHTML = '<i class="fa fa-power-off"></i> Shutdown';
+          button.innerHTML = '<i class="fa fa-power-off"></i> {{ _('Shutdown') }}';
           button.classList.replace('bg-green-400', 'bg-red-400');
           button.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
           button.classList.remove('status-off');
@@ -102,7 +101,7 @@
     fetch(url)
       .then(response => {
         if (response.ok) {
-          button.innerHTML = '<i class="fa fa-power-off"></i> Start';
+          button.innerHTML = '<i class="fa fa-power-off"></i> {{ _('Start') }}';
           button.classList.replace('bg-red-400', 'bg-green-400');
           button.classList.replace('hover:bg-red-600', 'hover:bg-green-600');
           button.classList.remove('status-on');
