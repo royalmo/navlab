@@ -4,4 +4,5 @@ app/navlab.db
 node_modules
 app/static/css/main.css
 app/static/.webassets-cache
-app/translations/*/LC_MESSAGES/messages.?o
+app/translations/*/LC_MESSAGES/messages.mo
+venv
