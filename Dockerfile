@@ -41,4 +41,4 @@ RUN pybabel compile -f -d app/translations
 
 # Run
 EXPOSE 5000
-CMD python3 app.py
+CMD python3 app.py --production

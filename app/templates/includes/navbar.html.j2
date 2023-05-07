@@ -12,33 +12,33 @@
             <a href="{{ url_for('main.dashboard') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-blue-700"
               aria-current="page">
-              {{ _('widgets.navbar.dashboard') }}
+              {{ _('Dashboard') }}
             </a>
           </li>
           <li>
             <a href="{{ url_for('main.users.userslist') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">
-              {{ _('widgets.navbar.monitoring') }}
+              {{ _('Monitoring') }}
             </a>
           </li>
           <li>
             <a href="{{ url_for('main.users.profile') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">
-              {{ _('widgets.navbar.profile') }}
+              {{ _('Profile') }}
             </a>
           </li>
           {% if current_user.admin %}
           <li>
             <a href="{{ url_for('main.users.userslist') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">
-              {{ _('widgets.navbar.users') }}
+              {{ _('Users') }}
             </a>
           </li>
           {% endif %}
           <li>
             <a href="{{ url_for('main.users.logout') }}"
               class="block py-2 pl-3 pr-2 bg-transparent text-black">
-              {{ _('widgets.navbar.logout') }}
+              {{ _('Log Out') }}
             </a>
           </li>
         </ul>
