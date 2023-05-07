@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from flask_login import user_logged_in, current_user
+from flask_login import current_user
 from .extensions import db, bcrypt, login_manager, babel
 from .views import app as main
 
@@ -16,7 +16,7 @@ app.register_blueprint(main, url_prefix='')
 
 @babel.localeselector
 def get_locale():
-    if user_logged_in: return current_user.lang
+    if current_user.is_authenticated: return current_user.lang
     return request.accept_languages.best_match(app.config['LANGUAGES'].keys())
 
 @app.errorhandler(404)
