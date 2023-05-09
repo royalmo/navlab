@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 18:10+0200\n"
+"POT-Creation-Date: 2023-05-09 17:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,23 +33,27 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: app/templates/includes/navbar.html.j2:15
+#: app/templates/includes/navbar.html.j2:11
+msgid "Open main menu"
+msgstr ""
+
+#: app/templates/includes/navbar.html.j2:17
 msgid "Dashboard"
 msgstr ""
 
-#: app/templates/includes/navbar.html.j2:21
+#: app/templates/includes/navbar.html.j2:20
 msgid "Monitoring"
 msgstr ""
 
-#: app/templates/includes/navbar.html.j2:27
+#: app/templates/includes/navbar.html.j2:23
 msgid "Profile"
 msgstr ""
 
-#: app/templates/includes/navbar.html.j2:34
+#: app/templates/includes/navbar.html.j2:27
 msgid "Users"
 msgstr ""
 
-#: app/templates/includes/navbar.html.j2:41
+#: app/templates/includes/navbar.html.j2:31
 msgid "Log Out"
 msgstr ""
 
@@ -57,20 +61,20 @@ msgstr ""
 msgid "Service list"
 msgstr ""
 
-#: app/templates/pages/dashboard.html.j2:16
+#: app/templates/pages/dashboard.html.j2:17
 msgid "New service"
 msgstr ""
 
-#: app/templates/pages/dashboard.html.j2:27
+#: app/templates/pages/dashboard.html.j2:28
 msgid "Off"
 msgstr ""
 
-#: app/templates/pages/dashboard.html.j2:32
-#: app/templates/pages/dashboard.html.j2:104
+#: app/templates/pages/dashboard.html.j2:34
+#: app/templates/pages/dashboard.html.j2:106
 msgid "Start"
 msgstr ""
 
-#: app/templates/pages/dashboard.html.j2:83
+#: app/templates/pages/dashboard.html.j2:85
 msgid "Shutdown"
 msgstr ""
 
@@ -86,43 +90,45 @@ msgstr ""
 msgid "Server Information"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:25
+#: app/templates/pages/newserver.html.j2:26
 msgid "Server Name"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:33
+#: app/templates/pages/newserver.html.j2:36
 msgid "Server Image URL"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:44
+#: app/templates/pages/newserver.html.j2:49
 msgid "Server Description"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:54
+#: app/templates/pages/newserver.html.j2:60
 msgid "Server Commands"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:61
+#: app/templates/pages/newserver.html.j2:68
 msgid "Starting Command"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:72
+#: app/templates/pages/newserver.html.j2:81
 msgid "Stop Command"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:83
+#: app/templates/pages/newserver.html.j2:92
 msgid "Status Command"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:94
-msgid "Add Healthcheck"
+#: app/templates/pages/newserver.html.j2:104
+msgid ""
+"Add\n"
+"                Healthcheck"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:99
+#: app/templates/pages/newserver.html.j2:110
 msgid "Healthcheck Command"
 msgstr ""
 
-#: app/templates/pages/newserver.html.j2:113
+#: app/templates/pages/newserver.html.j2:127
 msgid "Remove Service"
 msgstr ""
 
@@ -180,18 +186,23 @@ msgstr ""
 
 #: app/templates/pages/newuser.html.j2:69
 #: app/templates/pages/userlist.html.j2:29
+#: app/templates/pages/users/signup.html.j2:46
 msgid "LANGUAGE"
 msgstr ""
 
-#: app/templates/pages/newuser.html.j2:70
-msgid "Language must be English or Catalan"
+#: app/templates/pages/newuser.html.j2:72
+msgid "English"
 msgstr ""
 
-#: app/templates/pages/newuser.html.j2:78
-msgid "Admin:"
+#: app/templates/pages/newuser.html.j2:73
+msgid "Catalan"
 msgstr ""
 
 #: app/templates/pages/newuser.html.j2:82
+msgid "Admin:"
+msgstr ""
+
+#: app/templates/pages/newuser.html.j2:86
 msgid "Active:"
 msgstr ""
 

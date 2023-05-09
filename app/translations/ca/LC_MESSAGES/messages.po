@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-07 18:10+0200\n"
+"POT-Creation-Date: 2023-05-09 17:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ca\n"
@@ -35,23 +35,27 @@ msgstr "Política de privacitat"
 msgid "Contact"
 msgstr "Contacte"
 
-#: app/templates/includes/navbar.html.j2:15
+#: app/templates/includes/navbar.html.j2:11
+msgid "Open main menu"
+msgstr ""
+
+#: app/templates/includes/navbar.html.j2:17
 msgid "Dashboard"
 msgstr "Inici"
 
-#: app/templates/includes/navbar.html.j2:21
+#: app/templates/includes/navbar.html.j2:20
 msgid "Monitoring"
 msgstr "Monitoratge"
 
-#: app/templates/includes/navbar.html.j2:27
+#: app/templates/includes/navbar.html.j2:23
 msgid "Profile"
 msgstr "Perfil"
 
-#: app/templates/includes/navbar.html.j2:34
+#: app/templates/includes/navbar.html.j2:27
 msgid "Users"
 msgstr "Usuaris"
 
-#: app/templates/includes/navbar.html.j2:41
+#: app/templates/includes/navbar.html.j2:31
 msgid "Log Out"
 msgstr "Sortir"
 
@@ -59,20 +63,20 @@ msgstr "Sortir"
 msgid "Service list"
 msgstr "Llista de Serveis"
 
-#: app/templates/pages/dashboard.html.j2:16
+#: app/templates/pages/dashboard.html.j2:17
 msgid "New service"
 msgstr "Servei Nou"
 
-#: app/templates/pages/dashboard.html.j2:27
+#: app/templates/pages/dashboard.html.j2:28
 msgid "Off"
 msgstr "Inactiu"
 
-#: app/templates/pages/dashboard.html.j2:32
-#: app/templates/pages/dashboard.html.j2:104
+#: app/templates/pages/dashboard.html.j2:34
+#: app/templates/pages/dashboard.html.j2:106
 msgid "Start"
 msgstr "Inicia"
 
-#: app/templates/pages/dashboard.html.j2:83
+#: app/templates/pages/dashboard.html.j2:85
 msgid "Shutdown"
 msgstr "Atura"
 
@@ -90,43 +94,45 @@ msgstr "Modifcar Servei"
 msgid "Server Information"
 msgstr "Informació del Servidor"
 
-#: app/templates/pages/newserver.html.j2:25
+#: app/templates/pages/newserver.html.j2:26
 msgid "Server Name"
 msgstr "Nom del Servidor"
 
-#: app/templates/pages/newserver.html.j2:33
+#: app/templates/pages/newserver.html.j2:36
 msgid "Server Image URL"
 msgstr "URL Imatge Servidor"
 
-#: app/templates/pages/newserver.html.j2:44
+#: app/templates/pages/newserver.html.j2:49
 msgid "Server Description"
 msgstr "Descripció del servidor"
 
-#: app/templates/pages/newserver.html.j2:54
+#: app/templates/pages/newserver.html.j2:60
 msgid "Server Commands"
 msgstr "Comandes del servidor"
 
-#: app/templates/pages/newserver.html.j2:61
+#: app/templates/pages/newserver.html.j2:68
 msgid "Starting Command"
 msgstr "Comanda per iniciar"
 
-#: app/templates/pages/newserver.html.j2:72
+#: app/templates/pages/newserver.html.j2:81
 msgid "Stop Command"
 msgstr "Comanda per aturar"
 
-#: app/templates/pages/newserver.html.j2:83
+#: app/templates/pages/newserver.html.j2:92
 msgid "Status Command"
 msgstr "Comanda per estat"
 
-#: app/templates/pages/newserver.html.j2:94
-msgid "Add Healthcheck"
-msgstr "Afegir Healthcheck"
+#: app/templates/pages/newserver.html.j2:104
+msgid ""
+"Add\n"
+"                Healthcheck"
+msgstr ""
 
-#: app/templates/pages/newserver.html.j2:99
+#: app/templates/pages/newserver.html.j2:110
 msgid "Healthcheck Command"
 msgstr "Comanda Healthcheck"
 
-#: app/templates/pages/newserver.html.j2:113
+#: app/templates/pages/newserver.html.j2:127
 #, fuzzy
 msgid "Remove Service"
 msgstr "Eliminar Servei"
@@ -186,18 +192,23 @@ msgstr "La contrasenya ha de tenir al menys un caràcter especial"
 
 #: app/templates/pages/newuser.html.j2:69
 #: app/templates/pages/userlist.html.j2:29
+#: app/templates/pages/users/signup.html.j2:46
 msgid "LANGUAGE"
 msgstr "IDIOMA"
 
-#: app/templates/pages/newuser.html.j2:70
-msgid "Language must be English or Catalan"
-msgstr "L'idioma ha de ser 'English' o 'Catalan'"
+#: app/templates/pages/newuser.html.j2:72
+msgid "English"
+msgstr "Anglès"
 
-#: app/templates/pages/newuser.html.j2:78
+#: app/templates/pages/newuser.html.j2:73
+msgid "Catalan"
+msgstr "Català"
+
+#: app/templates/pages/newuser.html.j2:82
 msgid "Admin:"
 msgstr "Administrador:"
 
-#: app/templates/pages/newuser.html.j2:82
+#: app/templates/pages/newuser.html.j2:86
 msgid "Active:"
 msgstr "Actiu:"
 
@@ -250,4 +261,10 @@ msgstr "Elimina"
 #: app/templates/pages/userlist.html.j2:62
 msgid "Are you sure you want to delete this user?"
 msgstr "Estás segur que vols eliminar aquest usuari?"
+
+#~ msgid "Add Healthcheck"
+#~ msgstr "Afegir Healthcheck"
+
+#~ msgid "Language must be English or Catalan"
+#~ msgstr "L'idioma ha de ser 'English' o 'Catalan'"
 

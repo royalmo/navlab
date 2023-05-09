@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, SelectField
 from wtforms.validators import InputRequired, Length, ValidationError
 
 from ..user import User
@@ -9,7 +9,7 @@ class RegisterForm(FlaskForm):
     email = EmailField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": "user@example.com"})
     password = PasswordField(validators=[InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "••••••••"})
     password_confirm = PasswordField(validators=[], render_kw={"placeholder": "••••••••"})
-    language = StringField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": "English"})
+    language = SelectField(choices=["English","Catalan"])
     submit = SubmitField('Register')
 
     def validate_email(self, email):
