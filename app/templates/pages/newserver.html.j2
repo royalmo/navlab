@@ -3,118 +3,134 @@
 {% block body %}
 
 <section class="py-2">
-<div class="w-full bg-slate-400 bg-opacity-90 lg:w-8/12 mx-auto mt-6">
-  <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
-    <div class="flex items-center justify-between rounded-t bg-white mb-0 px-6 py-6">
-{% if new %}
-      <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Add New Service') }}</h6>
-{% else %}
-      <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Modify Service') }}</h6>
-{% endif %}
+  <div class="w-full bg-slate-400 bg-opacity-90 lg:w-8/12 mx-auto mt-6">
+    <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+      <div class="flex items-center justify-between rounded-t bg-white mb-0 px-6 py-6">
+        {% if new %}
+        <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Add New Service') }}</h6>
+        {% else %}
+        <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Modify Service') }}</h6>
+        {% endif %}
+      </div>
     </div>
-  </div>
-  <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-    <form id="server_form" method="post" action="">
-      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-        {{ _('Server Information') }}
-      </h6>
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="name" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Server Name') }}
-            </label>
-            {{ server.name(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+      <form id="server_form" method="post" action="">
+        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+          {{ _('Server Information') }}
+        </h6>
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <label for="name" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlfor="grid-password">
+                {{ _('Server Name') }}
+              </label>
+              {{ server.name(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded
+              text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+            </div>
+          </div>
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <label for="image" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlfor="grid-password">
+                {{ _('Server Image URL') }}
+              </label>
+              {{ server.image(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded
+              text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
+            </div>
           </div>
         </div>
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="image" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Server Image URL') }}
-            </label>
-            {{ server.image(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
+
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-12/12 px-4">
+            <div class="relative w-full mb-3">
+              <label for="description" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlfor="grid-password">
+                {{ _('Server Description') }}
+              </label>
+              {{ server.description(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white
+              rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ")}}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-12/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="description" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Server Description') }}
-            </label>
-            {{ server.description(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ")}}
+        <hr class="mt-6 border-b-1 border-blueGray-300">
+
+        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+          {{ _('Server Commands') }}
+        </h6>
+
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <label for="starting_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlfor="grid-password">
+                {{ _('Starting Command') }}
+              </label>
+              {{ server.starting_cmd(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white
+              rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+            </div>
           </div>
         </div>
-      </div>
 
-      <hr class="mt-6 border-b-1 border-blueGray-300">
-
-      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-        {{ _('Server Commands') }}
-      </h6>
-
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="starting_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Starting Command') }}
-            </label>
-            {{ server.starting_cmd(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <label for="stop_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlfor="grid-password">
+                {{ _('Stop Command') }}
+              </label>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="stop_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Stop Command') }}
-            </label>
-            {{ server.stop_cmd(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <label for="status_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                htmlfor="grid-password">
+                {{ _('Status Command') }}
+              </label>
+              {{ server.status_cmd(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white
+              rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="status_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Status Command') }}
-            </label>
-            {{ server.status_cmd(class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <button id="toggle-server-name"
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">{{ _('Add Healthcheck') }}</button>
-            <div id="server-name-input" class="hidden flex-wrap">
-              <div class="w-full lg:w-6/12 px-4">
-                <div class="relative w-full mb-3">
-                  <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="server-name">
-                    {{ _('Healthcheck Command') }}
-                  </label>
-                  <input type="text" id="server-name" name="server-name"
-                    class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
-                    placeholder="Healtcheck command">
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-6/12 px-4">
+            <div class="relative w-full mb-3">
+              <button id="toggle-server-name"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4">{{ _('Add
+                Healthcheck') }}</button>
+              <div id="server-name-input" class="hidden flex-wrap">
+                <div class="w-full lg:w-6/12 px-4">
+                  <div class="relative w-full mb-3">
+                    <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2" for="server-name">
+                      {{ _('Healthcheck Command') }}
+                    </label>
+                    <input type="text" id="server-name" name="server-name"
+                      class="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      placeholder="Healtcheck command">
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      {{ server.submit(class_="relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800") }}
-    </form>
-    {% if not new %}
-    <button onclick="window.location.href='{{ url_for('main.servers.remove', name=server.data['name'])}}'" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4">{{ _('Remove Service') }}</button>
-    {% endif %}
+        {{ server.submit(class_="relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+        font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none
+        dark:focus:ring-blue-800") }}
+      </form>
+      {% if not new %}
+      <button onclick="window.location.href='{{ url_for('main.servers.remove', id=id) }}'"
+        class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mb-4">{{ _('Remove Service') }}
+      </button>
+      {% endif %}
+
+    </div>
   </div>
-</div>
-</div>
+  </div>
 </section>
 
 {% endblock %}

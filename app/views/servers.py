@@ -33,12 +33,12 @@ def edit(id):
         server.status_cmd = request.form['status_cmd']
         db.session.commit()
         return redirect(url_for('main.dashboard'))
-    return render_template('pages/newserver.html.j2', title="Server", current_user=current_user, server=server_form, new=False)
+    return render_template('pages/newserver.html.j2', title="Server", current_user=current_user, server=server_form, new=False, id=id)
 
-@app.route('/server/remove/<string:name>', methods=['GET', 'POST'])
+@app.route('/server/remove/<int:id>', methods=['GET', 'POST'])
 @login_required
-def remove(name):
-    Server.query.filter(Server.name == name).delete()
+def remove(id):
+    Server.query.filter(Server.id == id).delete()
     db.session.commit()
     return redirect(url_for('main.dashboard'))
 
