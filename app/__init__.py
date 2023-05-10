@@ -3,9 +3,13 @@ from flask_login import current_user
 from .extensions import db, bcrypt, login_manager, babel
 from .views import app as main
 
+from os import environ
+def is_production():
+    return 'PRODUCTION' in environ and environ['PRODUCTION'] == 'True'
+
 app = Flask(__name__)
 
-app.config.from_pyfile('settings/development.py')
+app.config.from_pyfile('settings/production.py' if is_production() else 'settings/development.py')
 
 db.init_app(app)
 bcrypt.init_app(app)

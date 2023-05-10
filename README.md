@@ -88,5 +88,8 @@ Simple! Just go to the project folder and type:
 python3 app.py
 ```
 
-Run `python3 app.py --production` if you wish to accept TCP
+Run `python3 app.py --listen-all` if you wish to accept TCP
 connections from other IP addresses than localhost.
+
+Have the environment variable `export PRODUCTION=True` to run in a production
+server (without the debug mode, for example).
