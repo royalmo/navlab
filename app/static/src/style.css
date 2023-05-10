@@ -59,22 +59,26 @@
 
     /* ============================================= */
     footer {
-        @apply absolute bottom-0 h-20 inset-x-0 p-4 shadow md:flex md:items-center md:justify-between md:p-6 bg-gray-800 xm:text-center text-gray-400 box-border;
+        @apply absolute bottom-0 h-20 inset-x-0 p-4 shadow md:p-6 bg-gray-800 xm:text-center text-gray-400 box-border;
     }
 
     footer>span {
+        @apply w-full max-w-screen-xl md:flex md:items-center md:justify-between mx-auto
+    }
+
+    footer>span>span {
         @apply text-sm xm:m-auto ml-4 md:ml-6;
     }
 
-    footer>span a {
+    footer>span>span a {
         @apply hover:underline;
     }
 
-    footer>ul {
+    footer>span>ul {
         @apply flex flex-wrap w-max xm:m-auto items-center list-none justify-start mt-3 text-sm sm:mt-0;
     }
 
-    footer>ul>li>a {
+    footer>span>ul>li>a {
         @apply mr-4 hover:underline md:mr-6;
     }
 }

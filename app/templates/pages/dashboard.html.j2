@@ -2,22 +2,15 @@
 
 {% block body %}
 
-<div>
-  <div
-    class="bg-white bg-opacity-90 max-w-[1250px] mx-auto border-black border rounded p-4 flex items-center mb-7 justify-between">
-    <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">{{ _('Service list') }}
-      <form id="search_form" method="get" action="">
-        {{ search_form.search(class_="text-black font-medium rounded-lg text-sm px-5 py-1.5 border-black border
-        placeholder:text-black") }}
-      </form>
-    </h1>
-    <a href="{{ url_for('.servers.newserver') }}">
-      <button type="button"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5">{{
-        _('New service') }}</button>
-    </a>
-  </div>
-</div>
+{% with
+    h1_text=_('Service list'),
+    left_button_text=_('New service'),
+    left_button_url=url_for('.servers.newserver'),
+    search_form=search_form 
+%}
+  {% include 'includes/title.html.j2' %}
+{% endwith %}
+
 <div id="card-list" class="flex justify-center items-center">
   {% for eachserver in serverlist %}
   <article>
@@ -35,13 +28,11 @@
           </button>
         </div>
         <div class="w-4/12 flex justify-center items-center">
-          <div class="text-center">
-            <picture>
-              <source srcset="{{ eachserver.image }}" />
-              <img src="{{ url_for('static', filename='images/no-server-placeholder.png') }}" alt="placeholder"
-                onerror="onError.call(this)" />
-            </picture>
-          </div>
+          <picture>
+            <source srcset="{{ eachserver.image }}" />
+            <img src="{{ url_for('static', filename='images/no-server-placeholder.png') }}" alt="placeholder"
+              onerror="onError.call(this)" />
+          </picture>
         </div>
       </div>
     </a>
