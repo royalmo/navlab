@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, redirect, request, make_response
-from flask_login import login_user, login_required, logout_user, current_user #############
+from flask_login import login_user, logout_user, current_user
 
-from ..extensions import db
+from ..extensions import db, login_required
 from ..models import Server, ServerForm, SearchForm
 
 app = Blueprint('servers', __name__)

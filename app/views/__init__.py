@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, request
-from flask_login import login_required, current_user
+from flask_login import current_user
+from ..extensions import login_required
 
 from .users import app as users_view
 from .servers import app as servers_view

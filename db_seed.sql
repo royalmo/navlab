@@ -1,8 +1,8 @@
 -- Data to seed the database
 INSERT INTO user VALUES
-    (1, 'Super User', 'super@user.com', '$2b$12$rABZ8UJM5tmzjKaYH0QFg.1vQ1tMRv5mdINUAT9nlWvup5G2jH7C2', 1, 1, 'en'),
-    (2, 'Aleix Llusà', 'aleix.llusa@upc.edu', '$2b$12$rABZ8UJM5tmzjKaYH0QFg.1vQ1tMRv5mdINUAT9nlWvup5G2jH7C2', 1, 0, 'ca'),
-    (3, 'Deactivated User', 'foo@bar.com', '$2b$12$rABZ8UJM5tmzjKaYH0QFg.1vQ1tMRv5mdINUAT9nlWvup5G2jH7C2', 0, 0, 'ca')
+    (1, 'Super User', 'super@user.com', '{0}', 1, 1, 'en'),
+    (2, 'Aleix Llusà', 'aleix.llusa@upc.edu', '{0}', 1, 0, 'ca'),
+    (3, 'Deactivated User', 'foo@bar.com', '{0}', 0, 0, 'ca')
 ;
 
 INSERT INTO server VALUES
