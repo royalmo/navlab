@@ -3,20 +3,20 @@
 {% block body %}
 
 <div class="bg-white bg-opacity-90 max-w-[1250px] mx-auto border-black border rounded p-4 flex items-center mb-7 justify-between">
-  <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">Statistics
+  <h1 class="text-blue-900 font-bold mr-4 text-2xl text-center">{{_('Statistics')}}
     <input type="text" placeholder="Search" class="text-black font-medium rounded-lg text-sm px-5 py-1.5 border-black border placeholder:text-black">
   </h1>
   <a href="newuser.html">
-    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">New monitor</button>
+    <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">{{_('New monitor')}}</button>
   </a>
 </div>
 
 <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7">
-  <h2 class="text-2xl font-bold text-gray-500">NavLab: Temperatura</h2>
+  <h2 class="text-2xl font-bold text-gray-500">NavLab: {{_('Temperature')}}</h2>
   <canvas id="blabla"></canvas>
 </article>
 <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7">
-  <h2 class="text-2xl font-bold text-gray-500">BolLab: Round-Trip-Time</h2>
+  <h2 class="text-2xl font-bold text-gray-500">BolLab: {{_('Round-Trip-Time')}}</h2>
   <canvas id="blabla2"></canvas>
 </article>
 
@@ -40,7 +40,7 @@ var options = {
 var data = {
     labels: result1,
     datasets: [{
-        label: "Temperature",
+        label: "{{_('Temperature')}}",
         data: result2
     }]
 };

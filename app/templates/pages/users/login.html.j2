@@ -6,38 +6,37 @@
 
 <!-- <img src="images/navlab_logo.svg" alt="NavLab Logo" class=""/> -->
 <h1 class="text-lp-4 text-center text-xl font-bold leading-tight tracking-tight md:text-2xl">
-    Log into your account
+    {{_('Log into your account')}}
 </h1>
 {% if bad_credentials %}
   <h4 class="text-center font-bold text-red-800">
-    Incorrect credentials
+    {{_('Incorrect credentials')}}
   </h4>
 {% endif %}
 {% if inactive_account %}
   <h4 class="text-center font-bold text-red-800">
-    Your account is inactive. Contact us for more information.
+    {{_('Your account is inactive. Contact us for more information.')}}
   </h4>
 {% endif %}
 <form class="space-y-4 md:space-y-6" method="post" action="">
   {{ form.hidden_tag() }}
   <div>
-    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900">{{_('Email')}}</label>
     {{ form.email(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5") }}
   </div>
   <div>
-    <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
+    <label for="password" class="block mb-2 text-sm font-medium text-gray-900">{{_('Password')}}</label>
     {{ form.password(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5") }}
   </div>
   <div class="flex items-center justify-between">
     <div>
       <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300">
-      <label for="remember" class="text-gray-900 text-sm">Keep me logged in</label>
+      <label for="remember" class="text-gray-900 text-sm">{{_('Keep me logged in')}}</label>
     </div>
-    <a href="#" class="text-lp-4 text-sm font-medium text-primary-600 hover:underline" onclick="alert('Sorry, not implemented!')">Forgot password?</a>
+    <a href="#" class="text-lp-4 text-sm font-medium text-primary-600 hover:underline" onclick="alert('Sorry, not implemented!')">{{_('Forgot password?')}}</a>
   </div>
   {{ form.submit(class_="bg-lp-2 border-2 border-black w-full text-lp-4 hover:shadow-lg font-medium rounded-lg text-sm px-5 py-2.5 text-center focus:ring-4 focus:outline-none focus:ring-primary-300") }}
-  <p class="text-sm font-light text-gray-500">
-      Don't have an account? <a href="{{ url_for('.register') }}" class="text-lp-4 font-medium text-primary-600 hover:underline">Sign up</a>
+  <p class="text-sm font-light text-gray-500"> {{_("Don't have an account?")}} <a href="{{ url_for('.register') }}" class="text-lp-4 font-medium text-primary-600 hover:underline">{{_('Sign up')}}</a>
   </p>
 </form>
 

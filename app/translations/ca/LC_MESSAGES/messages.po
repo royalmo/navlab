@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-09 17:02+0200\n"
+"POT-Creation-Date: 2023-05-10 17:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ca\n"
@@ -37,7 +37,7 @@ msgstr "Contacte"
 
 #: app/templates/includes/navbar.html.j2:11
 msgid "Open main menu"
-msgstr ""
+msgstr "Obre menú principal"
 
 #: app/templates/includes/navbar.html.j2:17
 msgid "Dashboard"
@@ -79,6 +79,23 @@ msgstr "Inicia"
 #: app/templates/pages/dashboard.html.j2:85
 msgid "Shutdown"
 msgstr "Atura"
+
+#: app/templates/pages/monitoring.html.j2:6
+msgid "Statistics"
+msgstr "Estadístiques"
+
+#: app/templates/pages/monitoring.html.j2:10
+msgid "New monitor"
+msgstr "Nou monitoratge"
+
+#: app/templates/pages/monitoring.html.j2:15
+#: app/templates/pages/monitoring.html.j2:43
+msgid "Temperature"
+msgstr "Temperatura"
+
+#: app/templates/pages/monitoring.html.j2:19
+msgid "Round-Trip-Time"
+msgstr "Round-Trip-Time"
 
 #: app/templates/pages/newserver.html.j2:10
 #, fuzzy
@@ -123,16 +140,14 @@ msgid "Status Command"
 msgstr "Comanda per estat"
 
 #: app/templates/pages/newserver.html.j2:104
-msgid ""
-"Add\n"
-"                Healthcheck"
-msgstr ""
+msgid "Add Healthcheck"
+msgstr "Afegir Healthcheck"
 
-#: app/templates/pages/newserver.html.j2:110
+#: app/templates/pages/newserver.html.j2:109
 msgid "Healthcheck Command"
 msgstr "Comanda Healthcheck"
 
-#: app/templates/pages/newserver.html.j2:127
+#: app/templates/pages/newserver.html.j2:126
 #, fuzzy
 msgid "Remove Service"
 msgstr "Eliminar Servei"
@@ -151,6 +166,7 @@ msgid "User Information"
 msgstr "Informació del Servidor"
 
 #: app/templates/pages/newuser.html.j2:23
+#: app/templates/pages/users/signup.html.j2:19
 msgid "Name"
 msgstr "Nom"
 
@@ -159,6 +175,8 @@ msgid "Email address"
 msgstr "Adreça de correu"
 
 #: app/templates/pages/newuser.html.j2:43
+#: app/templates/pages/users/login.html.j2:28
+#: app/templates/pages/users/signup.html.j2:27
 msgid "Password"
 msgstr "Contrasenya"
 
@@ -167,40 +185,47 @@ msgid "Confirm password"
 msgstr "Confirma la contrasenya"
 
 #: app/templates/pages/newuser.html.j2:57
+#: app/templates/pages/users/signup.html.j2:42
 msgid "Passwords do not match"
 msgstr "Les contrasenyes no coincideixen"
 
 #: app/templates/pages/newuser.html.j2:62
+#: app/templates/pages/users/signup.html.j2:30
 msgid "Password must be at least 8 characters long"
 msgstr "La contrasenya ha de tenir una llargada mínima de 8 caràcters"
 
 #: app/templates/pages/newuser.html.j2:63
+#: app/templates/pages/users/signup.html.j2:31
 msgid "Password must contain at least one uppercase letter"
 msgstr "La contrasenya ha de tenir al menys una lletra majúscula"
 
 #: app/templates/pages/newuser.html.j2:64
+#: app/templates/pages/users/signup.html.j2:32
 msgid "Password must contain at least one lowercase letter"
 msgstr "La contrasenya ha de tenir al menys una lletra minúscula"
 
 #: app/templates/pages/newuser.html.j2:65
+#: app/templates/pages/users/signup.html.j2:33
 msgid "Password must contain at least one number"
 msgstr "La contrasenya ha de tenir al menys un número"
 
 #: app/templates/pages/newuser.html.j2:66
+#: app/templates/pages/users/signup.html.j2:34
 msgid "Password must contain at least one special character"
 msgstr "La contrasenya ha de tenir al menys un caràcter especial"
 
 #: app/templates/pages/newuser.html.j2:69
 #: app/templates/pages/userlist.html.j2:29
-#: app/templates/pages/users/signup.html.j2:46
 msgid "LANGUAGE"
 msgstr "IDIOMA"
 
 #: app/templates/pages/newuser.html.j2:72
+#: app/templates/pages/newuser.html.j2:75
 msgid "English"
 msgstr "Anglès"
 
 #: app/templates/pages/newuser.html.j2:73
+#: app/templates/pages/newuser.html.j2:76
 msgid "Catalan"
 msgstr "Català"
 
@@ -262,9 +287,118 @@ msgstr "Elimina"
 msgid "Are you sure you want to delete this user?"
 msgstr "Estás segur que vols eliminar aquest usuari?"
 
+#: app/templates/pages/users/login.html.j2:9
+msgid "Log into your account"
+msgstr "Entra al teu compte"
+
+#: app/templates/pages/users/login.html.j2:13
+msgid "Incorrect credentials"
+msgstr "Credencials incorrectes"
+
+#: app/templates/pages/users/login.html.j2:18
+msgid "Your account is inactive. Contact us for more information."
+msgstr "El teu compte és incatiu. Cantacta amb nosaltres per a més informació."
+
+#: app/templates/pages/users/login.html.j2:24
+#: app/templates/pages/users/signup.html.j2:23
+msgid "Email"
+msgstr "Correu"
+
+#: app/templates/pages/users/login.html.j2:34
+msgid "Keep me logged in"
+msgstr "Mantenir-me iniciat."
+
+#: app/templates/pages/users/login.html.j2:36
+#, fuzzy
+msgid "Forgot password?"
+msgstr "Contrasenya oblidada?"
+
+#: app/templates/pages/users/login.html.j2:39
+msgid "Don't have an account?"
+msgstr "No tens un compte?"
+
+#: app/templates/pages/users/login.html.j2:39
+msgid "Sign up"
+msgstr "Registra't"
+
+#: app/templates/pages/users/signup.html.j2:9
+#, fuzzy
+msgid "Register your account"
+msgstr "Entra al teu compte"
+
+#: app/templates/pages/users/signup.html.j2:13
+msgid "Email already taken. Please try another or"
+msgstr "Correu ja registrat. Siusplau prova amb un altre o"
+
+#: app/templates/pages/users/signup.html.j2:13
+#: app/templates/pages/users/signup_success.html.j2:20
+msgid "log in"
+msgstr "iniciar sessió"
+
+#: app/templates/pages/users/signup.html.j2:39
+#, fuzzy
+msgid "Confirmation Password"
+msgstr "Confirma la contrasenya"
+
+#: app/templates/pages/users/signup.html.j2:46
+msgid "Language"
+msgstr "Idioma"
+
+#: app/templates/pages/users/signup.html.j2:54
+#, fuzzy
+msgid "Already have an account?"
+msgstr "Ja tens un compte?"
+
+#: app/templates/pages/users/signup.html.j2:54
+msgid "Log in"
+msgstr "Iniciar sessió"
+
+#: app/templates/pages/users/signup_success.html.j2:9
+msgid "Account created"
+msgstr "Compte creat"
+
+#: app/templates/pages/users/signup_success.html.j2:11
+msgid "but not activated!"
+msgstr "però no activat!"
+
+#: app/templates/pages/users/signup_success.html.j2:15
+msgid "Your account has been created"
+msgstr "El teu compte ha estat creat"
+
+#: app/templates/pages/users/signup_success.html.j2:15
+msgid "but it first need to be reviewed by an administrator."
+msgstr "però primer ha de ser revisat per un administrador."
+
+#: app/templates/pages/users/signup_success.html.j2:19
+msgid "Once your account will be activated by an admin, you will be able to"
+msgstr "Quan el teu compte sigui revisat per un administrador, podràs"
+
+#: app/templates/pages/users/signup_success.html.j2:21
+msgid "to NavLab!"
+msgstr "a NavLab!"
+
+#: app/templates/pages/users/signup_success.html.j2:25
+msgid "What do I need to do?"
+msgstr "Què he de fer?"
+
+#: app/templates/pages/users/signup_success.html.j2:29
+msgid ""
+"Nothing, you just need to wait. If you're in a hurry, however, you can "
+"send a mail to"
+msgstr "Res, només has d'esperar. Si tens presa, pots enviar un correu a"
+
+#: app/templates/pages/users/signup_success.html.j2:31
+msgid "indicating the reason of your hurry."
+msgstr "indicant el motiu."
+
 #~ msgid "Add Healthcheck"
 #~ msgstr "Afegir Healthcheck"
 
 #~ msgid "Language must be English or Catalan"
 #~ msgstr "L'idioma ha de ser 'English' o 'Catalan'"
+
+#~ msgid ""
+#~ "Add\n"
+#~ "                Healthcheck"
+#~ msgstr ""
 
