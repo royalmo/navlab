@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from flask_login import current_user
 from ..extensions import login_required
+from flask_babel import gettext
 
 from .users import app as users_view
 from .servers import app as servers_view
@@ -26,7 +27,7 @@ def dashboard():
         servers = Server.query.all()
 
     return render_template('pages/dashboard.html.j2',
-                           title="Dashboard",
+                           title=gettext("Dashboard"),
                            current_user=current_user,
                            serverlist=servers,
                            search_form=search_form,
@@ -36,6 +37,6 @@ def dashboard():
 @login_required
 def monitoring():
     return render_template('pages/monitoring.html.j2',
-                           title="Monitoring",
+                           title=gettext("Monitoring"),
                            current_user=current_user,
                            navbar_highlight_monitoring=True)

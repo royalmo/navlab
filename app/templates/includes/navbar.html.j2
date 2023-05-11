@@ -24,7 +24,7 @@
         </li>
         {% if current_user.admin %}
         <li>
-          <a href="{{ url_for('main.users.userslist') }}" {{ current_item_classes if navbar_highlight_users else other_item_classes }}>{{ _('Users') }}</a>
+          <a href="{{ url_for('main.users.users') }}" {{ current_item_classes if navbar_highlight_users else other_item_classes }}>{{ _('Users') }}</a>
         </li>
         {% endif %}
         <li>

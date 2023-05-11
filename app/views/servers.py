@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, request, make_response
-from flask_login import login_user, logout_user, current_user
+from flask_login import current_user
+from flask_babel import gettext
 
 from ..extensions import db, login_required
 from ..models import Server, ServerForm, SearchForm
@@ -16,7 +17,7 @@ def newserver():
         db.session.add(new_server)
         db.session.commit()
         return redirect(url_for('main.dashboard'))
-    return render_template('pages/newserver.html.j2', title="Server", current_user=current_user, server=form, new=True)
+    return render_template('pages/newserver.html.j2', title=gettext("New Server"), current_user=current_user, server=form, new=True)
 
 @app.route('/server/edit/<int:id>', methods=['GET', 'POST'])
 @login_required
@@ -33,7 +34,7 @@ def edit(id):
         server.status_cmd = request.form['status_cmd']
         db.session.commit()
         return redirect(url_for('main.dashboard'))
-    return render_template('pages/newserver.html.j2', title="Server", current_user=current_user, server=server_form, new=False, id=id)
+    return render_template('pages/newserver.html.j2', title=gettext("Edit Server"), current_user=current_user, server=server_form, new=False, id=id)
 
 @app.route('/server/remove/<int:id>', methods=['GET', 'POST'])
 @login_required

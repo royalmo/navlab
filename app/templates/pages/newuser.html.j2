@@ -3,12 +3,18 @@
 {% block body %}
 
 <section class="py-2">
-<div class="w-full bg-slate-400 bg-opacity-90 lg:w-8/12 mx-auto mt-6">
-<form method="POST" action="{{ url_for('.userslist')+'/edit/'+user.id|string }}">
+<div class="w-full bg-slate-400 bg-opacity-90 lg:w-8/12 mx-auto mt-6 max-w-[1250px]">
+<form method="POST" action="{{ url_for('.edit_user', user_id=user.id) }}">
   <div
     class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
     <div class="flex items-center justify-between rounded-t bg-white mb-0 px-6 py-6">
-      <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Edit User') }}</h6>
+      <h6 class="text-blueGray-700 text-xl font-bold">
+      {% if navbar_highlight_profile %} {# Own profile #} 
+        {{ _('Your Profile') }}
+      {% else %}
+        {{ _('Edit User') }}
+      {% endif %}
+      </h6>
       <input type="submit" value="{{ _('Save') }}" class="hover:cursor-pointer relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
     </div>
   </div>

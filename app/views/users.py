@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from flask_login import login_user, logout_user, current_user
+from flask_babel import gettext
 
 from ..extensions import db, bcrypt, login_required, mailer
 from ..models import User, LoginForm, RegisterForm, SearchForm
@@ -16,9 +17,9 @@ def login():
                 if user.active:
                     login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') if request.args.get('next') else url_for('main.dashboard'))
-                return render_template('pages/users/login.html.j2', form=form, inactive_account=True)
+                return render_template('pages/users/login.html.j2', form=form, inactive_account=True, title=gettext('Log In'))
     # If POST method, it means that user failed to log in
-    return render_template('pages/users/login.html.j2', form=form, bad_credentials=request.method=='POST')
+    return render_template('pages/users/login.html.j2', form=form, bad_credentials=request.method=='POST', title=gettext('Log In'))
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -36,13 +37,13 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         mailer.new_user(new_user)
-        return render_template('pages/users/signup_success.html.j2', name=form.name.data)
+        return render_template('pages/users/signup_success.html.j2', name=form.name.data, title=gettext('Registered!'))
 
-    return render_template('pages/users/signup.html.j2', form=form, email_taken=request.method=='POST')
+    return render_template('pages/users/signup.html.j2', form=form, email_taken=request.method=='POST', title=gettext('Register'))
 
-@app.route('/userslist')
+@app.route('/users')
 @login_required
-def userslist():
+def users():
     if not current_user.admin:
         return redirect('/')
 
@@ -56,20 +57,19 @@ def userslist():
     return render_template('pages/userlist.html.j2',
                             userlist=users,
                             search_form=search_form,
-                            navbar_highlight_users=True)
+                            navbar_highlight_users=True,
+                            title=gettext('Users'))
 
-    
-
-@app.route('/userslist/delete/<int:id>')
+@app.route('/users/<int:user_id>/delete')
 @login_required
-def delete(id):
+def delete_user(user_id):
     if current_user.admin:
-        user = User.query.get_or_404(id)
+        user = User.query.get_or_404(user_id)
         db.session.delete(user)
         db.session.commit()
-    return redirect(url_for('.userslist'))
+    return redirect(url_for('.users'))
 
-@app.route('/userslist/edit/<int:user_id>', methods=['GET', 'POST'])
+@app.route('/users/<int:user_id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_user(user_id):
     user = User.query.get_or_404(user_id)
@@ -82,12 +82,21 @@ def edit_user(user_id):
         user.admin = 'admin' in request.form and current_user.admin
         user.active = 'active' in request.form and current_user.admin
         db.session.commit()
-        return redirect(url_for('main.dashboard'))
-    return render_template('pages/newuser.html.j2', user=user, navbar_highlight_profile=True)
+        return redirect(url_for('.users'))
+    return render_template('pages/newuser.html.j2', user=user, title=gettext('Edit user'))
 
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
-    return redirect('/userslist/edit/'+str(current_user.id))
-
-
+    user = current_user
+    if request.method == 'POST':
+        user.name = request.form['name']
+        user.email = request.form['email']
+        user.lang=request.form['language']
+        if request.form['password'] and request.form['password']==request.form['password_confirm']:
+            user.password = bcrypt.generate_password_hash(request.form['password'])
+        user.admin = 'admin' in request.form and current_user.admin
+        user.active = 'active' in request.form and current_user.admin
+        db.session.commit()
+        return redirect(url_for('.profile'))
+    return render_template('pages/newuser.html.j2', user=user, navbar_highlight_profile=True, title=gettext('Your Profile'))
