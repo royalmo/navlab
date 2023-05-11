@@ -1,4 +1,4 @@
-from ..extensions import db
+from ..extensions import db, bcrypt
 from flask_login import UserMixin
 from babel import Locale
 
@@ -13,3 +13,14 @@ class User(db.Model, UserMixin):
 
     def parsed_lang(self):
         return Locale(self.lang).get_display_name().capitalize()
+    
+    def update_with_form(self, form, admin=False):
+        user = self
+        user.name = form.name.data
+        user.email = form.email.data
+        user.lang=form.language.data
+        if form.password.data and form.password.data==form.password_confirm.data:
+            user.password = bcrypt.generate_password_hash(form.password.data)
+        user.admin = ((not admin) and user.admin) or (admin and form.admin.data)
+        user.active = ((not admin) and user.active) or (admin and form.active.data)
+        db.session.commit()

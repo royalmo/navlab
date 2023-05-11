@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from flask_login import current_user
 from .extensions import db, bcrypt, login_manager, babel
 from .extensions.babel import get_locales
 from .views import app as main
 from .settings import is_production
+import os
 
 app = Flask(__name__)
 
@@ -26,6 +27,11 @@ def get_locale():
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('errors/404.html.j2', title='404 Error'), 404
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 if __name__ == "__main__":
     app.run()

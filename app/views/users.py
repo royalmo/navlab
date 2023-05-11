@@ -2,8 +2,8 @@ from flask import Blueprint, render_template, url_for, redirect, request
 from flask_login import login_user, logout_user, current_user
 from flask_babel import gettext,get_locale
 
-from ..extensions import db, bcrypt, login_required, mailer
-from ..models import User, LoginForm, RegisterForm, SearchForm, SelectForm
+from ..extensions import db, bcrypt, login_required, mailer, admin_required
+from ..models import User, LoginForm, RegisterForm, SearchForm, SelectForm, UserForm
 
 app = Blueprint('users', __name__)
 
@@ -54,11 +54,8 @@ def register():
     return render_template('pages/users/signup.html.j2', form=form, email_taken=request.method=='POST', title=gettext('Register'))
 
 @app.route('/users')
-@login_required
+@admin_required
 def users():
-    if not current_user.admin:
-        return redirect('/')
-
     search_form = SearchForm(request.form)
     search_query = request.args.get('search')
     if search_query:
@@ -72,43 +69,38 @@ def users():
                             navbar_highlight_users=True,
                             title=gettext('Users'))
 
-@app.route('/users/<int:user_id>/delete')
-@login_required
+@app.route('/users/<int:user_id>', methods=['DELETE'])
+@admin_required
 def delete_user(user_id):
-    if current_user.admin:
-        user = User.query.get_or_404(user_id)
-        db.session.delete(user)
-        db.session.commit()
+    user = User.query.get_or_404(user_id)
+    db.session.delete(user)
+    db.session.commit()
     return redirect(url_for('.users'))
 
 @app.route('/users/<int:user_id>/edit', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def edit_user(user_id):
     user = User.query.get_or_404(user_id)
-    if request.method == 'POST':
-        user.name = request.form['name']
-        user.email = request.form['email']
-        user.lang=request.form['language']
-        if request.form['password'] and request.form['password']==request.form['password_confirm']:
-            user.password = bcrypt.generate_password_hash(request.form['password'])
-        user.admin = 'admin' in request.form and current_user.admin
-        user.active = 'active' in request.form and current_user.admin
-        db.session.commit()
+    form = UserForm()
+
+    if form.validate_on_submit():
+        user.update_with_form(form, current_user.admin)
         return redirect(url_for('.users'))
-    return render_template('pages/newuser.html.j2', user=user, title=gettext('Edit user'))
+
+    form.language.default=user.lang
+    form.process()
+    return render_template('pages/newuser.html.j2', user=user, form=form, title=gettext('Edit user'))
 
 @app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     user = current_user
-    if request.method == 'POST':
-        user.name = request.form['name']
-        user.email = request.form['email']
-        user.lang=request.form['language']
-        if request.form['password'] and request.form['password']==request.form['password_confirm']:
-            user.password = bcrypt.generate_password_hash(request.form['password'])
-        user.admin = 'admin' in request.form and current_user.admin
-        user.active = 'active' in request.form and current_user.admin
-        db.session.commit()
+    form = UserForm()
+
+    if form.validate_on_submit():
+        user.update_with_form(form, current_user.admin)
         return redirect(url_for('.profile'))
-    return render_template('pages/newuser.html.j2', user=user, navbar_highlight_profile=True, title=gettext('Your Profile'))
+
+    form.language.default=user.lang
+    form.process()
+    return render_template('pages/newuser.html.j2', user=user, form=form, navbar_highlight_profile=True, title=gettext('Your Profile'))
