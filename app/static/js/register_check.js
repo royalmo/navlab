@@ -1,54 +1,52 @@
 const passwordInput = document.querySelector('input[name="password"]');
-const passwordError = document.getElementById("passwordError");
+const passwordInputHint = document.getElementById("password_hints");
 const passwordConfirmation = document.querySelector('input[name="password_confirm"]');
-const passwordErrorConf = document.getElementById("passwordErrorConf");
+const passwordConfirmationHint = document.getElementById("password_confirm_hints");
+
 const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$/;
+
+function set_element(e, failed) {
+    if (failed) {
+        e.classList.replace('text-green-700', 'text-red-700');
+        e.children[0].classList.replace('fa-check', 'fa-times');
+    }
+    else {
+        e.classList.replace('text-red-700', 'text-green-700');
+        e.children[0].classList.replace('fa-times', 'fa-check');
+    }
+}
 
 passwordInput.addEventListener("input", () => {
     const password = passwordInput.value;
-    let errorMessages = [];
+    const ch = passwordInputHint.children;
 
-    if (passwordRegex.test(password)) {
-        passwordError.innerHTML = '<span class="text-green-600">Password meets all requirements</span>';
-    } else {
-        if (password.length < 8) {
-            errorMessages.push("- Password must be at least 8 characters long");
-        }
-        if (!/(?=.*[A-Z])/.test(password)) {
-            errorMessages.push("- Password must contain at least one uppercase letter");
-        }
-        if (!/(?=.*[a-z])/.test(password)) {
-            errorMessages.push("- Password must contain at least one lowercase letter");
-        }
-        if (!/(?=.*\d)/.test(password)) {
-            errorMessages.push("- Password must contain at least one number");
-        }
-        if (!/(?=.*[!@#$%^&*()_+])/.test(password)) {
-            errorMessages.push("- Password must contain at least one special character (!@#$%^&*()_+)");
-        }
-        passwordError.innerHTML = errorMessages.map(message => `<span class="text-${password.length >= 8 && /(?=.*[A-Z])/.test(password) && /(?=.*\d)/.test(password) && /(?=.*[!@#$%^&*()_+])/.test(password) ? 'green' : 'red'}">${message}</span>`).join('<br>');
-    }
+    set_element(ch[0], !/(?=.*[a-z])/.test(password));
+    set_element(ch[1], !/(?=.*[A-Z])/.test(password));
+    set_element(ch[2], !/(?=.*\d)/.test(password));
+    set_element(ch[3], password.length < 8);
+    set_element(ch[4], !/(?=.*[!@#$%^&*()_+])/.test(password));
 });
 
 passwordConfirmation.addEventListener("input", () => {
     const password = passwordInput.value;
     const passwordConf = passwordConfirmation.value;
-    let errorMessages = [];
+
+    const firstChild = passwordConfirmationHint.children[0];
+    const secondChild = passwordConfirmationHint.children[1];
 
     if (password !== passwordConf) {
-        errorMessages.push("Passwords do not match");
+        firstChild.style.display = "block";
+        secondChild.style.display = "none";
     }
-
-    if (errorMessages.length > 0) {
-        passwordErrorConf.innerHTML = errorMessages.map(message => `<span class="text-red-600">${message}</span>`).join('<br>');
-    } else {
-        passwordErrorConf.innerHTML = '<span class="text-green-600">Passwords match</span>';
+    else {
+        firstChild.style.display = "none";
+        secondChild.style.display = "block";
     }
 });
 
 function validateForm() {
-    var password = document.forms["register_form"]["password"].value;
-    var confirm_password = document.forms["register_form"]["confirmation_password"].value;
+    var password = passwordInput.value;
+    var confirm_password = passwordConfirmation.value;
 
     return password == confirm_password;
 }

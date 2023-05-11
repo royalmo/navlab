@@ -4,22 +4,23 @@
 
 {% block body %}
 
-<!-- <img src="images/navlab_logo.svg" alt="NavLab Logo" class=""/> -->
-<h1 class="text-lp-4 text-center text-xl font-bold leading-tight tracking-tight md:text-2xl">
-    {{_('Register your account')}}
-</h1>
-{% if email_taken %}
-  <h4 class="text-center font-bold text-red-800">
-    {{_('Email already taken. Please try another or')}} <a href="{{ url_for('.login') }}" class="text-red-600 italic underline hover:text-red-300">{{_('log in')}}</a>.
-  </h4>
-{% endif %}
 <form id="register_form" class="space-y-4 md:space-y-6" method="post" action="">
   {{ form.hidden_tag() }}
-  <div>
-    <label class="block mb-2 text-sm font-medium text-gray-900">{{ _('Language') }} </label>
-    {{form.language(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5")}}
+
+  <div class="flex">
+    <h1 class="text-lp-4 text-center text-xl font-bold leading-tight tracking-tight md:text-2xl">
+        {{_('Register your account')}}
+    </h1>
+    {{ form.language(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-1 pl-2.5",style="width:auto; margin-left:auto;") }}
     <script src="{{ url_for('static', filename='js/change_language.js') }}"></script>
   </div>
+
+  {% if email_taken %}
+    <h4 class="text-center font-bold text-red-800">
+      {{_('Email already taken. Please try another or')}} <a href="{{ url_for('.login') }}" class="text-red-600 italic underline hover:text-red-300">{{_('log in')}}</a>.
+    </h4>
+  {% endif %}
+
   <div>
     <label for="name" class="block mb-2 text-sm font-medium text-gray-900">{{_('Name')}}</label>
     {{ form.name(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5") }}
@@ -31,20 +32,35 @@
   <div>
     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">{{_('Password')}}</label>
     {{ form.password(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5", pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$") }}
-    <div id="passwordError" class="text-red-600 text-sm">
-        - {{_('Password must be at least 8 characters long')}}<br>
-        - {{_('Password must contain at least one uppercase letter')}}<br>
-        - {{_('Password must contain at least one lowercase letter')}}<br>
-        - {{_('Password must contain at least one number')}}<br>
-        - {{_('Password must contain at least one special character')}} (!@#$%^&*()_+)
+    <div id="password_hints">
+      <span class="text-red-600">
+        <i class="fa fa-times"></i> LowerCase
+      </span>
+      <span class="text-red-600">
+        <i class="fa fa-times"></i> Uppercase
+      </span>
+      <span class="text-red-600">
+        <i class="fa fa-times"></i> Digit
+      </span>
+      <span class="text-red-600">
+        <i class="fa fa-times"></i> 8+ Characters
+      </span>
+      <span class="text-red-600">
+        <i class="fa fa-times"></i> Symbol
+      </span>
     </div>
   </div>
   <div>
     <label for="confirmation_password"
         class="block mb-2 text-sm font-medium text-gray-900">{{_('Confirmation Password')}}</label>
     {{ form.password_confirm(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5", pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$") }}
-    <div id="passwordErrorConf" class="text-red-600 text-sm">
-        {{_('Passwords do not match')}}<br>
+    <div id="password_confirm_hints">
+      <span class="text-red-600">
+        <i class="fa fa-times"></i> Passwords do not match
+      </span>
+      <span class="text-green-600" style="display:none;">
+        <i class="fa fa-check"></i> Passwords match
+      </span>
     </div>
   </div>
 

@@ -46,6 +46,25 @@
               {{ _('Password') }}
             </label>
             {{ form.password(required=False, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
+
+            <div id="password_hints">
+              <span class="text-red-700">
+                <i class="fa fa-times"></i> LowerCase
+              </span>
+              <span class="text-red-700">
+                <i class="fa fa-times"></i> Uppercase
+              </span>
+              <span class="text-red-700">
+                <i class="fa fa-times"></i> Digit
+              </span>
+              <span class="text-red-700">
+                <i class="fa fa-times"></i> 8+ Characters
+              </span>
+              <span class="text-red-700">
+                <i class="fa fa-times"></i> Symbol
+              </span>
+            </div>
+
           </div>
         </div>
         <div class="w-full lg:w-6/12 px-4" style="margin-top:1rem">
@@ -54,32 +73,32 @@
               {{ _('Confirm password') }}
             </label>
             {{ form.password_confirm(required=False, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
-              <div id="passwordErrorConf" class="text-red-600 text-sm">
-                {{ _('Passwords do not match') }}<br>
-              </div>
+  
+            <div id="password_confirm_hints">
+              <span class="text-red-700">
+                <i class="fa fa-times"></i> Passwords do not match
+              </span>
+              <span class="text-green-700" style="display:none;">
+                <i class="fa fa-check"></i> Passwords match
+              </span>
+            </div>
+        </div>
+        <div class="flex flex-wrap" style="margin-top:1rem">
+          <div class="md:w-3/12">
+            <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">{{ _('LANGUAGE') }} </label>
+            {{ form.language(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5") }}<br>
           </div>
+          {% if current_user.admin %}
+            <div class="mx-4 flex items-center">
+              <label for="admin">{{ _('Admin:') }}</label>
+              {{ form.admin(checked=user.admin) }}<br>
+            </div>
+            <div class="mx-4 flex items-center">
+              <label for="active">{{ _('Active:') }}</label>
+              {{ form.active(checked=user.active) }}<br>
+            </div>
+          {% endif %}
         </div>
-        <div id="passwordError" class="text-red-600 text-sm">
-        - {{ _('Password must be at least 8 characters long') }}<br>
-        - {{ _('Password must contain at least one uppercase letter') }}<br>
-        - {{ _('Password must contain at least one lowercase letter') }}<br>
-        - {{ _('Password must contain at least one number') }}<br>
-        - {{ _('Password must contain at least one special character') }} (!@#$%^&*()_+)
-        </div>
-        <div style="margin:1rem">
-          <label class="block uppercase text-blueGray-600 text-xs font-bold mb-2">{{ _('LANGUAGE') }} </label>
-          {{ form.language(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5") }}<br>
-        </div>
-        {% if current_user.admin %}
-        <div style="margin:2rem">
-          <label for="admin">{{ _('Admin:') }}</label>
-          {{ form.admin(checked=user.admin) }}<br>
-        </div>
-        <div style="margin:2rem">
-          <label for="active">{{ _('Active:') }}</label>
-          {{ form.active(checked=user.active) }}<br>
-        </div>
-        {% endif %}
       </div>
     </form>
     <script class="text-green-600" src="{{ url_for('static', filename='js/register_check.js') }}"></script>

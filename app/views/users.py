@@ -16,6 +16,7 @@ def login():
     sel=SelectForm()
     sel.language.default=get_locale()
     sel.process()
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -40,8 +41,6 @@ def register():
     if current_user.is_authenticated: return redirect(url_for('main.dashboard'))
 
     form = RegisterForm()
-    form.language.default=get_locale()
-    form.process()
 
     if form.validate_on_submit() and form.password.data == form.password_confirm.data:
         hashed_password = bcrypt.generate_password_hash(form.password.data)
@@ -50,6 +49,9 @@ def register():
         db.session.commit()
         mailer.new_user(new_user)
         return render_template('pages/users/signup_success.html.j2', name=form.name.data, title=gettext('Registered!'))
+    
+    form.language.default=get_locale()
+    form.process()
 
     return render_template('pages/users/signup.html.j2', form=form, email_taken=request.method=='POST', title=gettext('Register'))
 
