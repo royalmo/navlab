@@ -9,6 +9,10 @@ app = Blueprint('users', __name__)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # If user is already logged in
+    if current_user.is_authenticated:
+        return redirect(request.args.get('next') if request.args.get('next') else url_for('main.dashboard'))
+
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -29,6 +33,9 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    # If user is already logged in
+    if current_user.is_authenticated: return redirect(url_for('main.dashboard'))
+
     form = RegisterForm()
 
     if form.validate_on_submit() and form.password.data == form.password_confirm.data:

@@ -178,41 +178,41 @@ msgstr "Adreça de correu"
 #: app/templates/pages/users/login.html.j2:28
 #: app/templates/pages/users/signup.html.j2:27
 msgid "Password"
-msgstr "Contrasenya"
+msgstr "Contrassenya"
 
 #: app/templates/pages/newuser.html.j2:52
 msgid "Confirm password"
-msgstr "Confirma la contrasenya"
+msgstr "Confirma la contrassenya"
 
 #: app/templates/pages/newuser.html.j2:57
 #: app/templates/pages/users/signup.html.j2:42
 msgid "Passwords do not match"
-msgstr "Les contrasenyes no coincideixen"
+msgstr "Les contrassenyes no coincideixen"
 
 #: app/templates/pages/newuser.html.j2:62
 #: app/templates/pages/users/signup.html.j2:30
 msgid "Password must be at least 8 characters long"
-msgstr "La contrasenya ha de tenir una llargada mínima de 8 caràcters"
+msgstr "La contrassenya ha de tenir una llargada mínima de 8 caràcters"
 
 #: app/templates/pages/newuser.html.j2:63
 #: app/templates/pages/users/signup.html.j2:31
 msgid "Password must contain at least one uppercase letter"
-msgstr "La contrasenya ha de tenir al menys una lletra majúscula"
+msgstr "La contrassenya ha de tenir almenys una lletra majúscula"
 
 #: app/templates/pages/newuser.html.j2:64
 #: app/templates/pages/users/signup.html.j2:32
 msgid "Password must contain at least one lowercase letter"
-msgstr "La contrasenya ha de tenir al menys una lletra minúscula"
+msgstr "La contrassenya ha de tenir almenys una lletra minúscula"
 
 #: app/templates/pages/newuser.html.j2:65
 #: app/templates/pages/users/signup.html.j2:33
 msgid "Password must contain at least one number"
-msgstr "La contrasenya ha de tenir al menys un número"
+msgstr "La contrassenya ha de tenir almenys un número"
 
 #: app/templates/pages/newuser.html.j2:66
 #: app/templates/pages/users/signup.html.j2:34
 msgid "Password must contain at least one special character"
-msgstr "La contrasenya ha de tenir al menys un caràcter especial"
+msgstr "La contrassenya ha de tenir almenys un caràcter especial"
 
 #: app/templates/pages/newuser.html.j2:69
 #: app/templates/pages/userlist.html.j2:29
