@@ -8,3 +8,4 @@ LANGUAGES = {
     'ca' : 'Català',
     'en' : 'English'
 }
+SMTP_PASSWORD = ''

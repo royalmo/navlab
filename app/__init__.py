@@ -2,10 +2,7 @@ from flask import Flask, render_template, request
 from flask_login import current_user
 from .extensions import db, bcrypt, login_manager, babel
 from .views import app as main
-
-from os import environ
-def is_production():
-    return 'PRODUCTION' in environ and environ['PRODUCTION'] == 'True'
+from .settings import is_production
 
 app = Flask(__name__)
 

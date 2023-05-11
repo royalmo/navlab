@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from flask_login import login_user, logout_user, current_user
 
-from ..extensions import db, bcrypt, login_required
+from ..extensions import db, bcrypt, login_required, mailer
 from ..models import User, LoginForm, RegisterForm, SearchForm
 
 app = Blueprint('users', __name__)
@@ -14,7 +14,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 if user.active:
-                    login_user(user)
+                    login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') if request.args.get('next') else url_for('main.dashboard'))
                 return render_template('pages/users/login.html.j2', form=form, inactive_account=True)
     # If POST method, it means that user failed to log in
@@ -35,6 +35,7 @@ def register():
         new_user = User(name=form.name.data, email=form.email.data, password=hashed_password, lang=form.language.data)
         db.session.add(new_user)
         db.session.commit()
+        mailer.new_user(new_user)
         return render_template('pages/users/signup_success.html.j2', name=form.name.data)
 
     return render_template('pages/users/signup.html.j2', form=form, email_taken=request.method=='POST')
