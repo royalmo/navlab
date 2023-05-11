@@ -1,9 +1,9 @@
 from flask import Blueprint, render_template, url_for, redirect, request
 from flask_login import login_user, logout_user, current_user
-from flask_babel import gettext
+from flask_babel import gettext,get_locale
 
 from ..extensions import db, bcrypt, login_required, mailer
-from ..models import User, LoginForm, RegisterForm, SearchForm
+from ..models import User, LoginForm, RegisterForm, SearchForm, SelectForm
 
 app = Blueprint('users', __name__)
 
@@ -13,6 +13,9 @@ def login():
     if current_user.is_authenticated:
         return redirect(request.args.get('next') if request.args.get('next') else url_for('main.dashboard'))
 
+    sel=SelectForm()
+    sel.language.default=get_locale()
+    sel.process()
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -21,9 +24,9 @@ def login():
                 if user.active:
                     login_user(user, remember=form.remember.data)
                     return redirect(request.args.get('next') if request.args.get('next') else url_for('main.dashboard'))
-                return render_template('pages/users/login.html.j2', form=form, inactive_account=True, title=gettext('Log In'))
+                return render_template('pages/users/login.html.j2', form=form, inactive_account=True, title=gettext('Log In'),sel=sel)
     # If POST method, it means that user failed to log in
-    return render_template('pages/users/login.html.j2', form=form, bad_credentials=request.method=='POST', title=gettext('Log In'))
+    return render_template('pages/users/login.html.j2', form=form, bad_credentials=request.method=='POST', title=gettext('Log In'),sel=sel)
 
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -37,6 +40,8 @@ def register():
     if current_user.is_authenticated: return redirect(url_for('main.dashboard'))
 
     form = RegisterForm()
+    form.language.default=get_locale()
+    form.process()
 
     if form.validate_on_submit() and form.password.data == form.password_confirm.data:
         hashed_password = bcrypt.generate_password_hash(form.password.data)
