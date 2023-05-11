@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField, SelectField, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, SelectField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_babel import gettext
 
@@ -13,8 +13,6 @@ class RegisterForm(FlaskForm):
     password_confirm = PasswordField(validators=[], render_kw={"placeholder": gettext("••••••••")})
     language = SelectField(choices=get_locales)
     submit = SubmitField(gettext('Register'))
-    admin = BooleanField(gettext('Admin?'))
-    active = BooleanField(gettext('Active?'))
 
     def validate_email(self, email):
         existing_user_email = User.query.filter_by(email=email.data).first()
