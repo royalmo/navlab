@@ -25,12 +25,19 @@
     #card-list article {
         @apply align-middle my-[0.5rem] mx-[1em] min-h-[200px] bg-white rounded border-2 border-black
         lg:w-[30%] xm:max-w-[400px] xm:w-full w-[40%] cursor-pointer
-        transition transform hover:scale-105 bg-opacity-80;
-        
+        transition transform hover:scale-105 bg-opacity-70;
+    }
+
+    #card-list article.active {
+        @apply bg-opacity-100;
     }
 
     #card-list h2 {
         @apply text-2xl font-bold text-gray-500;
+    }
+
+    #card-list article.active h2 {
+        @apply text-2xl font-bold text-gray-800;
     }
 
     #card-list article div {
@@ -56,6 +63,27 @@
     #card-list button {
         @apply transition;
     }
+
+    #card-list article:not(.active) span.state-on,
+    #card-list article.cancellable span.state-on,
+    #card-list article.processing span.state-on {
+        @apply hidden;
+    }
+
+    #card-list article:not(.cancellable):not(.processing) span.state-processing {
+        @apply hidden;
+    }
+
+    #card-list article.active span.state-off {
+        @apply hidden;
+    }
+
+    #card-list article.active button.start-button {@apply hidden;}
+    #card-list article:not(.cancellable) button.cancel-button {@apply hidden;}
+    #card-list article:not(.processing) button.processing-button {@apply hidden;}
+    #card-list article.cancellable button.stop-button,
+    #card-list article.processing button.stop-button,
+    #card-list article:not(.active) button.stop-button {@apply hidden;}
 
     /* ============================================= */
     footer {

@@ -19,19 +19,47 @@
   {%else%}
 
   {% for eachserver in serverlist %}
-  <article>
+  <article class="{{ 'active' if eachserver.status else '' }}" data-id="{{ eachserver.id }}">
     <a href="{{ url_for( '.servers.edit' , id=eachserver.id|int ) }}">
       <h2 class="p-2">{{ eachserver.name }}</h2>
       <div class="flex">
         <div class="w-8/12">
-          <span class="text-red-500 text-xl"><i class="fa fa-times"></i> {{ _('Off') }}</span>
+          <span class="state-off text-red-500 text-xl">
+            <i class="fa fa-times"></i>
+            {{ _('Off') }}
+          </span>
+          <span class="state-processing text-gray-500 text-xl">
+            <i class="fa fa-spinner animate-spin"></i>
+            .....
+          </span>
+          <span class="state-on text-green-500 text-xl">
+            <i class="fa fa-check"></i>
+            {{ _('Active') }}
+          </span>
           <br />
           <br />
-          <button class="bg-green-400 hover:bg-green-600 p-2 rounded text-white status-off status-button"
-            data-id="{{ eachserver.id }}">
+
+          <button class="start-button
+            bg-green-400 hover:bg-green-600 p-2 rounded text-white status-off status-button">
             <i class="fa fa-power-off"></i>
             {{ _('Start') }}
           </button>
+          <button class="cancel-button
+            bg-gray-400 hover:bg-gray-600 p-2 rounded text-white status-off status-button">
+            <i class="fa fa-spinner animate-spin"></i>
+            {{ _('Cancel') }}
+          </button>
+          <button class="processing-button
+            bg-gray-400 p-2 rounded text-white status-off status-button cursor-not-allowed" disabled>
+            <i class="fa fa-spinner animate-spin"></i>
+            {{ _('Processing') }}
+          </button>
+          <button class="stop-button
+            bg-red-400 hover:bg-red-600 p-2 rounded text-white status-off status-button">
+            <i class="fa fa-power-off"></i>
+            {{ _('Stop') }}
+          </button>
+
         </div>
         <div class="w-4/12 flex justify-center items-center">
           <picture>
@@ -59,68 +87,6 @@
   }
 </script>
 
-<script>
-  const buttons = document.querySelectorAll('.status-button');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', () => {
-      event.preventDefault();
-
-      if (button.classList.contains('status-on')) {
-        turnOff(button);
-      } else if (button.classList.contains('status-off')) {
-        turnOn(button);
-      }
-    });
-  });
-
-  function turnOn(button) {
-    const url = `/server/start/${button.dataset.id}`;
-
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          button.innerHTML = '<i class="fa fa-power-off"></i> {{ _('Shutdown') }}';
-          button.classList.replace('bg-green-400', 'bg-red-400');
-          button.classList.replace('hover:bg-green-600', 'hover:bg-red-600');
-          button.classList.remove('status-off');
-          button.classList.add('status-on');
-        } else {
-          warningStatus(button);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        warningStatus(button);
-      });
-  }
-
-  function turnOff(button) {
-    const url = `/server/stop/${button.dataset.id}`;
-
-    fetch(url)
-      .then(response => {
-        if (response.ok) {
-          button.innerHTML = '<i class="fa fa-power-off"></i> {{ _('Start') }}';
-          button.classList.replace('bg-red-400', 'bg-green-400');
-          button.classList.replace('hover:bg-red-600', 'hover:bg-green-600');
-          button.classList.remove('status-on');
-          button.classList.add('status-off');
-        } else {
-          warningStatus(button);
-        }
-      })
-      .catch(error => {
-        console.log(error);
-        warningStatus(button);
-      });
-  }
-
-  function warningStatus(button) {
-    button.innerHTML = 'Warning';
-    button.classList.replace('bg-green-400', 'bg-orange-400');
-    button.classList.replace('hover:bg-green-600', 'hover:bg-orange-600');
-  }
-</script>
+<script class="text-green-600" src="{{ url_for('static', filename='js/server_toggle.js') }}"></script>
 
 {% endblock %}

@@ -19,10 +19,11 @@ app.register_blueprint(main, url_prefix='')
 
 @babel.localeselector
 def get_locale():
+    available_langs = [ x[0] for x in get_locales() ]
     lang = request.args.get('lang')
-    if lang and lang in [ x[0] for x in get_locales() ]: return lang
+    if lang and lang in available_langs: return lang
     if current_user.is_authenticated: return current_user.lang
-    return request.accept_languages.best_match(app.config['LANGUAGES'].keys())
+    return request.accept_languages.best_match(available_langs)
 
 @app.errorhandler(404)
 def page_not_found(error):

@@ -19,7 +19,7 @@ def newserver():
         return redirect(url_for('main.dashboard'))
     return render_template('pages/newserver.html.j2', title=gettext("New Server"), current_user=current_user, server=form, new=True)
 
-@app.route('/server/edit/<int:id>', methods=['GET', 'POST'])
+@app.route('/server/<int:id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit(id):
     server = Server.query.get_or_404(id)
@@ -33,21 +33,25 @@ def edit(id):
         return redirect(url_for('main.dashboard'))
     return render_template('pages/newserver.html.j2', title=gettext("Edit Server"), current_user=current_user, server=server_form, new=False, id=id)
 
-@app.route('/server/remove/<int:id>', methods=['GET', 'POST'])
+@app.route('/server/<int:id>/remove', methods=['GET', 'POST'])
 @admin_required
 def remove(id):
     Server.query.filter(Server.id == id).delete()
     db.session.commit()
     return redirect(url_for('main.dashboard'))
 
-@app.route('/server/start/<int:id>', methods=['GET', 'POST'])
+@app.route('/server/<int:id>/start', methods=['GET', 'POST'])
 @login_required
 def start(id):
+    server = Server.query.get_or_404(id)
+    server.status = True
+    db.session.commit()
     return make_response("Server started", 204)
 
-@app.route('/server/stop/<int:id>', methods=['GET', 'POST'])
+@app.route('/server/<int:id>/stop', methods=['GET', 'POST'])
 @login_required
 def stop(id):
+    server = Server.query.get_or_404(id)
+    server.status = False
+    db.session.commit()
     return make_response("Server stopped", 204)
-
-
