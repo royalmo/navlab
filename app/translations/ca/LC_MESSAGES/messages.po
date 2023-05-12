@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-10 17:32+0200\n"
+"POT-Creation-Date: 2023-05-12 12:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ca\n"
@@ -19,19 +19,110 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.11.0\n"
 
-#: app/templates/includes/footer.html.j2:3
+#: app/models/forms/login_form.py:9 app/models/forms/register_form.py:11
+msgid "user@example.com"
+msgstr ""
+
+#: app/models/forms/login_form.py:10 app/models/forms/register_form.py:12
+#: app/models/forms/register_form.py:13
+msgid "••••••••"
+msgstr ""
+
+#: app/models/forms/login_form.py:11 app/templates/pages/users/login.html.j2:40
+msgid "Keep me logged in"
+msgstr "Mantenir-me iniciat."
+
+#: app/models/forms/login_form.py:12 app/views/users.py:27
+#: app/views/users.py:29
+#, fuzzy
+msgid "Log In"
+msgstr "iniciar sessió"
+
+#: app/models/forms/register_form.py:10
+msgid "Taylor Swift"
+msgstr ""
+
+#: app/models/forms/register_form.py:15 app/views/users.py:54
+msgid "Register"
+msgstr ""
+
+#: app/models/forms/register_form.py:16
+#, fuzzy
+msgid "Admin?"
+msgstr "Administrador:"
+
+#: app/models/forms/register_form.py:17
+#, fuzzy
+msgid "Active?"
+msgstr "Actiu:"
+
+#: app/models/forms/register_form.py:22
+msgid "That email already exists. Please choose a different one."
+msgstr ""
+
+#: app/models/forms/search_form.py:6 app/models/forms/search_form.py:7
+msgid "Search"
+msgstr ""
+
+#: app/models/forms/server_form.py:7
+msgid "Minecraft Server"
+msgstr ""
+
+#: app/models/forms/server_form.py:8
+msgid "https://image.com/ssh.png"
+msgstr ""
+
+#: app/models/forms/server_form.py:9
+msgid "About Server"
+msgstr ""
+
+#: app/models/forms/server_form.py:10
+msgid "systemctl start `command`"
+msgstr ""
+
+#: app/models/forms/server_form.py:11
+msgid "systemctl stop `command`"
+msgstr ""
+
+#: app/models/forms/server_form.py:12
+#, fuzzy
+msgid "systemctl status `command`"
+msgstr "Comanda per estat"
+
+#: app/models/forms/server_form.py:13
+#, fuzzy
+msgid "Submit Service"
+msgstr "Servei Nou"
+
+#: app/templates/errors/404.html.j2:16
+msgid "Sorry, we couldn't find this page."
+msgstr ""
+
+#: app/templates/errors/404.html.j2:18
+msgid ""
+"But dont worry, you can find plenty of other\n"
+"                                things on our homepage."
+msgstr ""
+
+#: app/templates/errors/404.html.j2:21
+msgid ""
+"Back to\n"
+"                                homepage"
+msgstr ""
+
+#: app/templates/includes/footer.html.j2:4
 msgid "All Rights Reserved"
 msgstr "Tots els drets reservats"
 
-#: app/templates/includes/footer.html.j2:7
+#: app/templates/includes/footer.html.j2:8
 msgid "About"
 msgstr "Sobre nosaltres"
 
-#: app/templates/includes/footer.html.j2:10
+#: app/templates/includes/footer.html.j2:11
 msgid "Privacy Policy"
 msgstr "Política de privacitat"
 
-#: app/templates/includes/footer.html.j2:13
+#: app/templates/includes/footer.html.j2:14
 msgid "Contact"
 msgstr "Contacte"
 
@@ -39,11 +130,11 @@ msgstr "Contacte"
 msgid "Open main menu"
 msgstr "Obre menú principal"
 
-#: app/templates/includes/navbar.html.j2:17
+#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:30
 msgid "Dashboard"
 msgstr "Inici"
 
-#: app/templates/includes/navbar.html.j2:20
+#: app/templates/includes/navbar.html.j2:20 app/views/__init__.py:40
 msgid "Monitoring"
 msgstr "Monitoratge"
 
@@ -51,7 +142,7 @@ msgstr "Monitoratge"
 msgid "Profile"
 msgstr "Perfil"
 
-#: app/templates/includes/navbar.html.j2:27
+#: app/templates/includes/navbar.html.j2:27 app/views/users.py:73
 msgid "Users"
 msgstr "Usuaris"
 
@@ -59,24 +150,24 @@ msgstr "Usuaris"
 msgid "Log Out"
 msgstr "Sortir"
 
-#: app/templates/pages/dashboard.html.j2:8
+#: app/templates/pages/dashboard.html.j2:6
 msgid "Service list"
 msgstr "Llista de Serveis"
 
-#: app/templates/pages/dashboard.html.j2:17
+#: app/templates/pages/dashboard.html.j2:7
 msgid "New service"
 msgstr "Servei Nou"
 
-#: app/templates/pages/dashboard.html.j2:28
+#: app/templates/pages/dashboard.html.j2:21
 msgid "Off"
 msgstr "Inactiu"
 
-#: app/templates/pages/dashboard.html.j2:34
-#: app/templates/pages/dashboard.html.j2:106
+#: app/templates/pages/dashboard.html.j2:27
+#: app/templates/pages/dashboard.html.j2:97
 msgid "Start"
 msgstr "Inicia"
 
-#: app/templates/pages/dashboard.html.j2:85
+#: app/templates/pages/dashboard.html.j2:76
 msgid "Shutdown"
 msgstr "Atura"
 
@@ -152,88 +243,93 @@ msgstr "Comanda Healthcheck"
 msgid "Remove Service"
 msgstr "Eliminar Servei"
 
-#: app/templates/pages/newuser.html.j2:11
+#: app/templates/pages/newuser.html.j2:13 app/views/users.py:114
+#, fuzzy
+msgid "Your Profile"
+msgstr "Perfil"
+
+#: app/templates/pages/newuser.html.j2:15
 msgid "Edit User"
 msgstr "Edita Usuari"
 
-#: app/templates/pages/newuser.html.j2:12
+#: app/templates/pages/newuser.html.j2:18
 msgid "Save"
 msgstr "Desa"
 
-#: app/templates/pages/newuser.html.j2:17
+#: app/templates/pages/newuser.html.j2:23
 #, fuzzy
 msgid "User Information"
 msgstr "Informació del Servidor"
 
-#: app/templates/pages/newuser.html.j2:23
-#: app/templates/pages/users/signup.html.j2:19
+#: app/templates/pages/newuser.html.j2:29
+#: app/templates/pages/users/signup.html.j2:24
 msgid "Name"
 msgstr "Nom"
 
-#: app/templates/pages/newuser.html.j2:33
+#: app/templates/pages/newuser.html.j2:39
 msgid "Email address"
 msgstr "Adreça de correu"
 
-#: app/templates/pages/newuser.html.j2:43
-#: app/templates/pages/users/login.html.j2:28
-#: app/templates/pages/users/signup.html.j2:27
+#: app/templates/pages/newuser.html.j2:49
+#: app/templates/pages/users/login.html.j2:34
+#: app/templates/pages/users/signup.html.j2:32
 msgid "Password"
 msgstr "Contrassenya"
 
-#: app/templates/pages/newuser.html.j2:52
+#: app/templates/pages/newuser.html.j2:58
 msgid "Confirm password"
 msgstr "Confirma la contrassenya"
 
-#: app/templates/pages/newuser.html.j2:57
-#: app/templates/pages/users/signup.html.j2:42
+#: app/templates/pages/newuser.html.j2:63
+#: app/templates/pages/users/signup.html.j2:47
 msgid "Passwords do not match"
 msgstr "Les contrassenyes no coincideixen"
 
-#: app/templates/pages/newuser.html.j2:62
-#: app/templates/pages/users/signup.html.j2:30
+#: app/templates/pages/newuser.html.j2:68
+#: app/templates/pages/users/signup.html.j2:35
 msgid "Password must be at least 8 characters long"
 msgstr "La contrassenya ha de tenir una llargada mínima de 8 caràcters"
 
-#: app/templates/pages/newuser.html.j2:63
-#: app/templates/pages/users/signup.html.j2:31
+#: app/templates/pages/newuser.html.j2:69
+#: app/templates/pages/users/signup.html.j2:36
 msgid "Password must contain at least one uppercase letter"
 msgstr "La contrassenya ha de tenir almenys una lletra majúscula"
 
-#: app/templates/pages/newuser.html.j2:64
-#: app/templates/pages/users/signup.html.j2:32
+#: app/templates/pages/newuser.html.j2:70
+#: app/templates/pages/users/signup.html.j2:37
 msgid "Password must contain at least one lowercase letter"
 msgstr "La contrassenya ha de tenir almenys una lletra minúscula"
 
-#: app/templates/pages/newuser.html.j2:65
-#: app/templates/pages/users/signup.html.j2:33
+#: app/templates/pages/newuser.html.j2:71
+#: app/templates/pages/users/signup.html.j2:38
 msgid "Password must contain at least one number"
 msgstr "La contrassenya ha de tenir almenys un número"
 
-#: app/templates/pages/newuser.html.j2:66
-#: app/templates/pages/users/signup.html.j2:34
+#: app/templates/pages/newuser.html.j2:72
+#: app/templates/pages/users/signup.html.j2:39
 msgid "Password must contain at least one special character"
 msgstr "La contrassenya ha de tenir almenys un caràcter especial"
 
-#: app/templates/pages/newuser.html.j2:69
-#: app/templates/pages/userlist.html.j2:29
+#: app/templates/pages/newuser.html.j2:75
+#: app/templates/pages/userlist.html.j2:22
 msgid "LANGUAGE"
 msgstr "IDIOMA"
 
-#: app/templates/pages/newuser.html.j2:72
-#: app/templates/pages/newuser.html.j2:75
+#: app/templates/pages/newuser.html.j2:78
+#: app/templates/pages/newuser.html.j2:81
 msgid "English"
 msgstr "Anglès"
 
-#: app/templates/pages/newuser.html.j2:73
-#: app/templates/pages/newuser.html.j2:76
+#: app/templates/pages/newuser.html.j2:79
+#: app/templates/pages/newuser.html.j2:82
 msgid "Catalan"
 msgstr "Català"
 
-#: app/templates/pages/newuser.html.j2:82
+#: app/templates/pages/newuser.html.j2:88
 msgid "Admin:"
 msgstr "Administrador:"
 
-#: app/templates/pages/newuser.html.j2:86
+#: app/templates/pages/newuser.html.j2:92
 msgid "Active:"
 msgstr "Actiu:"
 
@@ -241,83 +337,86 @@ msgstr "Actiu:"
 msgid "Registered users"
 msgstr "Usuaris Registrats"
 
-#: app/templates/pages/userlist.html.j2:17
-msgid "You must be admin to have access"
-msgstr "Has de ser administrador per tenir accés"
+#: app/templates/pages/userlist.html.j2:7
+#, fuzzy
+msgid "Your profile"
+msgstr "Perfil"
 
-#: app/templates/pages/userlist.html.j2:25
+#: app/templates/pages/userlist.html.j2:18
 msgid "NAME"
 msgstr "NOM"
 
-#: app/templates/pages/userlist.html.j2:26
+#: app/templates/pages/userlist.html.j2:19
 msgid "MAIL"
 msgstr "CORREU"
 
-#: app/templates/pages/userlist.html.j2:27
+#: app/templates/pages/userlist.html.j2:20
 msgid "ADMIN"
 msgstr "ADMIN"
 
-#: app/templates/pages/userlist.html.j2:28
+#: app/templates/pages/userlist.html.j2:21
 msgid "ACTIVE"
 msgstr "ACTIU"
 
-#: app/templates/pages/userlist.html.j2:30
+#: app/templates/pages/userlist.html.j2:23
 msgid "ACTIONS"
 msgstr "ACCIONS"
 
-#: app/templates/pages/userlist.html.j2:44
-#: app/templates/pages/userlist.html.j2:49
+#: app/templates/pages/userlist.html.j2:38
+#: app/templates/pages/userlist.html.j2:45
 msgid "Yes"
 msgstr "Sí"
 
-#: app/templates/pages/userlist.html.j2:46
-#: app/templates/pages/userlist.html.j2:51
+#: app/templates/pages/userlist.html.j2:40
+#: app/templates/pages/userlist.html.j2:47
 msgid "No"
 msgstr "No"
 
-#: app/templates/pages/userlist.html.j2:56
+#: app/templates/pages/userlist.html.j2:54
 msgid "Edit"
 msgstr "Edita"
 
-#: app/templates/pages/userlist.html.j2:57
+#: app/templates/pages/userlist.html.j2:55
 msgid "Delete"
 msgstr "Elimina"
 
-#: app/templates/pages/userlist.html.j2:62
+#: app/templates/pages/userlist.html.j2:60
 msgid "Are you sure you want to delete this user?"
 msgstr "Estás segur que vols eliminar aquest usuari?"
 
-#: app/templates/pages/users/login.html.j2:9
+#: app/templates/pages/users/login.html.j2:11
 msgid "Log into your account"
 msgstr "Entra al teu compte"
 
-#: app/templates/pages/users/login.html.j2:13
+#: app/templates/pages/users/login.html.j2:19
 msgid "Incorrect credentials"
 msgstr "Credencials incorrectes"
 
-#: app/templates/pages/users/login.html.j2:18
+#: app/templates/pages/users/login.html.j2:24
 msgid "Your account is inactive. Contact us for more information."
 msgstr "El teu compte és incatiu. Cantacta amb nosaltres per a més informació."
 
-#: app/templates/pages/users/login.html.j2:24
-#: app/templates/pages/users/signup.html.j2:23
+#: app/templates/pages/users/login.html.j2:30
+#: app/templates/pages/users/signup.html.j2:28
 msgid "Email"
 msgstr "Correu"
 
-#: app/templates/pages/users/login.html.j2:34
-msgid "Keep me logged in"
-msgstr "Mantenir-me iniciat."
+#: app/templates/pages/users/login.html.j2:42
+msgid ""
+"Sorry, not implemented!\n"
+"Ask an admin to change your password."
+msgstr ""
 
-#: app/templates/pages/users/login.html.j2:36
+#: app/templates/pages/users/login.html.j2:42
 #, fuzzy
 msgid "Forgot password?"
 msgstr "Contrasenya oblidada?"
 
-#: app/templates/pages/users/login.html.j2:39
+#: app/templates/pages/users/login.html.j2:45
 msgid "Don't have an account?"
 msgstr "No tens un compte?"
 
-#: app/templates/pages/users/login.html.j2:39
+#: app/templates/pages/users/login.html.j2:45
 msgid "Sign up"
 msgstr "Registra't"
 
@@ -335,21 +434,21 @@ msgstr "Correu ja registrat. Siusplau prova amb un altre o"
 msgid "log in"
 msgstr "iniciar sessió"
 
-#: app/templates/pages/users/signup.html.j2:39
+#: app/templates/pages/users/signup.html.j2:19
+msgid "Language"
+msgstr "Idioma"
+
+#: app/templates/pages/users/signup.html.j2:44
 #, fuzzy
 msgid "Confirmation Password"
 msgstr "Confirma la contrasenya"
 
-#: app/templates/pages/users/signup.html.j2:46
-msgid "Language"
-msgstr "Idioma"
-
-#: app/templates/pages/users/signup.html.j2:54
+#: app/templates/pages/users/signup.html.j2:55
 #, fuzzy
 msgid "Already have an account?"
 msgstr "Ja tens un compte?"
 
-#: app/templates/pages/users/signup.html.j2:54
+#: app/templates/pages/users/signup.html.j2:55
 msgid "Log in"
 msgstr "Iniciar sessió"
 
@@ -391,6 +490,26 @@ msgstr "Res, només has d'esperar. Si tens presa, pots enviar un correu a"
 msgid "indicating the reason of your hurry."
 msgstr "indicant el motiu."
 
+#: app/views/servers.py:20
+#, fuzzy
+msgid "New Server"
+msgstr "Servei Nou"
+
+#: app/views/servers.py:37
+#, fuzzy
+msgid "Edit Server"
+msgstr "Edita Usuari"
+
+#: app/views/users.py:52
+#, fuzzy
+msgid "Registered!"
+msgstr "Usuaris Registrats"
+
+#: app/views/users.py:98
+#, fuzzy
+msgid "Edit user"
+msgstr "Edita Usuari"
+
 #~ msgid "Add Healthcheck"
 #~ msgstr "Afegir Healthcheck"
 
@@ -401,4 +520,7 @@ msgstr "indicant el motiu."
 #~ "Add\n"
 #~ "                Healthcheck"
 #~ msgstr ""
+
+#~ msgid "You must be admin to have access"
+#~ msgstr "Has de ser administrador per tenir accés"
 

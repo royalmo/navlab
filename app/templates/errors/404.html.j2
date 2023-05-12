@@ -1,22 +1,32 @@
-{% extends 'base/logged_out.html.j2' %}
+<!DOCTYPE html>
+<html>
+{% include 'includes/head.html.j2' %}
 
-{% block body %}
-
-<div class="w-auto align-middle flex flex-col justify-center items-center bg-transparent">
-    <h1 class="text-9xl font-extrabold text-black tracking-widest">404</h1>
-    <div class="bg-[#FF6A3D] px-2 text-sm rounded rotate-12 absolute">
-        Page Not Found
+<body class="font-mono">
+    <div class="bg-transparent flex flex-col items-center justify-center px-6 py-8">
+        <div
+            class="w-full bg-white bg-opacity-50 backdrop-blur-md border-2 border-black rounded-lg shadow {% block width %}{% endblock %} xl:p-0">
+            <main class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <section class="flex items-center h-full p-16 dark:bg-gray-900 dark:text-gray-100">
+                    <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
+                        <div class="max-w-md text-center">
+                            <h2 class="mb-8 font-extrabold text-9xl dark:text-gray-600">
+                                <span class="sr-only">Error</span>404
+                            </h2>
+                            <p class="text-2xl font-semibold md:text-3xl">{{ _("Sorry, we couldn't find this page.") }}
+                            </p>
+                            <p class="mt-4 mb-8 dark:text-gray-400">{{ _("But dont worry, you can find plenty of other
+                                things on our homepage.") }}</p>
+                            <a href="{{ url_for('main.dashboard') }}" class="px-8 py-3 font-semibold rounded
+                                bg-blue-800 text-white border-2 border-blue-900">{{ _("Back to
+                                homepage") }}</a>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
-    <button class="mt-5">
-        <a class="relative inline-block text-sm font-medium text-[#FF6A3D] group active:text-orange-500 focus:outline-none focus:ring">
-            <span class="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-[#FF6A3D] group-hover:translate-y-0 group-hover:translate-x-0"></span>
-            <span class="relative block px-8 py-3 bg-[#1A2238] border border-current">
-                <router-link to="/">Go Home</router-link>
-            </span>
-        </a>
-    </button>
-</div>
+    {% include 'includes/background.html.j2' %}
+</body>
 
-
-
-{% endblock %}
+</html>
