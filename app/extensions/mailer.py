@@ -3,10 +3,10 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from flask_babel import Locale
 
-from ..settings import SMTP_PASSWORD
+from ..settings import SMTP_PASSWORD, SMTP_USERNAME
 
 # Define sender and recipient email addresses
-sender_email = "ericroyalmonacid@gmail.com"
+sender_email = SMTP_USERNAME
 recipient_email = sender_email
 
 smtp_server = "smtp.gmail.com"

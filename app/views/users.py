@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, request
+from flask import Blueprint, render_template, url_for, redirect, request, make_response
 from flask_login import login_user, logout_user, current_user
 from flask_babel import gettext,get_locale
 
@@ -84,7 +84,7 @@ def delete_user(user_id):
     user = User.query.get_or_404(user_id)
     db.session.delete(user)
     db.session.commit()
-    return redirect(url_for('.users'))
+    return make_response("No content", 204)
 
 @app.route('/users/<int:user_id>/edit', methods=['GET', 'POST'])
 @admin_required

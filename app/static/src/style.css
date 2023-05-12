@@ -81,6 +81,10 @@
     footer>span>ul>li>a {
         @apply mr-4 hover:underline md:mr-6;
     }
+
+    .disabled-input-gray input[disabled] {
+        @apply bg-gray-300 cursor-not-allowed;
+    }
 }
 
 

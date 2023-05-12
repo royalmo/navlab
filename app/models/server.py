@@ -7,4 +7,4 @@ class Server(db.Model):
     description = db.Column(db.String(80))
     starting_cmd = db.Column(db.String(80), nullable=False)
     stop_cmd = db.Column(db.String(80), nullable=False)
-    status_cmd = db.Column(db.String(80), nullable=False)
+    status = db.Column(db.Boolean)

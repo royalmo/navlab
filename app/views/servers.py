@@ -25,13 +25,9 @@ def edit(id):
     server = Server.query.get_or_404(id)
     server_form=ServerForm(obj=server)
     if request.method == 'POST':
-        server.id = request.form['id']
-        server.name = request.form['name']
-        server.image = request.form['image']
-        server.description = request.form['description']
-        server.starting_cmd = request.form['starting_cmd']
-        server.stop_cmd = request.form['stop_cmd']
-        server.status_cmd = request.form['status_cmd']
+        for key, val in server_form.data.items():
+            if key in ['submit', 'csrf_token']: continue
+            setattr(server, key, val)
         db.session.commit()
         return redirect(url_for('main.dashboard'))
     return render_template('pages/newserver.html.j2', title=gettext("Edit Server"), current_user=current_user, server=server_form, new=False, id=id)
