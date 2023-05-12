@@ -68,7 +68,7 @@ def users():
     search_form = SearchForm(request.form)
     search_query = request.args.get('search')
     if search_query:
-        users = User.query.filter(User.name.contains(search_query))
+        users = User.query.filter(User.name.contains(search_query)).all()
     else:
         users = User.query.all()
     

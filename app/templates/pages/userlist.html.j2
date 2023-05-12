@@ -11,6 +11,13 @@
   {% include 'includes/title.html.j2' %}
 {% endwith %}
 
+{% if userlist|length == 0 %}
+  <div class="flex justify-center items-center">
+    <div class="p-5 bg-white bg-opacity-50 rounded-lg flex items-center justify-center border-2 border-black">
+      <p class="text-center text-red-800 font-bold">{{_('Sorry! Looks like there are no matches with your search. Try again!')}}</p>
+    </div>
+  </div>
+{% else %}
 <table class="w-full max-w-[1250px] mx-auto xs:px-0">
   <thead class="bg-gray-200 border-2 border-gray-300 font-bold text-gray-500">
     <tr class="h-12">
@@ -75,4 +82,5 @@
     {% endfor %}
   </tbody>
 </table>
+{% endif %}
 {% endblock %}

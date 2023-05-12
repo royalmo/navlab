@@ -21,8 +21,7 @@ def dashboard():
     search_form = SearchForm(request.form)
     search_query = request.args.get('search')
     if request.method == 'GET' and search_query:
-        servers = Server.query.filter(Server.name.contains(search_query))
-        listlen = Server.query.filter(Server.name.contains(search_query)).count()
+        servers = Server.query.filter(Server.name.contains(search_query)).all()
         search_form.data['search'] = search_query
     else:
         servers = Server.query.all()
@@ -32,7 +31,6 @@ def dashboard():
                            title=gettext("Dashboard"),
                            current_user=current_user,
                            serverlist=servers,
-                           listlen = listlen,
                            search_form=search_form,
                            navbar_highlight_dashboard=True)
 
