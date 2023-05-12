@@ -3,15 +3,21 @@
 {% block body %}
 
 {% with
-    h1_text=_('Service list'),
-    left_button_text=_('New service'),
-    left_button_url=url_for('.servers.newserver'),
-    search_form=search_form 
+h1_text=_('Service list'),
+left_button_text=_('New service'),
+left_button_url=url_for('.servers.newserver'),
+search_form=search_form
 %}
-  {% include 'includes/title.html.j2' %}
+{% include 'includes/title.html.j2' %}
 {% endwith %}
 
 <div id="card-list" class="flex justify-center items-center">
+  {% if listlen < 1 %} 
+  <div class="w-full bg-white rounded-lg flex items-center justify-center">
+    <p class="text-center">{{_('Sorry! Looks like there are no matches with your search. Try again!')}}</p>
+  </div>
+  {%else%}
+
   {% for eachserver in serverlist %}
   <article>
     <a href="{{ url_for( '.servers.edit' , id=eachserver.id|int ) }}">
@@ -43,7 +49,8 @@
       <h2>+</h2>
     </a>
   </article>
-</div>
+  </div>
+  {%endif%}
 
 <script>
   function onError() {
