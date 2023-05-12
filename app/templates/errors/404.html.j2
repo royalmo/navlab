@@ -4,22 +4,19 @@
 
 <body class="font-mono">
     <div class="bg-transparent flex flex-col items-center justify-center px-6 py-8">
-        <div
-            class="w-full bg-white bg-opacity-50 backdrop-blur-md border-2 border-black rounded-lg shadow {% block width %}{% endblock %} xl:p-0">
+        <div class="bg-white bg-opacity-50 backdrop-blur-md border-2 border-black rounded-lg shadow xl:p-0">
             <main class="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <section class="flex items-center h-full p-16">
                     <div class="container flex flex-col items-center justify-center px-5 mx-auto my-8">
-                        <div class="max-w-md text-center">
+                        <div class="max-w-lg text-center">
                             <h2 class="mb-8 font-extrabold text-9xl dark:text-gray-600">
-                                <span class="sr-only">Error</span>404
+                                <span class="sr-only">{{ _('Error') }}</span>404
                             </h2>
                             <p class="text-2xl font-semibold md:text-3xl">{{ _("Sorry, we couldn't find this page.") }}
                             </p>
-                            <p class="mt-4 mb-8 dark:text-gray-400">{{ _("But dont worry, you can find plenty of other
-                                things on our homepage.") }}</p>
+                            <p class="mt-4 mb-8 dark:text-gray-800">{{ _("But dont worry, you can find plenty of other things on our homepage.") }}</p>
                             <a href="{{ url_for('main.dashboard') }}" class="px-8 py-3 font-semibold rounded
-                                bg-blue-800 text-white border-2 border-blue-900">{{ _("Back to
-                                homepage") }}</a>
+                                bg-blue-800 text-white border-2 border-blue-900">{{ _("Back to homepage") }}</a>
                         </div>
                     </div>
                 </section>
