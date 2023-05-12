@@ -33,20 +33,20 @@
     <label for="password" class="block mb-2 text-sm font-medium text-gray-900">{{_('Password')}}</label>
     {{ form.password(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5", pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$") }}
     <div id="password_hints">
-      <span class="text-red-600">
-        <i class="fa fa-times"></i> LowerCase
+      <span class="text-red-700">
+        <i class="fa fa-times"></i> {{ _('Lowercase') }}
       </span>
-      <span class="text-red-600">
-        <i class="fa fa-times"></i> Uppercase
+      <span class="text-red-700">
+        <i class="fa fa-times"></i> {{ _('Uppercase') }}
       </span>
-      <span class="text-red-600">
-        <i class="fa fa-times"></i> Digit
+      <span class="text-red-700">
+        <i class="fa fa-times"></i> {{ _('Digit') }}
       </span>
-      <span class="text-red-600">
-        <i class="fa fa-times"></i> 8+ Characters
+      <span class="text-red-700">
+        <i class="fa fa-times"></i> {{ _('8+ Characters') }}
       </span>
-      <span class="text-red-600">
-        <i class="fa fa-times"></i> Symbol
+      <span class="text-red-700">
+        <i class="fa fa-times"></i> {{ _('Symbol') }}
       </span>
     </div>
   </div>
@@ -55,11 +55,11 @@
         class="block mb-2 text-sm font-medium text-gray-900">{{_('Confirmation Password')}}</label>
     {{ form.password_confirm(class_="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5", pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d!@#$%^&*()_+]{8,}$") }}
     <div id="password_confirm_hints">
-      <span class="text-red-600">
-        <i class="fa fa-times"></i> Passwords do not match
+      <span class="text-red-700">
+        <i class="fa fa-times"></i> {{ _('Passwords do not match') }}
       </span>
-      <span class="text-green-600" style="display:none;">
-        <i class="fa fa-check"></i> Passwords match
+      <span class="text-green-700" style="display:none;">
+        <i class="fa fa-check"></i> {{ _('Passwords match') }}
       </span>
     </div>
   </div>

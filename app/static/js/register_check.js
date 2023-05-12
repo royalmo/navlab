@@ -16,7 +16,7 @@ function set_element(e, failed) {
     }
 }
 
-passwordInput.addEventListener("input", () => {
+function register_check() {
     const password = passwordInput.value;
     const ch = passwordInputHint.children;
 
@@ -25,12 +25,8 @@ passwordInput.addEventListener("input", () => {
     set_element(ch[2], !/(?=.*\d)/.test(password));
     set_element(ch[3], password.length < 8);
     set_element(ch[4], !/(?=.*[!@#$%^&*()_+])/.test(password));
-});
 
-passwordConfirmation.addEventListener("input", () => {
-    const password = passwordInput.value;
     const passwordConf = passwordConfirmation.value;
-
     const firstChild = passwordConfirmationHint.children[0];
     const secondChild = passwordConfirmationHint.children[1];
 
@@ -42,7 +38,10 @@ passwordConfirmation.addEventListener("input", () => {
         firstChild.style.display = "none";
         secondChild.style.display = "block";
     }
-});
+}
+
+passwordInput.addEventListener("input", register_check);
+passwordConfirmation.addEventListener("input", register_check);
 
 function validateForm() {
     var password = passwordInput.value;

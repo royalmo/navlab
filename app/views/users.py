@@ -48,12 +48,19 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         mailer.new_user(new_user)
-        return render_template('pages/users/signup_success.html.j2', name=form.name.data, title=gettext('Registered!'))
+        return redirect(url_for('.register_success', lang=form.language.data))
     
     form.language.default=get_locale()
     form.process()
 
     return render_template('pages/users/signup.html.j2', form=form, email_taken=request.method=='POST', title=gettext('Register'))
+
+@app.route('/register/success')
+def register_success():
+    # If user is already logged in
+    if current_user.is_authenticated: return redirect(url_for('main.dashboard'))
+
+    return render_template('pages/users/signup_success.html.j2', title=gettext('Registered!'))
 
 @app.route('/users')
 @admin_required
