@@ -41,4 +41,5 @@ RUN pybabel compile -f -d app/translations
 
 # Run
 EXPOSE 5000
-CMD python3 app.py --production
+ENV PRODUCTION=True
+CMD python3 app.py
