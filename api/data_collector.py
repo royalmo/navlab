@@ -1,23 +1,32 @@
 import requests,time,sys,os
 
 def main():
-    Led='https://navlab.ericroy.net/led'
-    Pot='https://navlab.ericroy.net/potenciometre'
+    Site='https://navlab.ericroy.net'
+    Led=Site+'/led'
+    Pot=Site+'/potenciometre'
     while(True):
-        r = requests.get(Led)
-        if r.status_code==200:
-            p = requests.post(Led,json=r.json())
-            if p.status_code!=204:
-                print('Bad response for POST to',Led,'Status code:',p.status_code)
+        try:
+            r = requests.get(Led)
+        except:
+            print('Failed to establish a new connection with',Site)
         else:
-            print('Bad response for GET to',Led,'Status code:',r.status_code)
-        r = requests.get(Pot)
-        if r.status_code==200:
-            p = requests.post(Pot,json=r.json())
-            if p.status_code!=204:
-                print('Bad response for POST to',Pot,'Status code:',p.status_code)
+            if r.status_code==200:
+                p = requests.post(Led,json=r.json())
+                if p.status_code!=204:
+                    print('Bad response for POST to',Led,'| Status code:',p.status_code)
+            else:
+                print('Bad response for GET to',Led,'| Status code:',r.status_code)
+        try:
+            r = requests.get(Pot)
+        except:
+            print('Failed to establish a new connection with',Site)
         else:
-            print('Bad response for GET to',Pot,'Status code:',r.status_code)
+            if r.status_code==200:
+                p = requests.post(Pot,json=r.json())
+                if p.status_code!=204:
+                    print('Bad response for POST to',Pot,'| Status code:',p.status_code)
+            else:
+                print('Bad response for GET to',Pot,'| Status code:',r.status_code)
         time.sleep(5)
     
 
