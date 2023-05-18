@@ -1,28 +1,73 @@
+"""
+API REST DATABASE
+
+Api que permet accedir a la base de dades per llegir i escriure dades a la taula mostres per protocol http.
+"""
+
 import sqlite3
 from flask import Flask, Response, request, jsonify
 import os
 from datetime import datetime
 
-DATABASE_PATH='../app/database.bd'
+DATABASE_PATH='../app/navlab.bd'
 
 app=Flask(__name__)
 
-@app.route('/status',methods=['GET'])
-def status():
-	return {'database_available':os.path.isfile(DATABASE_PATH),'server_time':datetime.now()}
-
-
-@app.route('/data',methods=['GET'])
-def get_data():
-	if not os.path.isfile(DATABASE_PATH):
-		return Response(status=503)
+@app.route('/led',methods=['GET'])
+def get_led_data():
+	"""
+	Retorna les n dades mes recents del led.
+	n es pot especificar a la request i, en cas contrari n=1. 
+	"""
+	n_max=500
+	r=request.json
+	try:
+		n=r['values']
+	except: 
+		n=1
+	if type(n)!=int:
+		return Response(status=400)
+	if n>n_max:
+		response=jsonify({'values_limit': n_max})
+		response.status_code = 416
+		return response
 	conn = sqlite3.connect(DATABASE_PATH)
-	data=conn.execute(f"select * from mostres").fetchall()
-	return jsonify(data)
+	select=conn.execute(f"select date, value from mostres where sensor_name='led' order by date DESC limit {n};").fetchall()
+	conn.close()
+	s=[{'time':e[0],'led':e[1]} for e in select]
+	return jsonify(s)
 
+@app.route('/potenciometre',methods=['GET'])
+def get_potenciometre_data():
+	"""
+	Retorna les n dades mes recents del potenciòmetre.
+	n es pot especificar a la request i, en cas contrari n=1. 
+	"""
+
+	n_max=500
+	r=request.json
+	try:
+		n=r['values']
+	except: 
+		n=1
+	if type(n)!=int:
+		return Response(status=400)
+	if n>n_max:
+		response=jsonify({'values_limit': n_max})
+		response.status_code = 416
+		return response
+	conn = sqlite3.connect(DATABASE_PATH)
+	select=conn.execute(f"select date, value from mostres where sensor_name='potenciometre' order by date DESC limit {n};").fetchall()
+	conn.close()
+	s=[{'time':e[0],'potenciometre':e[1]} for e in select]
+	return jsonify(s)
 
 @app.route('/led',methods=["POST"])
 def input_led():
+	"""
+	Guarda un valor del led a la base de dades. 
+	Com a paràmetres de la request ha de rebre la representació en string d'un objecte datetime i un valor string de '0' o '1'.
+	"""
 	if not os.path.isfile(DATABASE_PATH):
 		return Response(status=503)
 	try:
@@ -35,7 +80,7 @@ def input_led():
 	except : #json invalid or datetime invalid
 		return Response(status=400)
 	conn = sqlite3.connect(DATABASE_PATH)
-	conn.execute(f"insert into mostres values('led','{time}','{value}');") #el trigger fa saltar exception
+	conn.execute(f"insert into mostres values('led','{time}','{value}');") 
 	conn.commit()
 	conn.close()
 	return Response(status=204)
@@ -43,6 +88,10 @@ def input_led():
 
 @app.route('/potenciometre',methods=["POST"])
 def input_potenciometre():
+	"""
+	Guarda un valor del potenciòmetre a la base de dades.
+	Com a paràmetres de la request ha de rebre la representació en string d'un objecte datetime i un valor int entre 0 i 255.
+	"""
 	if not os.path.isfile(DATABASE_PATH):
 		return Response(status=503)
 	try:
@@ -50,17 +99,17 @@ def input_potenciometre():
 		value=r['potenciometre']
 		time=r['time']
 		print(type(value))
-		if not (value>=0 and value<=1024):
+		if not (value>=0 and value<=255):
 			return Response(status=400)
 		datetime.strptime(time, '%Y-%m-%d %H:%M:%S.%f')
 	except : #json invalid or datetime invalid
 		return Response(status=400)
 	conn = sqlite3.connect(DATABASE_PATH)
-	conn.execute(f"insert into mostres values('potenciometre','{time}','{value}');") #el trigger fa saltar exception
+	conn.execute(f"insert into mostres values('potenciometre','{time}','{value}');")
 	conn.commit()
 	conn.close()
 	return Response(status=204)
 
 
 if __name__=="__main__":
-	app.run(host="0.0.0.0",port='8000',debug=True)
+	app.run(debug=True)
