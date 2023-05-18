@@ -1,3 +1,9 @@
+-- Max mostres trigger creation.
+CREATE TRIGGER max_mostres before insert on mostres when(select count(sensor_name) from mostres)>=5000
+begin
+delete from mostres where date=(select min(date) from mostres);
+end;
+
 -- Data to seed the database
 INSERT INTO user VALUES
     (1, 'Super User', 'super@user.com', '{0}', 1, 1, 'en'),

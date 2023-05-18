@@ -9,7 +9,7 @@ from flask import Flask, Response, request, jsonify
 import os
 from datetime import datetime
 
-DATABASE_PATH='../app/navlab.bd'
+DATABASE_PATH='../app/navlab.db'
 
 app=Flask(__name__)
 
