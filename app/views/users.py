@@ -4,7 +4,7 @@ from flask_babel import gettext,get_locale
 
 from ..extensions import db, bcrypt, login_required, mailer, admin_required
 from ..models import User, LoginForm, RegisterForm, SearchForm, SelectForm, UserForm
-
+from jinja2 import utils
 app = Blueprint('users', __name__)
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -44,7 +44,7 @@ def register():
 
     if form.validate_on_submit() and form.password.data == form.password_confirm.data:
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(name=form.name.data, email=form.email.data, password=hashed_password, lang=form.language.data)
+        new_user = User(name=str(utils.escape(form.name.data)), email=str(utils.escape(form.email.data)), password=hashed_password, lang=str(utils.escape(form.language.data)))
         db.session.add(new_user)
         db.session.commit()
         mailer.new_user(new_user)
