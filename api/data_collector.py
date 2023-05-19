@@ -11,9 +11,13 @@ def main():
             print('Failed to establish a new connection with',Site)
         else:
             if r.status_code==200:
-                p = requests.post(Led,json=r.json())
-                if p.status_code!=204:
-                    print('Bad response for POST to',Led,'| Status code:',p.status_code)
+                try:
+                    p = requests.post(Led,json=r.json())
+                except:
+                    print('Failed to establish a new connection with',Site)
+                else:
+                    if p.status_code!=204:
+                        print('Bad response for POST to',Led,'| Status code:',p.status_code)
             else:
                 print('Bad response for GET to',Led,'| Status code:',r.status_code)
         try:
@@ -22,9 +26,13 @@ def main():
             print('Failed to establish a new connection with',Site)
         else:
             if r.status_code==200:
-                p = requests.post(Pot,json=r.json())
-                if p.status_code!=204:
-                    print('Bad response for POST to',Pot,'| Status code:',p.status_code)
+                try:
+                    p = requests.post(Pot,json=r.json())
+                except:
+                    print('Failed to establish a new connection with',Site)
+                else:
+                    if p.status_code!=204:
+                        print('Bad response for POST to',Pot,'| Status code:',p.status_code)
             else:
                 print('Bad response for GET to',Pot,'| Status code:',r.status_code)
         time.sleep(5)
