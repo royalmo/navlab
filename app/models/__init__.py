@@ -1,4 +1,5 @@
 from .forms import *
 from .user import User
 from .server import Server
-from .mostres import Mostres
+from .sample import Sample
+from .monitor import Monitor
