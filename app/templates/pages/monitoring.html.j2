@@ -1,7 +1,8 @@
 {% extends 'base/logged_in.html.j2' %}
 
 {% block body %}
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 {% with
   h1_text=_('Statistics'),
@@ -15,24 +16,54 @@
 
   <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7">
     <h2 class="text-2xl font-bold text-gray-500">{{ eachmonitor.title }}</h2>
-    <canvas id="monitor_{{ eachmonitor.key }}"></canvas>
+    <canvas style="margin:1.5em;" id="monitor_{{ eachmonitor.key }}"></canvas>
+    <p style="text-align:right;color:gray;"><em>Last sample ({{ eachmonitor.last_sample.time }}): {{ eachmonitor.last_sample.value }}</em></p>
   </article>
   <script>
     var x_axis = {{ eachmonitor.x_axis }};
     var y_axis = {{ eachmonitor.y_axis }};
 
     var ctx = document.getElementById('monitor_{{ eachmonitor.key }}').getContext('2d');
-    var myChart = new Chart(ctx, {
+    var myChart = new Chart(ctx,
+      {
         type: 'line',
         data: {
           labels: x_axis,
           datasets: [{
-            label: "{{ eachmonitor.label }}",
-            data: y_axis
+            label: " {{ eachmonitor.label }}",
+            data: y_axis,
+
+            borderColor: "#1e56a0",
+            backgroundColor: "#1e56a0",
+            pointBackgroundColor: "#1e56a0",
+            pointBorderColor: "#1e56a0",
+            pointHoverBackgroundColor: "#1e56a0",
+            pointHoverBorderColor: "#1e56a0",
           }]
         },
-        options: {}
-    });
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              min: {{ eachmonitor.min_value }},
+              max: {{ eachmonitor.max_value }}
+            },
+            x: {
+              type: 'time',
+              ticks: {
+                autoSkip: true,
+                maxRotation: 0,
+                autoSkipPadding: 30
+              },
+            }
+          }
+        }
+      }
+    );
   </script>
 
 {% endfor %}

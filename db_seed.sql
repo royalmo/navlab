@@ -15,9 +15,10 @@ INSERT INTO server VALUES
     (1, "Navarcles' Arduino: LED", "https://navlab.ericroy.net/static/media/led.png", "This is the LED that can be found in Isaac's Arduino.", '', '', 0)
 ;
 
-INSERT INTO monitor (key, title) VALUES
-    ('led', "Navarcles' Arduino: LED"),
-    ('potenciometre', "Navarcles' Arduino: Potentiometer")
+INSERT INTO monitor (key, title, label, min_value, max_value) VALUES
+    ('led', "Navarcles' Arduino: LED", "Status", -0.5, 1.5),
+    ('potenciometre', "Navarcles' Arduino: Potentiometer", "Value", 0, 255)--,
+    -- ('navlab_temp', "Navarcles' Raspberry: Temperature", "Temperature (C)", NULL, NULL)
 ;
 
 -- Inserting sample led values
