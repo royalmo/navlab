@@ -17,7 +17,7 @@
           <a href="{{ url_for('main.dashboard') }}" {{ current_item_classes if navbar_highlight_dashboard else other_item_classes }}>{{ _('Dashboard') }}</a>
         </li>
         <li>
-          <a href="{{ url_for('main.monitoring') }}" {{ current_item_classes if navbar_highlight_monitoring else other_item_classes }}>{{ _('Monitoring') }}</a>
+          <a href="{{ url_for('main.monitors.monitoring') }}" {{ current_item_classes if navbar_highlight_monitoring else other_item_classes }}>{{ _('Monitoring') }}</a>
         </li>
         <li>
           <a href="{{ url_for('main.users.profile') }}" {{ current_item_classes if navbar_highlight_profile else other_item_classes }}>{{ _('Profile') }}</a>
