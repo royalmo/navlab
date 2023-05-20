@@ -6,7 +6,8 @@
 
 {% with
   h1_text=_('Statistics'),
-  left_button_hide=true,
+  left_button_text=_('New Monitor'),
+  left_button_url=url_for('.new'),
   search_form_hide=true
 %}
   {% include 'includes/title.html.j2' %}
@@ -14,10 +15,14 @@
 
 {% for eachmonitor in monitors %}
 
-  <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7">
-    <h2 class="text-2xl font-bold text-gray-500">{{ eachmonitor.title }}</h2>
-    <canvas style="margin:1.5em;" id="monitor_{{ eachmonitor.key }}"></canvas>
-    <p style="text-align:right;color:gray;"><em>Last sample ({{ eachmonitor.last_sample.time }}): {{ eachmonitor.last_sample.value }}</em></p>
+  <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7 cursor-pointer">
+    <a href="{{ url_for( '.edit' , id=eachmonitor.id|int ) }}">
+      <h2 class="text-2xl font-bold text-gray-500">{{ eachmonitor.title }}</h2>
+      <div class="relative w-full"> 
+        <canvas style="margin:1.5em;" id="monitor_{{ eachmonitor.key }}"></canvas>
+      </div>
+      <p style="text-align:right;color:gray;"><em>{{ _('Last sample') }} ({{ eachmonitor.last_sample.time }}): {{ eachmonitor.last_sample.value }}</em></p>
+    </a>
   </article>
   <script>
     var x_axis = {{ eachmonitor.x_axis }};

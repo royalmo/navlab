@@ -7,5 +7,5 @@ class Monitor(db.Model):
     # The units of that monitor (Temperature (K), ...)
     label = db.Column(db.String(80), nullable=False)
     # The minimum and maximum value that should be displayed on the graph.
-    min_value = db.Column(db.Integer, nullable=True)
-    max_value = db.Column(db.Integer, nullable=True)
+    min_value = db.Column(db.Float, nullable=True)
+    max_value = db.Column(db.Float, nullable=True)
