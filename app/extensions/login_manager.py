@@ -3,6 +3,7 @@ from flask_login import LoginManager, current_user, login_required, logout_user
 from functools import wraps
 from flask import redirect, url_for, abort
 from ..models import User
+from .bcrypt import bcrypt
 
 login_manager = LoginManager()
 login_manager.login_view = 'main.users.login'
@@ -37,5 +38,19 @@ def admin_login_required(func):
         if current_user.admin:
             return func(*args, **kwargs)
         else:
-            abort(403)
+            return make_response('Forbidden', 403)
+    return wrapper
+
+def auth_header_required(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        auth = request.authorization
+        if not auth:
+            return make_response('Unauthorized', 401)
+
+        user = User.query.filter_by(email=auth.username).first()
+        if not bcrypt.check_password_hash(user.password, auth.password):
+            return make_response('Unauthorized', 401)
+
+        return func(*args, **kwargs)
     return wrapper
