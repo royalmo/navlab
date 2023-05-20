@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, send_from_directory
 from flask_login import current_user
-from .extensions import db, bcrypt, login_manager, babel
+from .extensions import db, bcrypt, login_manager, babel, cors
 from .extensions.babel import get_locales
 from .views import app as main
 from .settings import is_production
@@ -14,6 +14,7 @@ db.init_app(app)
 bcrypt.init_app(app)
 login_manager.init_app(app)
 babel.init_app(app)
+cors.init_app(app)
 
 app.register_blueprint(main, url_prefix='')
 
