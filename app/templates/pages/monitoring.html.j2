@@ -1,6 +1,8 @@
 {% extends 'base/logged_in.html.j2' %}
 
 {% block body %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
 
 {% with
   h1_text=_('Statistics'),
@@ -10,53 +12,59 @@
   {% include 'includes/title.html.j2' %}
 {% endwith %}
 
-<article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7">
-  <h2 class="text-2xl font-bold text-gray-500">NavLab: {{_('Temperature')}}</h2>
-  <canvas id="blabla"></canvas>
-</article>
-<article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7">
-  <h2 class="text-2xl font-bold text-gray-500">BolLab: {{_('Round-Trip-Time')}}</h2>
-  <canvas id="blabla2"></canvas>
-</article>
+{% for eachmonitor in monitors %}
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-var raw = [[1647072000, 19.87571324807978], [1647075600, 18.422661473512434], [1647079200, 13.745332787624527], [1647082800, 25.1359143738495], [1647086400, 12.47135205480222], [1647090000, 21.93830037093309], [1647093600, 14.973682878766773], [1647097200, 16.073202776946868], [1647100800, 23.6521101681072], [1647104400, 24.69717894361091], [1647108000, 18.508615657462077], [1647111600, 18.899768992720876], [1647115200, 23.173031755178705], [1647118800, 11.620413280901326], [1647122400, 10.77069570087096], [1647126000, 18.69881355750257], [1647129600, 11.826921246478966], [1647133200, 12.849132580617473], [1647136800, 12.384908976454225], [1647140400, 25.15450656961333], [1647144000, 14.614312492456987], [1647147600, 24.323638994660143], [1647151200, 22.115072117300336], [1647154800, 23.496292121881307], [1647158400, 23.100564045706346], [1647162000, 15.319543392242307], [1647165600, 14.49242200153627], [1647169200, 11.876151648168848], [1647172800, 22.51725091460739], [1647176400, 18.676857427051523], [1647180000, 14.473245516574304], [1647183600, 21.121463257439995], [1647187200, 16.77334290040248], [1647190800, 13.835476988413676], [1647194400, 24.229712105550483], [1647198000, 11.913128684069617], [1647201600, 14.227057939228123], [1647205200, 19.418251853109687], [1647208800, 20.235242249378356], [1647212400, 25.36410362545123], [1647216000, 15.152524179784328], [1647219600, 21.056284426186995], [1647223200, 18.015471345725786], [1647226800, 20.186032973019607], [1647230400, 12.835633970181892], [1647234000, 22.296420675707875], [1647237600, 23.318332026245123], [1647241200, 25.07016229127156], [1647244800, 19.064672756088687], [1647248400, 14.803755287150533], [1647252000, 18.32155633661973], [1647255600, 18.487616440194028], [1647259200, 14.255479870307406], [1647262800, 13.215928622033632]]
+  <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7">
+    <h2 class="text-2xl font-bold text-gray-500">{{ eachmonitor.title }}</h2>
+    <canvas style="margin:1.5em;" id="monitor_{{ eachmonitor.key }}"></canvas>
+    <p style="text-align:right;color:gray;"><em>Last sample ({{ eachmonitor.last_sample.time }}): {{ eachmonitor.last_sample.value }}</em></p>
+  </article>
+  <script>
+    var x_axis = {{ eachmonitor.x_axis }};
+    var y_axis = {{ eachmonitor.y_axis }};
 
-var result1 = [];
-var result2 = [];
+    var ctx = document.getElementById('monitor_{{ eachmonitor.key }}').getContext('2d');
+    var myChart = new Chart(ctx,
+      {
+        type: 'line',
+        data: {
+          labels: x_axis,
+          datasets: [{
+            label: " {{ eachmonitor.label }}",
+            data: y_axis,
 
-for (let i = 0; i < raw.length; i++) {
-  result1.push(new Date(raw[i][0]).toLocaleTimeString());
-  result2.push(raw[i][1]);
-}
+            borderColor: "#1e56a0",
+            backgroundColor: "#1e56a0",
+            pointBackgroundColor: "#1e56a0",
+            pointBorderColor: "#1e56a0",
+            pointHoverBackgroundColor: "#1e56a0",
+            pointHoverBorderColor: "#1e56a0",
+          }]
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: false
+            }
+          },
+          scales: {
+            y: {
+              min: {{ eachmonitor.min_value }},
+              max: {{ eachmonitor.max_value }}
+            },
+            x: {
+              type: 'time',
+              ticks: {
+                autoSkip: true,
+                maxRotation: 0,
+                autoSkipPadding: 30
+              },
+            }
+          }
+        }
+      }
+    );
+  </script>
 
-// Configuration options
-var options = {
-};
-
-// The data for the chart
-var data = {
-    labels: result1,
-    datasets: [{
-        label: "{{_('Temperature')}}",
-        data: result2
-    }]
-};
-
-// Create the chart
-var ctx = document.getElementById('blabla').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-});
-var ctx = document.getElementById('blabla2').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options
-});
-</script>
-
+{% endfor %}
 {% endblock %}
