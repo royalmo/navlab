@@ -6,9 +6,11 @@ from flask_babel import gettext
 from .users import app as users_view
 from .servers import app as servers_view
 from .monitors import app as monitors_view
+from .api import app as api_view
 from ..models import Server, SearchForm
 
 app = Blueprint('main', __name__)
+app.register_blueprint(api_view, url_prefix='/api')
 app.register_blueprint(users_view, url_prefix='')
 app.register_blueprint(servers_view, url_prefix='')
 app.register_blueprint(monitors_view, url_prefix='')
@@ -27,7 +29,6 @@ def dashboard():
         search_form.data['search'] = search_query
     else:
         servers = Server.query.all()
-        listlen = len(servers)
 
     return render_template('pages/dashboard.html.j2',
                            title=gettext("Dashboard"),
