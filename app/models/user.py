@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
             user.name = form.name.data
         if (str(utils.escape(form.email.data)) == form.email.data):
             user.email = form.email.data
-        user.lang=str(utils.escape(form.language.data))
+        user.lang=form.language.data
         if form.password.data and form.password.data==form.password_confirm.data:
             user.password = bcrypt.generate_password_hash(form.password.data)
         user.admin = ((not admin) and user.admin) or (admin and form.admin.data)
