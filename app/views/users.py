@@ -44,7 +44,16 @@ def register():
 
     if form.validate_on_submit() and form.password.data == form.password_confirm.data:
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(name=str(utils.escape(form.name.data)), email=str(utils.escape(form.email.data)), password=hashed_password, lang=str(utils.escape(form.language.data)))
+        new_user = User()
+        for key, val in form.data.items():
+            if key in ['submit', 'csrf_token']:
+                continue
+
+            if key == 'password':
+                setattr(new_user, key, hashed_password)
+
+            if (str(utils.escape(val)) == val): 
+                setattr(new_user, key, val)
         db.session.add(new_user)
         db.session.commit()
         mailer.new_user(new_user)

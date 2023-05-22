@@ -4,98 +4,82 @@
 {% set view_only = not current_user.admin %}
 
 <section class="py-2 disabled-input-gray">
-
   <div class="w-full bg-slate-400 bg-opacity-90 lg:w-8/12 mx-auto mt-6 max-w-[1250px]">
     <div class="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
       <form id="server_form" method="post" action="">
         <div class="flex flex-wrap items-center justify-between rounded-t bg-white mb-0 px-6 py-6">
           {% if new %}
-          <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Add New Service') }}</h6>
+            <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Add New Service') }}</h6>
           {% else %}
-          <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Modify Service') }}</h6>
+            <h6 class="text-blueGray-700 text-xl font-bold">{{ _('Modify Service') }}</h6>
           {% endif %}
 
           {% if not view_only %}
-          <div>
-            {{ server.submit(class_="relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
-            font-medium rounded-lg text-sm px-5 py-1.5 focus:outline-none") }}
+            <div>
+              {{ server.submit(class_="relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-1.5 focus:outline-none") }}
 
-            {% if not new %}
-            <a onclick="return confirm('{{ _('Do you really wish to remove this server?') }}');"
-              href="{{ url_for('main.servers.remove', id=id) }}" class="relative text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300
-                  font-medium rounded-lg text-sm px-5 py-1.5 focus:outline-none">{{ _('Remove Service') }}
-            </a>
-            {% endif %}
-          </div>
+              {% if not new %}
+                <a onclick="return confirm('{{ _('Do you really wish to remove this server?') }}');"
+                  href="{{ url_for('main.servers.remove', id=id) }}" class="relative text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-1.5 focus:outline-none">{{ _('Remove Service') }}
+                </a>
+              {% endif %}
+            </div>
           {% else %}
-          <span class="text-red-700 italic">{{ _("You need to be an admin to modify a service") }}</span>
+            <span class="text-red-700 italic">{{ _("You need to be an admin to modify a service") }}</span>
           {% endif %}
         </div>
+        <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            {{ _('Server Information') }}
+          </h6>
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label for="name" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  {{ _('Server Name') }}
+                </label>
+                {{ server.name(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+              </div>
+            </div>
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label for="image" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  {{ _('Server Image URL') }}
+                </label>
+                {{ server.image(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-12/12 px-4">
+              <div class="relative w-full mb-3">
+                <label for="description" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  {{ _('Server Description') }}
+                </label>
+                {{ server.description(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ")}}
+              </div>
+            </div>
+          </div>
+
+          <hr class="mt-6 border-b-1 border-blueGray-300">
+
+          <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+            {{ _('Server Commands') }}
+          </h6>
+
+          <div class="flex flex-wrap">
+            <div class="w-full lg:w-6/12 px-4">
+              <div class="relative w-full mb-3">
+                <label for="endpoint_url" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+                  {{ _('Endpoint URL') }}
+                </label>
+                {{ server.endpoint_url(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+              </div>
+            </div>
+          </div>
+      </form>
     </div>
-    <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
-      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-        {{ _('Server Information') }}
-      </h6>
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="name" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Server Name') }}
-            </label>
-            {{ server.name(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600
-            bg-white rounded
-            text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
-          </div>
-        </div>
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="image" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
-              {{ _('Server Image URL') }}
-            </label>
-            {{ server.image(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600
-            bg-white rounded
-            text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-12/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="description" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-              htmlfor="grid-password">
-              {{ _('Server Description') }}
-            </label>
-            {{ server.description(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300
-            text-blueGray-600 bg-white
-            rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ")}}
-          </div>
-        </div>
-      </div>
-
-      <hr class="mt-6 border-b-1 border-blueGray-300">
-
-      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-        {{ _('Server Commands') }}
-      </h6>
-
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="endpoint_url" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-              htmlfor="grid-password">
-              {{ _('Endpoint URL') }}
-            </label>
-            {{ server.endpoint_url(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300
-            text-blueGray-600 bg-white
-            rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  </div>
-  </form>
   </div>
 </section>
 
