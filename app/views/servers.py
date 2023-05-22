@@ -4,6 +4,8 @@ from flask_babel import gettext
 
 from ..extensions import db, login_required, admin_required
 from ..models import Server, ServerForm, SearchForm
+from app.models.server_history import ServerHistory
+from datetime import datetime
 
 app = Blueprint('servers', __name__)
 
@@ -23,6 +25,7 @@ def newserver():
 @login_required
 def edit(id):
     server = Server.query.get_or_404(id)
+    server_history_list = ServerHistory.query.filter_by(server_id=id).order_by(ServerHistory.timestamp.desc()).limit(10).all()
     server_form=ServerForm(obj=server)
     if server_form.is_submitted():
         if current_user.admin: # Only admins can edit
@@ -31,7 +34,7 @@ def edit(id):
                 setattr(server, key, val)
             db.session.commit()
         return redirect(url_for('main.dashboard'))
-    return render_template('pages/newserver.html.j2', title=gettext("Edit Server"), current_user=current_user, server=server_form, new=False, id=id)
+    return render_template('pages/newserver.html.j2', title=gettext("Edit Server"), current_user=current_user, server=server_form, new=False, id=id, server_history_list=server_history_list)
 
 @app.route('/server/<int:id>/remove', methods=['GET', 'POST'])
 @admin_required
@@ -45,6 +48,8 @@ def remove(id):
 def start(id):
     server = Server.query.get_or_404(id)
     server.status = True
+    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=True)
+    db.session.add(sh)
     db.session.commit()
     return make_response("Server started", 204)
 
@@ -53,5 +58,7 @@ def start(id):
 def stop(id):
     server = Server.query.get_or_404(id)
     server.status = False
+    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=False)
+    db.session.add(sh)
     db.session.commit()
     return make_response("Server stopped", 204)
