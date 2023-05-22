@@ -48,7 +48,7 @@ def remove(id):
 def start(id):
     server = Server.query.get_or_404(id)
     server.status = True
-    sh = ServerHistory(server_id=server.id, user_id=current_user.name, timestamp=datetime.now(),active=True)
+    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=True)
     db.session.add(sh)
     db.session.commit()
     return make_response("Server started", 204)
@@ -58,7 +58,7 @@ def start(id):
 def stop(id):
     server = Server.query.get_or_404(id)
     server.status = False
-    sh = ServerHistory(server_id=server.id, user_id=current_user.name, timestamp=datetime.now(),active=False)
+    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=False)
     db.session.add(sh)
     db.session.commit()
     return make_response("Server stopped", 204)
