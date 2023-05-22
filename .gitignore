@@ -7,3 +7,5 @@ app/static/.webassets-cache
 app/translations/*/LC_MESSAGES/messages.mo
 venv
 api/Arduino/libpbn/libpbn.a
+/app/static/media/**
+!/app/static/media/.keep

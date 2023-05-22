@@ -13,8 +13,8 @@ app = Blueprint('servers', __name__)
 @login_required
 def newserver():
     form = ServerForm()
-    
-    if (form.is_submitted()):
+
+    if form.is_submitted():
         new_server = Server(**{key : str(utils.escape(val)) for key, val in form.data.items() if key not in ['submit', 'csrf_token']})
         db.session.add(new_server)
         db.session.commit()
@@ -26,7 +26,7 @@ def newserver():
 def edit(id):
     server = Server.query.get_or_404(id)
     server_form=ServerForm(obj=server)
-    if request.method == 'POST':
+    if server_form.is_submitted():
         if current_user.admin: # Only admins can edit
             for key, val in server_form.data.items():
                 if key in ['submit', 'csrf_token']: continue
