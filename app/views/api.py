@@ -24,7 +24,7 @@ def servers():
     ]
     return make_response(jsonify(response), 200)
 
-@app.route('/register_token')
+@app.route('/register_token', methods=['POST'])
 @auth_header_required
 def register_token():
     data = request.get_json()
