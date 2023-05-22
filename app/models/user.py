@@ -18,8 +18,10 @@ class User(db.Model, UserMixin):
     
     def update_with_form(self, form, admin=False):
         user = self
-        user.name = str(utils.escape(form.name.data))
-        user.email = str(utils.escape(form.email.data))
+        if (str(utils.escape(form.name.data)) == form.name.data):
+            user.name = str(utils.escape(form.name.data))
+        if (str(utils.escape(form.email.data)) == form.email.data):
+            user.email = str(utils.escape(form.email.data))
         user.lang=str(utils.escape(form.language.data))
         if form.password.data and form.password.data==form.password_confirm.data:
             user.password = bcrypt.generate_password_hash(form.password.data)

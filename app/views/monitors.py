@@ -5,6 +5,9 @@ from flask_babel import gettext
 from ..extensions import db, login_required, admin_required
 from ..models import Monitor, Sample, MonitorForm
 
+from jinja2 import utils
+import validators
+
 app = Blueprint('monitors', __name__)
 
 @app.route('/monitoring')
@@ -46,7 +49,16 @@ def new():
     form = MonitorForm()
     
     if form.is_submitted():
-        new_monitor = Monitor(**{key : val for key, val in form.data.items() if key not in ['submit', 'csrf_token']})
+        new_monitor = Monitor()
+        for key, val in form.data.items():
+            if key in ['submit', 'csrf_token']: continue
+
+            if key == 'endpoint_url' or key == 'image':
+                if validators.url(val): setattr(new_monitor, key, val)
+                continue
+            if (str(utils.escape(val)) == val): 
+                setattr(new_monitor, key, val)
+        
         db.session.add(new_monitor)
         db.session.commit()
         return redirect(url_for('main.monitors.monitoring'))
@@ -61,7 +73,8 @@ def edit(id):
         if current_user.admin: # Only admins can edit
             for key, val in monitor_form.data.items():
                 if key in ['submit', 'csrf_token']: continue
-                setattr(monitor, key, val)
+                if (str(utils.escape(val)) == val): 
+                    setattr(monitor, key, val)
             db.session.commit()
         return redirect(url_for('main.monitors.monitoring'))
     return render_template('pages/newmonitor.html.j2', title=gettext("Edit Monitor"), current_user=current_user, monitor=monitor_form, new=False, id=id)

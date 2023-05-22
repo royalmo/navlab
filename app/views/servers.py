@@ -6,6 +6,7 @@ from ..extensions import db, login_required, admin_required
 from ..models import Server, ServerForm, SearchForm
 
 from jinja2 import utils
+import validators
 
 app = Blueprint('servers', __name__)
 
@@ -15,7 +16,17 @@ def newserver():
     form = ServerForm()
 
     if form.is_submitted():
-        new_server = Server(**{key : str(utils.escape(val)) for key, val in form.data.items() if key not in ['submit', 'csrf_token']})
+        new_server = Server()
+        for key, val in form.data.items():
+            if key in ['submit', 'csrf_token']:
+                continue
+
+            if key == 'endpoint_url' or key == 'image':
+                if validators.url(val):
+                    setattr(new_server, key, val)
+                continue
+            if (str(utils.escape(val)) == val): 
+                setattr(new_server, key, val)
         db.session.add(new_server)
         db.session.commit()
         return redirect(url_for('main.dashboard'))
@@ -30,7 +41,12 @@ def edit(id):
         if current_user.admin: # Only admins can edit
             for key, val in server_form.data.items():
                 if key in ['submit', 'csrf_token']: continue
-                setattr(server, key, str(utils.escape(val)))
+
+                if key == 'endpoint_url' or key == 'image':
+                    if validators.url(val): setattr(server, key, val)
+                    continue
+                if (str(utils.escape(val)) == val): 
+                    setattr(server, key, val)
             db.session.commit()
         return redirect(url_for('main.dashboard'))
     return render_template('pages/newserver.html.j2', title=gettext("Edit Server"), current_user=current_user, server=server_form, new=False, id=id)
