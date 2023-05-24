@@ -1,4 +1,4 @@
-import requests,time,sys,os
+import requests,time,sys,os,datetime
 
 def main():
     Site='https://navlab.ericroy.net'
@@ -12,7 +12,9 @@ def main():
         else:
             if r.status_code==200:
                 try:
-                    p = requests.post(Led,json=r.json())
+                    d=r.json()
+                    d['time']=str(datetime.datetime.now())
+                    p = requests.post(Led,json=d)
                 except:
                     print('Failed to establish a new connection with',Site)
                 else:
@@ -27,7 +29,9 @@ def main():
         else:
             if r.status_code==200:
                 try:
-                    p = requests.post(Pot,json=r.json())
+                    d=r.json()
+                    d['time']=str(datetime.datetime.now())
+                    p = requests.post(Pot,json=d)
                 except:
                     print('Failed to establish a new connection with',Site)
                 else:
