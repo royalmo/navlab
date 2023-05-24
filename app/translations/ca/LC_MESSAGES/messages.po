@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 23:33+0200\n"
+"POT-Creation-Date: 2023-05-21 19:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ca\n"
@@ -39,6 +39,31 @@ msgstr "Mantenir la sessió iniciada"
 #, fuzzy
 msgid "Log In"
 msgstr "Iniciar sessió"
+
+#: app/models/forms/monitor_form.py:7
+msgid "led"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:8
+msgid "Navarcles' Arduino: LED"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:9
+#, fuzzy
+msgid "State"
+msgstr "Inicia"
+
+#: app/models/forms/monitor_form.py:10
+msgid "-0.5"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:11
+msgid "1.5"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:12
+msgid "Submit Monitor"
+msgstr ""
 
 #: app/models/forms/register_form.py:10 app/models/forms/user_form.py:9
 msgid "Taylor Swift"
@@ -102,7 +127,9 @@ msgstr "Ho sentim, no hem pogut trobar aquesta pàgina."
 
 #: app/templates/errors/404.html.j2:17
 msgid "But dont worry, you can find plenty of other things on our homepage."
-msgstr "Però no pateixis, segurament que trobaràs el que necessitis des de la pàgina principal."
+msgstr ""
+"Però no pateixis, segurament que trobaràs el que necessitis des de la "
+"pàgina principal."
 
 #: app/templates/errors/404.html.j2:19
 msgid "Back to homepage"
@@ -128,11 +155,11 @@ msgstr "Contacte"
 msgid "Open main menu"
 msgstr "Obre el menú principal"
 
-#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:31
+#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:34
 msgid "Dashboard"
 msgstr "Tauler de control"
 
-#: app/templates/includes/navbar.html.j2:20 app/views/__init__.py:41
+#: app/templates/includes/navbar.html.j2:20 app/views/monitors.py:38
 msgid "Monitoring"
 msgstr "Monitoratge"
 
@@ -186,18 +213,69 @@ msgstr "Processant"
 msgid "Stop"
 msgstr "Atura"
 
-#: app/templates/pages/monitoring.html.j2:6
+#: app/templates/pages/monitoring.html.j2:8
 msgid "Statistics"
 msgstr "Estadístiques"
 
-#: app/templates/pages/monitoring.html.j2:14
-#: app/templates/pages/monitoring.html.j2:42
-msgid "Temperature"
-msgstr "Temperatura"
+#: app/templates/pages/monitoring.html.j2:9 app/views/monitors.py:53
+msgid "New Monitor"
+msgstr ""
 
-#: app/templates/pages/monitoring.html.j2:18
-msgid "Round-Trip-Time"
-msgstr "Round-Trip-Time"
+#: app/templates/pages/monitoring.html.j2:24
+msgid "Last sample"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:13
+msgid "Add New Monitor"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:15
+msgid "Modify Monitor"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:24
+#, fuzzy
+msgid "Do you really wish to remove this monitor?"
+msgstr "Estàs segur que vols eliminar aquest usuari?"
+
+#: app/templates/pages/newmonitor.html.j2:27
+msgid "Remove Monitor"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:32
+#, fuzzy
+msgid "You need to be an admin to modify a monitor"
+msgstr "Necessites permisos d'administrador per a modificar un servei"
+
+#: app/templates/pages/newmonitor.html.j2:38
+#, fuzzy
+msgid "Monitor Information"
+msgstr "Informació de l'usuari"
+
+#: app/templates/pages/newmonitor.html.j2:44
+#, fuzzy
+msgid "Monitor Title"
+msgstr "Monitoratge"
+
+#: app/templates/pages/newmonitor.html.j2:54
+msgid "Monitor Key"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:68
+msgid "Monitor Data Units"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:80
+msgid "Monitor Graph Details"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:88
+msgid "Minimum value"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:102
+msgid "Maximum value"
+msgstr ""
 
 #: app/templates/pages/newserver.html.j2:13
 #, fuzzy
@@ -282,7 +360,7 @@ msgstr "Adreça electrònica"
 #: app/templates/pages/users/login.html.j2:34
 #: app/templates/pages/users/signup.html.j2:33
 msgid "Password"
-msgstr "Contrassenya"
+msgstr "Contrasenya"
 
 #: app/templates/pages/newuser.html.j2:52
 #: app/templates/pages/users/signup.html.j2:37
@@ -312,18 +390,18 @@ msgstr "Caràcter especial"
 
 #: app/templates/pages/newuser.html.j2:73
 msgid "Confirm password"
-msgstr "Confirma la contrassenya"
+msgstr "Confirma la contrasenya"
 
 #: app/templates/pages/newuser.html.j2:79
 #: app/templates/pages/users/signup.html.j2:59
 msgid "Passwords do not match"
-msgstr "Les contrassenyes no coincideixen"
+msgstr "Les contrasenyes no coincideixen"
 
 #: app/templates/pages/newuser.html.j2:82
 #: app/templates/pages/users/signup.html.j2:62
 #, fuzzy
 msgid "Passwords match"
-msgstr "Les contrassenyes coincideixen"
+msgstr "Les contrasenyes coincideixen"
 
 #: app/templates/pages/newuser.html.j2:88
 #: app/templates/pages/userlist.html.j2:29
@@ -399,7 +477,9 @@ msgstr "Credencials incorrectes"
 
 #: app/templates/pages/users/login.html.j2:23
 msgid "Your account is inactive. Contact us for more information."
-msgstr "El teu compte no està activat. Cantacta amb nosaltres per a més informació."
+msgstr ""
+"El teu compte no està activat. Cantacta amb nosaltres per a més "
+"informació."
 
 #: app/templates/pages/users/login.html.j2:30
 #: app/templates/pages/users/signup.html.j2:29
@@ -412,12 +492,12 @@ msgid ""
 "Ask an admin to change your password."
 msgstr ""
 "Ho sentim, no està implementat!\n"
-"Pregunta a un administrador per a canviar la contrassenya."
+"Pregunta a un administrador per a canviar la contrasenya."
 
 #: app/templates/pages/users/login.html.j2:42
 #, fuzzy
 msgid "Forgot password?"
-msgstr "Has oblidat la contrassenya?"
+msgstr "Has oblidat la contrasenya?"
 
 #: app/templates/pages/users/login.html.j2:45
 msgid "Don't have an account?"
@@ -494,6 +574,10 @@ msgstr "Res, només has d'esperar. Si tens presa, pots enviar un correu a"
 msgid "indicating the reason of your hurry."
 msgstr "indicant el motiu de la teva impaciència."
 
+#: app/views/monitors.py:67
+msgid "Edit Monitor"
+msgstr ""
+
 #: app/views/servers.py:20
 #, fuzzy
 msgid "New Server"
@@ -554,19 +638,19 @@ msgstr "Edita l'Usuari"
 #~ msgstr "Comanda Healthcheck"
 
 #~ msgid "Password must be at least 8 characters long"
-#~ msgstr "La contrassenya ha de tenir una llargada mínima de 8 caràcters"
+#~ msgstr "La contrasenya ha de tenir una llargada mínima de 8 caràcters"
 
 #~ msgid "Password must contain at least one uppercase letter"
-#~ msgstr "La contrassenya ha de tenir almenys una lletra majúscula"
+#~ msgstr "La contrasenya ha de tenir almenys una lletra majúscula"
 
 #~ msgid "Password must contain at least one lowercase letter"
-#~ msgstr "La contrassenya ha de tenir almenys una lletra minúscula"
+#~ msgstr "La contrasenya ha de tenir almenys una lletra minúscula"
 
 #~ msgid "Password must contain at least one number"
-#~ msgstr "La contrassenya ha de tenir almenys un número"
+#~ msgstr "La contrasenya ha de tenir almenys un número"
 
 #~ msgid "Password must contain at least one special character"
-#~ msgstr "La contrassenya ha de tenir almenys un caràcter especial"
+#~ msgstr "La contrasenya ha de tenir almenys un caràcter especial"
 
 #~ msgid "English"
 #~ msgstr "Anglès"
@@ -579,4 +663,10 @@ msgstr "Edita l'Usuari"
 
 #~ msgid "Your account has been created"
 #~ msgstr "El teu compte ha estat creat"
+
+#~ msgid "Temperature"
+#~ msgstr "Temperatura"
+
+#~ msgid "Round-Trip-Time"
+#~ msgstr "Round-Trip-Time"
 
