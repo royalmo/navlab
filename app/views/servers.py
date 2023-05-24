@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, request, make_response
+from flask import Blueprint, render_template, url_for, redirect, jsonify, make_response
 from flask_login import current_user
 from flask_babel import gettext
 
@@ -6,6 +6,7 @@ from ..extensions import db, login_required, admin_required
 from ..models import Server, ServerForm, SearchForm
 from app.models.server_history import ServerHistory
 from datetime import datetime
+from requests import put
 
 app = Blueprint('servers', __name__)
 
@@ -48,6 +49,11 @@ def remove(id):
 def start(id):
     server = Server.query.get_or_404(id)
     server.status = True
+
+    if server.endpoint_url is not None:
+        key = server.endpoint_url.split('/')[-1]
+        put(server.endpoint_url, json={key : 1})
+
     sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=True)
     db.session.add(sh)
     db.session.commit()
@@ -58,7 +64,22 @@ def start(id):
 def stop(id):
     server = Server.query.get_or_404(id)
     server.status = False
+
+    if server.endpoint_url is not None:
+        key = server.endpoint_url.split('/')[-1]
+        put(server.endpoint_url, json={key : 0})
+
     sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=False)
     db.session.add(sh)
     db.session.commit()
     return make_response("Server stopped", 204)
+
+@app.route('/server/raw')
+@login_required
+def raw_data():
+    Server.update_status()
+
+    servers = Server.query.all()
+    data = [{'id' : server.id, 'status' : server.status} for server in servers]
+
+    return jsonify(data)

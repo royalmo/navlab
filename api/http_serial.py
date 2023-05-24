@@ -16,7 +16,7 @@ from datetime import datetime
 
 app = Flask(__name__) # Punt de partida per crear una aplicació web amb flask 
 
-arduino = serial.Serial('/dev/ttyUSB0', 9600)
+arduino = serial.Serial('/dev/ttyACM0', 9600)
 
 
 @app.route('/led', methods=['GET', 'PUT'])
@@ -36,13 +36,13 @@ def led():
         state = request.json.get('led') # Suposant que la request és 'led:0/1'
         if state is None:
             return 'Missing parameter', 400
-        if state not in ['0', '1']:
+        if str(state) not in ['0', '1']:
             return 'Invalid parameter', 400
         arduino.write(f'%L{state}\n'.encode())
         arduino.readline() # Si l'arduino m'envia alguna cosa l'he de llegir tot, netejant el buffer, i l'ignoro.
         return '', 204
 
-@app.route('/potentiometer')
+@app.route('/potenciometre')
 def potentiometer():
     if not arduino.isOpen():
         return 'Arduino not connected', 503
@@ -51,9 +51,9 @@ def potentiometer():
     response = arduino.readline().strip().decode()
     value = int(response[1:]) # Suposant que la resposta de l'arduino és '%XXXX'
     return jsonify({
-        'potentiometer': value
+        'potenciometre': value
     })
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5001)
 

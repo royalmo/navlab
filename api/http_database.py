@@ -9,7 +9,8 @@ from flask import Flask, Response, request, jsonify
 import os
 from datetime import datetime
 
-DATABASE_PATH='../app/navlab.db'
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_PATH = os.path.join(CURRENT_DIR, '..', 'app', 'navlab.db')
 
 app=Flask(__name__)
 
@@ -72,7 +73,7 @@ def input_led():
 		return Response(status=503)
 	try:
 		r=request.json
-		value=r['led']
+		value=str(r['led'])
 		time=r['time']
 		if not (value=='1' or value=='0'):
 			return Response(status=400)
@@ -96,9 +97,8 @@ def input_potenciometre():
 		return Response(status=503)
 	try:
 		r=request.json
-		value=r['potenciometre']
+		value=int(r['potenciometre'])
 		time=r['time']
-		print(type(value))
 		if not (value>=0 and value<=255):
 			return Response(status=400)
 		datetime.strptime(time, '%Y-%m-%d %H:%M:%S.%f')
@@ -112,5 +112,5 @@ def input_potenciometre():
 
 
 if __name__=="__main__":
-	app.run(debug=True)
+	app.run(port=5002)
 

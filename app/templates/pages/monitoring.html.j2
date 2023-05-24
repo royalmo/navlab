@@ -2,7 +2,9 @@
 
 {% block body %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.4.0"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+<script>var charts = {};</script>
 
 {% with
   h1_text=_('Statistics'),
@@ -15,13 +17,16 @@
 
 {% for eachmonitor in monitors %}
 
-  <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7 cursor-pointer">
+  <article id="monitor_frame_{{ eachmonitor.id|int }}" class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7 cursor-pointer">
     <a href="{{ url_for( '.edit' , id=eachmonitor.id|int ) }}">
       <h2 class="text-2xl font-bold text-gray-500">{{ eachmonitor.title|e }}</h2>
       <div class="relative w-full"> 
         <canvas style="margin:1.5em;" id="monitor_{{ eachmonitor.key|e }}"></canvas>
       </div>
-      <p style="text-align:right;color:gray;"><em>{{ _('Last sample') }} ({{ eachmonitor.last_sample.time }}): {{ eachmonitor.last_sample.value }}</em></p>
+      <p style="text-align:right;color:gray;"><em>{{ _('Last sample') }}
+        (<span class="last_sample_time">{{ eachmonitor.last_sample.time }}</span>):
+        <span class="last_sample_value">{{ eachmonitor.last_sample.value }}</span></em>
+      </p>
     </a>
   </article>
   <script>
@@ -29,7 +34,7 @@
     var y_axis = {{ eachmonitor.y_axis }};
 
     var ctx = document.getElementById('monitor_{{ eachmonitor.key|e }}').getContext('2d');
-    var myChart = new Chart(ctx,
+    charts['{{ eachmonitor.key }}'] = new Chart(ctx,
       {
         type: 'line',
         data: {
@@ -59,6 +64,9 @@
             },
             x: {
               type: 'time',
+              time: {
+                parser: "yyyy-MM-dd HH:mm:ss",
+              },
               ticks: {
                 autoSkip: true,
                 maxRotation: 0,
@@ -72,4 +80,7 @@
   </script>
 
 {% endfor %}
+
+<script class="text-green-600" src="{{ url_for('static', filename='js/monitor_update.js') }}"></script>
+
 {% endblock %}

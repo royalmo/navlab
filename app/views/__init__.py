@@ -22,6 +22,8 @@ def index():
 @app.route('/dashboard', methods=['GET'])
 @login_required
 def dashboard():
+    Server.update_status()
+
     search_form = SearchForm(request.form)
     search_query = request.args.get('search')
     if request.method == 'GET' and search_query:
