@@ -54,22 +54,17 @@
               {{ _('Server Image URL') }}
             </label>
             {{ server.image(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600
-            bg-white rounded
-            text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
+            bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150") }}
           </div>
         </div>
-      </div>
 
-      <div class="flex flex-wrap">
         <div class="w-full lg:w-12/12 px-4">
           <div class="relative w-full mb-3">
-            <label for="description" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-              htmlfor="grid-password">
+            <label for="description" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
               {{ _('Server Description') }}
             </label>
-            {{ server.description(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300
-            text-blueGray-600 bg-white
-            rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150 ")}}
+            {{ server.description(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600
+          bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
           </div>
         </div>
       </div>
@@ -83,57 +78,39 @@
       <div class="flex flex-wrap">
         <div class="w-full lg:w-6/12 px-4">
           <div class="relative w-full mb-3">
-            <label for="starting_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-              htmlfor="grid-password">
-              {{ _('Starting Command') }}
+            <label for="endpoint_url" class="block uppercase text-blueGray-600 text-xs font-bold mb-2" htmlfor="grid-password">
+              {{ _('Endpoint URL') }}
             </label>
-            {{ server.starting_cmd(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300
-            text-blueGray-600 bg-white
-            rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
+            {{ server.endpoint_url(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
           </div>
         </div>
-      </div>
+      </form>
+    </div>
 
-      <div class="flex flex-wrap">
-        <div class="w-full lg:w-6/12 px-4">
-          <div class="relative w-full mb-3">
-            <label for="stop_cmd" class="block uppercase text-blueGray-600 text-xs font-bold mb-2"
-              htmlfor="grid-password">
-              {{ _('Stop Command') }}
-            </label>
-            {{ server.stop_cmd(disabled=view_only, class_="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600
-            bg-white
-            rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150")}}
-          </div>
-        </div>
-      </div>
+    {% if not new and server_history_list|length > 0 %}
+      <hr class="mt-6 border-b-1 border-blueGray-300">
 
-      {% if not new and server_history_list|length > 0 %}
-        <hr class="mt-6 border-b-1 border-blueGray-300">
+      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+        {{ _('Server History') }}
+      </h6>
+      <ul class="px-4">
+        {% for history in server_history_list %}
 
-        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-          {{ _('Server History') }}
-        </h6>
-        <ul class="px-4">
-          {% for history in server_history_list %}
+          <li><b>{{ history.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</b>:
+            {% if history.active %}
+              {{ _('started') }}
+            {% else %}
+              {{ _('stopped') }}
+            {% endif %}
+            {{ _('by') }}
+            {{ history.get_user().name }}
+          </li>
 
-            <li><b>{{ history.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</b>:
-              {% if history.active %}
-                {{ _('started') }}
-              {% else %}
-                {{ _('stopped') }}
-              {% endif %}
-              {{ _('by') }}
-              {{ history.get_user().name }}
-            </li>
-
-          {% endfor %}
-        </ul>
-      {% endif %}
+        {% endfor %}
+      </ul>
+    {% endif %}
 
     </div>
-    </div>
-  </form>
   </div>
 </section>
 

@@ -35,11 +35,11 @@
       <tr class="hover:bg-gray-200 border-2 border-gray-300">
         <th class="xg:hidden">
           <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-            <span class="font-medium text-gray-600 dark:text-gray-300">{{ eachuser.name[0] }}</span>
+            <span class="font-medium text-gray-600 dark:text-gray-300">{{ eachuser.name[0]|e }}</span>
           </div>
         </th>
-        <th class="font-normal">{{ eachuser.name }}</th>
-        <th class="font-normal xg:hidden">{{ eachuser.email }}</th>
+        <th class="font-normal">{{ eachuser.name|e }}</th>
+        <th class="font-normal xg:hidden">{{ eachuser.email|e }}</th>
         <th class="font-normal xm:hidden">
           {% if eachuser.admin %}
             {{ _('Yes') }}
