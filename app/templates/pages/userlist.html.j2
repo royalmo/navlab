@@ -72,8 +72,16 @@
 
                 event.target.closest('button').children[0].style.display="block";
                 event.target.closest('button').children[1].style.display="none";
-                await fetch('{{url_for('.delete_user', user_id=eachuser.id)}}', {method: 'DELETE'});
-                window.location.reload();
+
+                var response = await fetch('{{url_for('.delete_user', user_id=eachuser.id)}}', {method: 'DELETE'});
+                if (response.ok) {
+                  window.location.reload();
+                  return;
+                }
+                // Catching
+                event.target.closest('button').children[0].style.display="none";
+                event.target.closest('button').children[1].style.display="block";
+                alert(await response.text());
               });
             </script>
           </div>

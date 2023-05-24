@@ -7,7 +7,7 @@ from ...extensions.babel import get_locales
 from ..user import User
 
 class RegisterForm(FlaskForm):
-    name = StringField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": gettext("Taylor Swift")})
+    name = StringField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": gettext("User Name")})
     email = EmailField(validators=[InputRequired(), Length(min=4, max=80)], render_kw={"placeholder": gettext("user@example.com")})
     password = PasswordField(validators=[InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": gettext("••••••••")})
     password_confirm = PasswordField(validators=[], render_kw={"placeholder": gettext("••••••••")})

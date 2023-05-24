@@ -82,6 +82,11 @@ def users():
 @admin_required
 def delete_user(user_id):
     user = User.query.get_or_404(user_id)
+
+    # FIXME Failing users with id <=2 for the sake of demonstration.
+    if user.id <= 2:
+        return make_response("For the sake of demonstration, you can't touch demo profiles!", 403)
+
     db.session.delete(user)
     db.session.commit()
     return make_response("No content", 204)
@@ -93,6 +98,10 @@ def edit_user(user_id):
     form = UserForm()
 
     if form.validate_on_submit():
+        # FIXME Failing users with id <=2 for the sake of demonstration.
+        if user.id <= 2:
+            return make_response("For the sake of demonstration, you can't touch demo profiles!", 403)
+
         user.update_with_form(form, current_user.admin)
         return redirect(url_for('.users'))
 
@@ -107,6 +116,10 @@ def profile():
     form = UserForm()
 
     if form.validate_on_submit():
+        # FIXME Failing users with id <=2 for the sake of demonstration.
+        if user.id <= 2:
+            return make_response("For the sake of demonstration, you can't touch demo profiles!", 403)
+
         user.update_with_form(form, current_user.admin)
         return redirect(url_for('.profile'))
 

@@ -77,15 +77,15 @@ If you want it to automatically recompile all CSS every time a file changes, run
 Every time you translate something, you need to run these two commands:
 
 ```
-$ pybabel extract -F app/babel.cfg -o app/translations/messages.pot --input-dirs=app
-$ pybabel update --input-file=app/translations/messages.pot --output-dir=app/translations
+pybabel extract -F app/babel.cfg -o app/translations/messages.pot --input-dirs=app
+pybabel update --input-file=app/translations/messages.pot --output-dir=app/translations
 ```
 
 And then, in each language file, fill the missing translations. Once
 done, compile them and restart the server:
 
 ```
-$ pybabel compile -f -d app/translations
+pybabel compile -f -d app/translations
 ```
 
 ### Run
