@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for, jsonify
 from flask_login import current_user
 from flask_babel import gettext
 
@@ -7,9 +7,7 @@ from ..models import Monitor, Sample, MonitorForm
 
 app = Blueprint('monitors', __name__)
 
-@app.route('/monitoring')
-@login_required
-def monitoring():
+def _get_monitor_data():
     monitors = Monitor.query.all()
     data = []
     for monitor in monitors:
@@ -33,12 +31,26 @@ def monitoring():
                 'value' : y_axis[0]
             }
         })
+    
+    return data
+
+@app.route('/monitoring')
+@login_required
+def monitoring():
+    data = _get_monitor_data()
 
     return render_template('pages/monitoring.html.j2',
                            title=gettext("Monitoring"),
                            current_user=current_user,
                            navbar_highlight_monitoring=True,
                            monitors=data)
+
+@app.route('/monitoring/raw')
+@login_required
+def monitoring_raw():
+    data = _get_monitor_data()
+
+    return jsonify(data)
 
 @app.route('/monitor/new', methods=['GET', 'POST'])
 @login_required

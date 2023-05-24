@@ -12,7 +12,7 @@ INSERT INTO server VALUES
     --(3, 'Overleaf', 'https://cdn.overleaf.com/img/ol-brand/overleaf_og_logo.png', 'This is our nice and beautiful Overleaf server.', 'start_cmd', 'stop_cmd', 0),
     --(4, 'Minecraft 2', 'https://theme.zdassets.com/theme_assets/2155033/bc270c23058d513de5124ffea6bf9199af7a2370.png', 'This is our nice and beautiful Minecraft 2 server.', 'start_cmd', 'stop_cmd', 1),
     --(5, 'Ubuntu Server', 'https://cdn-icons-png.flaticon.com/512/5969/5969282.png', 'This is our nice and beautiful Ubuntu server.', 'start_cmd', 'stop_cmd', 0)
-    (1, "Navarcles' LED", "https://navlab.ericroy.net/static/media/led.png", "This is the LED that can be found in Isaac's Arduino.", NULL, 0)
+    (1, "Navarcles' LED", "https://navlab.ericroy.net/static/media/led.png", "This is the LED that can be found in Isaac's Arduino.", 'http://serial.navlab.ericroy.net/led', 0)
 ;
 
 INSERT INTO monitor (key, title, label, min_value, max_value) VALUES
