@@ -15,7 +15,7 @@ def monitoring():
     for monitor in monitors:
         samples = Sample.query.filter_by(monitor_key=monitor.key).order_by(Sample.date.desc()).limit(100).all()
 
-        x_axis = [sample.date.timestamp() for sample in samples]
+        x_axis = [sample.date.strftime('%Y-%m-%d %H:%M:%S') for sample in samples]
         y_axis = [sample.value for sample in samples]
 
         # Reversing axis because we want time to be from past to future
