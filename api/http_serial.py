@@ -42,7 +42,7 @@ def led():
         arduino.readline() # Si l'arduino m'envia alguna cosa l'he de llegir tot, netejant el buffer, i l'ignoro.
         return '', 204
 
-@app.route('/potentiometer')
+@app.route('/potenciometre')
 def potentiometer():
     if not arduino.isOpen():
         return 'Arduino not connected', 503
@@ -51,7 +51,7 @@ def potentiometer():
     response = arduino.readline().strip().decode()
     value = int(response[1:]) # Suposant que la resposta de l'arduino és '%XXXX'
     return jsonify({
-        'potentiometer': value
+        'potenciometre': value
     })
 
 if __name__ == '__main__':

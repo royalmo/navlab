@@ -72,7 +72,7 @@ def input_led():
 		return Response(status=503)
 	try:
 		r=request.json
-		value=r['led']
+		value=str(r['led'])
 		time=r['time']
 		if not (value=='1' or value=='0'):
 			return Response(status=400)
@@ -96,7 +96,7 @@ def input_potenciometre():
 		return Response(status=503)
 	try:
 		r=request.json
-		value=r['potenciometre']
+		value=int(r['potenciometre'])
 		time=r['time']
 		print(type(value))
 		if not (value>=0 and value<=255):
