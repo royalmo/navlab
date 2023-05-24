@@ -86,6 +86,31 @@
         </div>
       </form>
     </div>
+
+    {% if not new and server_history_list|length > 0 %}
+      <hr class="mt-6 border-b-1 border-blueGray-300">
+
+      <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+        {{ _('Server History') }}
+      </h6>
+      <ul class="px-4">
+        {% for history in server_history_list %}
+
+          <li><b>{{ history.timestamp.strftime("%Y-%m-%d %H:%M:%S") }}</b>:
+            {% if history.active %}
+              {{ _('started') }}
+            {% else %}
+              {{ _('stopped') }}
+            {% endif %}
+            {{ _('by') }}
+            {{ history.get_user().name }}
+          </li>
+
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    </div>
   </div>
 </section>
 

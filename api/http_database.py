@@ -32,7 +32,7 @@ def get_led_data():
 		response.status_code = 416
 		return response
 	conn = sqlite3.connect(DATABASE_PATH)
-	select=conn.execute(f"select date, value from mostres where sensor_name='led' order by date DESC limit {n};").fetchall()
+	select=conn.execute(f"select date, value from sample where monitor_key='led' order by date DESC limit {n};").fetchall()
 	conn.close()
 	s=[{'time':e[0],'led':e[1]} for e in select]
 	return jsonify(s)
@@ -57,7 +57,7 @@ def get_potenciometre_data():
 		response.status_code = 416
 		return response
 	conn = sqlite3.connect(DATABASE_PATH)
-	select=conn.execute(f"select date, value from mostres where sensor_name='potenciometre' order by date DESC limit {n};").fetchall()
+	select=conn.execute(f"select date, value from sample where monitor_key='potenciometre' order by date DESC limit {n};").fetchall()
 	conn.close()
 	s=[{'time':e[0],'potenciometre':e[1]} for e in select]
 	return jsonify(s)
@@ -80,7 +80,7 @@ def input_led():
 	except : #json invalid or datetime invalid
 		return Response(status=400)
 	conn = sqlite3.connect(DATABASE_PATH)
-	conn.execute(f"insert into mostres values('led','{time}','{value}');") 
+	conn.execute(f"insert into sample (monitor_key, date, value) values('led','{time}','{value}');") 
 	conn.commit()
 	conn.close()
 	return Response(status=204)
@@ -105,7 +105,7 @@ def input_potenciometre():
 	except : #json invalid or datetime invalid
 		return Response(status=400)
 	conn = sqlite3.connect(DATABASE_PATH)
-	conn.execute(f"insert into mostres values('potenciometre','{time}','{value}');")
+	conn.execute(f"insert into sample (monitor_key, date, value) values('potenciometre','{time}','{value}');")
 	conn.commit()
 	conn.close()
 	return Response(status=204)
@@ -113,3 +113,4 @@ def input_potenciometre():
 
 if __name__=="__main__":
 	app.run(debug=True)
+

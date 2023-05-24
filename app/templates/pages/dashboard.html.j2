@@ -39,26 +39,28 @@
           <br />
           <br />
 
-          <button class="start-button
-            bg-green-400 hover:bg-green-600 p-2 rounded text-white status-off status-button">
-            <i class="fa fa-power-off"></i>
-            {{ _('Start') }}
-          </button>
-          <button class="cancel-button
-            bg-gray-400 hover:bg-gray-600 p-2 rounded text-white status-off status-button">
-            <i class="fa fa-spinner animate-spin"></i>
-            {{ _('Cancel') }}
-          </button>
-          <button class="processing-button
-            bg-gray-400 p-2 rounded text-white status-off status-button cursor-not-allowed" disabled>
-            <i class="fa fa-spinner animate-spin"></i>
-            {{ _('Processing') }}
-          </button>
-          <button class="stop-button
-            bg-red-400 hover:bg-red-600 p-2 rounded text-white status-off status-button">
-            <i class="fa fa-power-off"></i>
-            {{ _('Stop') }}
-          </button>
+          {% if current_user.admin %}
+            <button class="start-button
+              bg-green-400 hover:bg-green-600 p-2 rounded text-white status-off status-button">
+              <i class="fa fa-power-off"></i>
+              {{ _('Start') }}
+            </button>
+            <button class="cancel-button
+              bg-gray-400 hover:bg-gray-600 p-2 rounded text-white status-off status-button">
+              <i class="fa fa-spinner animate-spin"></i>
+              {{ _('Cancel') }}
+            </button>
+            <button class="processing-button
+              bg-gray-400 p-2 rounded text-white status-off status-button cursor-not-allowed" disabled>
+              <i class="fa fa-spinner animate-spin"></i>
+              {{ _('Processing') }}
+            </button>
+            <button class="stop-button
+              bg-red-400 hover:bg-red-600 p-2 rounded text-white status-off status-button">
+              <i class="fa fa-power-off"></i>
+              {{ _('Stop') }}
+            </button>
+          {% endif %}
 
         </div>
         <div class="w-4/12 flex justify-center items-center">
