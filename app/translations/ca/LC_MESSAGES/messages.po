@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-21 19:11+0200\n"
+"POT-Creation-Date: 2023-05-25 00:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ca\n"
@@ -36,7 +36,6 @@ msgstr "Mantenir la sessió iniciada"
 
 #: app/models/forms/login_form.py:12 app/views/users.py:28
 #: app/views/users.py:30
-#, fuzzy
 msgid "Log In"
 msgstr "Iniciar sessió"
 
@@ -49,9 +48,8 @@ msgid "Navarcles' Arduino: LED"
 msgstr ""
 
 #: app/models/forms/monitor_form.py:9
-#, fuzzy
 msgid "State"
-msgstr "Inicia"
+msgstr ""
 
 #: app/models/forms/monitor_form.py:10
 msgid "-0.5"
@@ -63,11 +61,11 @@ msgstr ""
 
 #: app/models/forms/monitor_form.py:12
 msgid "Submit Monitor"
-msgstr ""
+msgstr "Enviar Monitor"
 
 #: app/models/forms/register_form.py:10 app/models/forms/user_form.py:9
-msgid "Taylor Swift"
-msgstr "Lluís Rebelles"
+msgid "User Name"
+msgstr "Nom"
 
 #: app/models/forms/register_form.py:15 app/models/forms/user_form.py:14
 #: app/views/users.py:56
@@ -95,25 +93,18 @@ msgid "About Server"
 msgstr "Descripció del servidor"
 
 #: app/models/forms/server_form.py:10
-msgid "systemctl start `command`"
-msgstr "systemctl start `command`"
+msgid "http://127.0.0.1:5002/led"
+msgstr ""
 
 #: app/models/forms/server_form.py:11
-msgid "systemctl stop `command`"
-msgstr "systemctl stop `command`"
-
-#: app/models/forms/server_form.py:12
-#, fuzzy
 msgid "Submit Service"
 msgstr "Desa el servidor"
 
 #: app/models/forms/user_form.py:15
-#, fuzzy
 msgid "Admin?"
 msgstr "Admin?"
 
 #: app/models/forms/user_form.py:16
-#, fuzzy
 msgid "Active?"
 msgstr "Actiu?"
 
@@ -155,11 +146,11 @@ msgstr "Contacte"
 msgid "Open main menu"
 msgstr "Obre el menú principal"
 
-#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:34
+#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:36
 msgid "Dashboard"
 msgstr "Tauler de control"
 
-#: app/templates/includes/navbar.html.j2:20 app/views/monitors.py:38
+#: app/templates/includes/navbar.html.j2:20 app/views/monitors.py:43
 msgid "Monitoring"
 msgstr "Monitoratge"
 
@@ -193,107 +184,98 @@ msgid "Off"
 msgstr "Inactiu"
 
 #: app/templates/pages/dashboard.html.j2:37
-#, fuzzy
 msgid "Active"
 msgstr "Actiu"
 
-#: app/templates/pages/dashboard.html.j2:45
+#: app/templates/pages/dashboard.html.j2:46
 msgid "Start"
 msgstr "Inicia"
 
-#: app/templates/pages/dashboard.html.j2:50
+#: app/templates/pages/dashboard.html.j2:51
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: app/templates/pages/dashboard.html.j2:55
+#: app/templates/pages/dashboard.html.j2:56
 msgid "Processing"
 msgstr "Processant"
 
-#: app/templates/pages/dashboard.html.j2:60
+#: app/templates/pages/dashboard.html.j2:61
 msgid "Stop"
 msgstr "Atura"
 
-#: app/templates/pages/monitoring.html.j2:8
+#: app/templates/pages/monitoring.html.j2:10
 msgid "Statistics"
 msgstr "Estadístiques"
 
-#: app/templates/pages/monitoring.html.j2:9 app/views/monitors.py:53
+#: app/templates/pages/monitoring.html.j2:11 app/views/monitors.py:65
 msgid "New Monitor"
-msgstr ""
+msgstr "Nou Monitor"
 
-#: app/templates/pages/monitoring.html.j2:24
+#: app/templates/pages/monitoring.html.j2:26
 msgid "Last sample"
-msgstr ""
+msgstr "Última mostra"
 
 #: app/templates/pages/newmonitor.html.j2:13
 msgid "Add New Monitor"
-msgstr ""
+msgstr "Afegir nou monitor"
 
 #: app/templates/pages/newmonitor.html.j2:15
 msgid "Modify Monitor"
-msgstr ""
+msgstr "Editar monitor"
 
 #: app/templates/pages/newmonitor.html.j2:24
-#, fuzzy
 msgid "Do you really wish to remove this monitor?"
-msgstr "Estàs segur que vols eliminar aquest usuari?"
+msgstr "Estàs segur que vols eliminar aquest monitor?"
 
 #: app/templates/pages/newmonitor.html.j2:27
 msgid "Remove Monitor"
-msgstr ""
+msgstr "Eliminar monitor"
 
 #: app/templates/pages/newmonitor.html.j2:32
-#, fuzzy
 msgid "You need to be an admin to modify a monitor"
-msgstr "Necessites permisos d'administrador per a modificar un servei"
+msgstr "Necessites permisos d'administrador per a modificar un monitor"
 
 #: app/templates/pages/newmonitor.html.j2:38
-#, fuzzy
 msgid "Monitor Information"
-msgstr "Informació de l'usuari"
+msgstr "Informació del monitor"
 
 #: app/templates/pages/newmonitor.html.j2:44
-#, fuzzy
 msgid "Monitor Title"
-msgstr "Monitoratge"
+msgstr "Títol del monitor"
 
 #: app/templates/pages/newmonitor.html.j2:54
 msgid "Monitor Key"
-msgstr ""
+msgstr "Clau de monitoratge"
 
 #: app/templates/pages/newmonitor.html.j2:68
 msgid "Monitor Data Units"
-msgstr ""
+msgstr "Unitat de mesura"
 
 #: app/templates/pages/newmonitor.html.j2:80
 msgid "Monitor Graph Details"
-msgstr ""
+msgstr "Detalls del gràfic"
 
 #: app/templates/pages/newmonitor.html.j2:88
 msgid "Minimum value"
-msgstr ""
+msgstr "Valor mínim"
 
 #: app/templates/pages/newmonitor.html.j2:102
 msgid "Maximum value"
-msgstr ""
+msgstr "Valor màxim"
 
 #: app/templates/pages/newserver.html.j2:13
-#, fuzzy
 msgid "Add New Service"
 msgstr "Afegir Servei Nou"
 
 #: app/templates/pages/newserver.html.j2:15
-#, fuzzy
 msgid "Modify Service"
 msgstr "Modifcar Servei"
 
 #: app/templates/pages/newserver.html.j2:24
-#, fuzzy
 msgid "Do you really wish to remove this server?"
 msgstr "Estàs segur que vols eliminar aquest usuari?"
 
 #: app/templates/pages/newserver.html.j2:27
-#, fuzzy
 msgid "Remove Service"
 msgstr "Eliminar Servei"
 
@@ -313,24 +295,35 @@ msgstr "Nom del Servidor"
 msgid "Server Image URL"
 msgstr "Enllaç de l'imatge del servidor"
 
-#: app/templates/pages/newserver.html.j2:68
+#: app/templates/pages/newserver.html.j2:64
 msgid "Server Description"
 msgstr "Descripció del servidor"
 
-#: app/templates/pages/newserver.html.j2:80
+#: app/templates/pages/newserver.html.j2:75
 msgid "Server Commands"
 msgstr "Comandes del servidor"
 
-#: app/templates/pages/newserver.html.j2:88
-msgid "Starting Command"
-msgstr "Comanda per iniciar"
+#: app/templates/pages/newserver.html.j2:82
+msgid "Endpoint URL"
+msgstr "API URL"
 
-#: app/templates/pages/newserver.html.j2:102
-msgid "Stop Command"
-msgstr "Comanda per aturar"
+#: app/templates/pages/newserver.html.j2:94
+msgid "Server History"
+msgstr "Historial de modificacions"
 
-#: app/templates/pages/newuser.html.j2:14 app/views/users.py:115
-#, fuzzy
+#: app/templates/pages/newserver.html.j2:101
+msgid "started"
+msgstr "iniciat"
+
+#: app/templates/pages/newserver.html.j2:103
+msgid "stopped"
+msgstr "aturat"
+
+#: app/templates/pages/newserver.html.j2:105
+msgid "by"
+msgstr "per"
+
+#: app/templates/pages/newuser.html.j2:14 app/views/users.py:128
 msgid "Your Profile"
 msgstr "El teu perfil"
 
@@ -343,7 +336,6 @@ msgid "Save"
 msgstr "Desa"
 
 #: app/templates/pages/newuser.html.j2:24
-#, fuzzy
 msgid "User Information"
 msgstr "Informació de l'usuari"
 
@@ -374,7 +366,6 @@ msgstr "Majúscula"
 
 #: app/templates/pages/newuser.html.j2:58
 #: app/templates/pages/users/signup.html.j2:43
-#, fuzzy
 msgid "Digit"
 msgstr "Dígit"
 
@@ -399,7 +390,6 @@ msgstr "Les contrasenyes no coincideixen"
 
 #: app/templates/pages/newuser.html.j2:82
 #: app/templates/pages/users/signup.html.j2:62
-#, fuzzy
 msgid "Passwords match"
 msgstr "Les contrasenyes coincideixen"
 
@@ -421,7 +411,6 @@ msgid "Registered users"
 msgstr "Usuaris Registrats"
 
 #: app/templates/pages/userlist.html.j2:7
-#, fuzzy
 msgid "Your profile"
 msgstr "El teu perfil"
 
@@ -487,15 +476,10 @@ msgid "Email"
 msgstr "Correu"
 
 #: app/templates/pages/users/login.html.j2:42
-msgid ""
-"Sorry, not implemented!\n"
-"Ask an admin to change your password."
-msgstr ""
-"Ho sentim, no està implementat!\n"
-"Pregunta a un administrador per a canviar la contrasenya."
+msgid "Sorry, not implemented!\\nAsk an admin to change your password."
+msgstr "Ho sentim, no està implementat!\\nPregunta a un administrador per a canviar la contrasenya."
 
 #: app/templates/pages/users/login.html.j2:42
-#, fuzzy
 msgid "Forgot password?"
 msgstr "Has oblidat la contrasenya?"
 
@@ -508,7 +492,6 @@ msgid "Sign up"
 msgstr "Registra't"
 
 #: app/templates/pages/users/signup.html.j2:12
-#, fuzzy
 msgid "Register your account"
 msgstr "Crea el teu compte"
 
@@ -522,12 +505,10 @@ msgid "log in"
 msgstr "inicia sessió"
 
 #: app/templates/pages/users/signup.html.j2:55
-#, fuzzy
 msgid "Confirmation Password"
 msgstr "Confirma la contrasenya"
 
 #: app/templates/pages/users/signup.html.j2:71
-#, fuzzy
 msgid "Already have an account?"
 msgstr "Ja tens un compte?"
 
@@ -544,7 +525,6 @@ msgid "but not activated!"
 msgstr "però no activat!"
 
 #: app/templates/pages/users/signup_success.html.j2:15
-#, fuzzy
 msgid ""
 "Your account has been created, but it first need to be reviewed by an "
 "administrator."
@@ -574,99 +554,23 @@ msgstr "Res, només has d'esperar. Si tens pressa, pots enviar un correu a"
 msgid "indicating the reason of your hurry."
 msgstr "indicant el motiu de la teva impaciència."
 
-#: app/views/monitors.py:67
+#: app/views/monitors.py:79
 msgid "Edit Monitor"
-msgstr ""
+msgstr "Editar Monitor"
 
-#: app/views/servers.py:20
-#, fuzzy
+#: app/views/servers.py:23
 msgid "New Server"
 msgstr "Servei Nou"
 
-#: app/views/servers.py:34
-#, fuzzy
+#: app/views/servers.py:38
 msgid "Edit Server"
 msgstr "Edita el Servei"
 
 #: app/views/users.py:63
-#, fuzzy
 msgid "Registered!"
 msgstr "Registrat!"
 
-#: app/views/users.py:101
-#, fuzzy
+#: app/views/users.py:110
 msgid "Edit user"
 msgstr "Edita l'Usuari"
-
-#~ msgid "Add Healthcheck"
-#~ msgstr "Afegir Healthcheck"
-
-#~ msgid "Language must be English or Catalan"
-#~ msgstr "L'idioma ha de ser 'English' o 'Catalan'"
-
-#~ msgid ""
-#~ "Add\n"
-#~ "                Healthcheck"
-#~ msgstr ""
-
-#~ msgid "You must be admin to have access"
-#~ msgstr "Has de ser administrador per tenir accés"
-
-#~ msgid "systemctl status `command`"
-#~ msgstr "Comanda per estat"
-
-#~ msgid ""
-#~ "But dont worry, you can find plenty of other\n"
-#~ "                                things on our homepage."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Back to\n"
-#~ "                                homepage"
-#~ msgstr ""
-
-#~ msgid "Shutdown"
-#~ msgstr "Atura"
-
-#~ msgid "New monitor"
-#~ msgstr "Nou monitoratge"
-
-#~ msgid "Status Command"
-#~ msgstr "Comanda per estat"
-
-#~ msgid "Healthcheck Command"
-#~ msgstr "Comanda Healthcheck"
-
-#~ msgid "Password must be at least 8 characters long"
-#~ msgstr "La contrasenya ha de tenir una llargada mínima de 8 caràcters"
-
-#~ msgid "Password must contain at least one uppercase letter"
-#~ msgstr "La contrasenya ha de tenir almenys una lletra majúscula"
-
-#~ msgid "Password must contain at least one lowercase letter"
-#~ msgstr "La contrasenya ha de tenir almenys una lletra minúscula"
-
-#~ msgid "Password must contain at least one number"
-#~ msgstr "La contrasenya ha de tenir almenys un número"
-
-#~ msgid "Password must contain at least one special character"
-#~ msgstr "La contrasenya ha de tenir almenys un caràcter especial"
-
-#~ msgid "English"
-#~ msgstr "Anglès"
-
-#~ msgid "Catalan"
-#~ msgstr "Català"
-
-#~ msgid "Language"
-#~ msgstr "Idioma"
-
-#~ msgid "Your account has been created"
-#~ msgstr "El teu compte ha estat creat"
-
-#~ msgid "Temperature"
-#~ msgstr "Temperatura"
-
-#~ msgid "Round-Trip-Time"
-#~ msgstr "Round-Trip-Time"
 

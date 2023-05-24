@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 23:33+0200\n"
+"POT-Creation-Date: 2023-05-25 00:54+0200\n"
 "PO-Revision-Date: 2023-05-12 23:34+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: fr\n"
@@ -38,9 +38,33 @@ msgstr "Rester connecté(e)"
 msgid "Log In"
 msgstr "Connexion"
 
+#: app/models/forms/monitor_form.py:7
+msgid "led"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:8
+msgid "Navarcles' Arduino: LED"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:9
+msgid "State"
+msgstr "Status"
+
+#: app/models/forms/monitor_form.py:10
+msgid "-0.5"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:11
+msgid "1.5"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:12
+msgid "Submit Monitor"
+msgstr "Envoyer le moniteur"
+
 #: app/models/forms/register_form.py:10 app/models/forms/user_form.py:9
-msgid "Taylor Swift"
-msgstr "Jean-Louis Aubert"
+msgid "User Name"
+msgstr "Nom"
 
 #: app/models/forms/register_form.py:15 app/models/forms/user_form.py:14
 #: app/views/users.py:56
@@ -68,14 +92,10 @@ msgid "About Server"
 msgstr "Déscription du serveur"
 
 #: app/models/forms/server_form.py:10
-msgid "systemctl start `command`"
-msgstr "systemctl start `command`"
+msgid "http://127.0.0.1:5002/led"
+msgstr ""
 
 #: app/models/forms/server_form.py:11
-msgid "systemctl stop `command`"
-msgstr "systemctl stop `command`"
-
-#: app/models/forms/server_form.py:12
 msgid "Submit Service"
 msgstr "Envoyer serveur"
 
@@ -97,7 +117,9 @@ msgstr "Nous ne pouvons pas trouver cette page."
 
 #: app/templates/errors/404.html.j2:17
 msgid "But dont worry, you can find plenty of other things on our homepage."
-msgstr "Mais ne vous inquiétez pas, vous trouverez plein d'autres choses dans la page principale."
+msgstr ""
+"Mais ne vous inquiétez pas, vous trouverez plein d'autres choses dans la "
+"page principale."
 
 #: app/templates/errors/404.html.j2:19
 msgid "Back to homepage"
@@ -123,11 +145,11 @@ msgstr "Contact"
 msgid "Open main menu"
 msgstr "Ouvrir le menu principal"
 
-#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:31
+#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:36
 msgid "Dashboard"
 msgstr "Panneau principal"
 
-#: app/templates/includes/navbar.html.j2:20 app/views/__init__.py:41
+#: app/templates/includes/navbar.html.j2:20 app/views/monitors.py:43
 msgid "Monitoring"
 msgstr "Statistiques"
 
@@ -164,34 +186,81 @@ msgstr "Éteint"
 msgid "Active"
 msgstr "Actif"
 
-#: app/templates/pages/dashboard.html.j2:45
+#: app/templates/pages/dashboard.html.j2:46
 msgid "Start"
 msgstr "Démarrer"
 
-#: app/templates/pages/dashboard.html.j2:50
+#: app/templates/pages/dashboard.html.j2:51
 msgid "Cancel"
 msgstr "Annuler"
 
-#: app/templates/pages/dashboard.html.j2:55
+#: app/templates/pages/dashboard.html.j2:56
 msgid "Processing"
 msgstr "En procés"
 
-#: app/templates/pages/dashboard.html.j2:60
+#: app/templates/pages/dashboard.html.j2:61
 msgid "Stop"
 msgstr "Arrêter"
 
-#: app/templates/pages/monitoring.html.j2:6
+#: app/templates/pages/monitoring.html.j2:10
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: app/templates/pages/monitoring.html.j2:14
-#: app/templates/pages/monitoring.html.j2:42
-msgid "Temperature"
-msgstr "Temperature"
+#: app/templates/pages/monitoring.html.j2:11 app/views/monitors.py:65
+msgid "New Monitor"
+msgstr "Nouveau moniteur"
 
-#: app/templates/pages/monitoring.html.j2:18
-msgid "Round-Trip-Time"
-msgstr "Round-Trip-Time"
+#: app/templates/pages/monitoring.html.j2:26
+msgid "Last sample"
+msgstr "Dernière donnée"
+
+#: app/templates/pages/newmonitor.html.j2:13
+msgid "Add New Monitor"
+msgstr "Ajouter nouveau moniteur"
+
+#: app/templates/pages/newmonitor.html.j2:15
+msgid "Modify Monitor"
+msgstr "Modifier le moniteur"
+
+#: app/templates/pages/newmonitor.html.j2:24
+msgid "Do you really wish to remove this monitor?"
+msgstr "Voulez-vous vraiement supprimer ce moniteur?"
+
+#: app/templates/pages/newmonitor.html.j2:27
+msgid "Remove Monitor"
+msgstr "Supprimer le moniteur"
+
+#: app/templates/pages/newmonitor.html.j2:32
+msgid "You need to be an admin to modify a monitor"
+msgstr "Vous devez être administrateur pour modifier les moniteurs"
+
+#: app/templates/pages/newmonitor.html.j2:38
+msgid "Monitor Information"
+msgstr "Information du moniteur"
+
+#: app/templates/pages/newmonitor.html.j2:44
+msgid "Monitor Title"
+msgstr "Titre du moniteur"
+
+#: app/templates/pages/newmonitor.html.j2:54
+msgid "Monitor Key"
+msgstr "Clé de monitorage"
+
+#: app/templates/pages/newmonitor.html.j2:68
+msgid "Monitor Data Units"
+msgstr "Unités du moniteur"
+
+#: app/templates/pages/newmonitor.html.j2:80
+msgid "Monitor Graph Details"
+msgstr "Détails du graphique"
+
+#: app/templates/pages/newmonitor.html.j2:88
+msgid "Minimum value"
+msgstr "Valeur minimum"
+
+#: app/templates/pages/newmonitor.html.j2:102
+msgid "Maximum value"
+msgstr "Valeur maximum"
 
 #: app/templates/pages/newserver.html.j2:13
 msgid "Add New Service"
@@ -225,23 +294,35 @@ msgstr "Nom du service"
 msgid "Server Image URL"
 msgstr "Lien de l'image du service"
 
-#: app/templates/pages/newserver.html.j2:68
+#: app/templates/pages/newserver.html.j2:64
 msgid "Server Description"
 msgstr "Désctiption du service"
 
-#: app/templates/pages/newserver.html.j2:80
+#: app/templates/pages/newserver.html.j2:75
 msgid "Server Commands"
 msgstr "Commandes du service"
 
-#: app/templates/pages/newserver.html.j2:88
-msgid "Starting Command"
-msgstr "Commande de démarrage"
+#: app/templates/pages/newserver.html.j2:82
+msgid "Endpoint URL"
+msgstr "API URL"
 
-#: app/templates/pages/newserver.html.j2:102
-msgid "Stop Command"
-msgstr "Commande d'arrêt"
+#: app/templates/pages/newserver.html.j2:94
+msgid "Server History"
+msgstr "Historique de statuts"
 
-#: app/templates/pages/newuser.html.j2:14 app/views/users.py:115
+#: app/templates/pages/newserver.html.j2:101
+msgid "started"
+msgstr "démarré"
+
+#: app/templates/pages/newserver.html.j2:103
+msgid "stopped"
+msgstr "arrêté"
+
+#: app/templates/pages/newserver.html.j2:105
+msgid "by"
+msgstr "par"
+
+#: app/templates/pages/newuser.html.j2:14 app/views/users.py:128
 msgid "Your Profile"
 msgstr "Votre profil"
 
@@ -392,12 +473,8 @@ msgid "Email"
 msgstr "Email"
 
 #: app/templates/pages/users/login.html.j2:42
-msgid ""
-"Sorry, not implemented!\n"
-"Ask an admin to change your password."
-msgstr ""
-"Désolé, ceci n'est pas disponible!\n"
-"Contactez un administrateur pour changer votre mot de passe."
+msgid "Sorry, not implemented!\\nAsk an admin to change your password."
+msgstr "Désolé, ceci n'est pas disponible!\\nContactez un administrateur pour changer votre mot de passe."
 
 #: app/templates/pages/users/login.html.j2:42
 msgid "Forgot password?"
@@ -448,8 +525,7 @@ msgstr "mais pas activé !"
 msgid ""
 "Your account has been created, but it first need to be reviewed by an "
 "administrator."
-msgstr ""
-"Votre compte a été créé, mais il doit être révisé par un administrateur."
+msgstr "Votre compte a été créé, mais il doit être révisé par un administrateur."
 
 #: app/templates/pages/users/signup_success.html.j2:19
 msgid "Once your account will be activated by an admin, you will be able to"
@@ -468,18 +544,22 @@ msgid ""
 "Nothing, you just need to wait. If you're in a hurry, however, you can "
 "send a mail to"
 msgstr ""
-"Rien, vous devez juste attendre. Si vous êtes pressé, vous pouvez envoyer "
-"un message à"
+"Rien, vous devez juste attendre. Si vous êtes pressé, vous pouvez envoyer"
+" un message à"
 
 #: app/templates/pages/users/signup_success.html.j2:31
 msgid "indicating the reason of your hurry."
 msgstr "tout en indiquant la raison pour laquelle vous êtes préssé."
 
-#: app/views/servers.py:20
+#: app/views/monitors.py:79
+msgid "Edit Monitor"
+msgstr "Modifier le moniteur"
+
+#: app/views/servers.py:23
 msgid "New Server"
 msgstr "Nouveau service"
 
-#: app/views/servers.py:34
+#: app/views/servers.py:38
 msgid "Edit Server"
 msgstr "Modifier le service"
 
@@ -487,7 +567,6 @@ msgstr "Modifier le service"
 msgid "Registered!"
 msgstr "Compte créé !"
 
-#: app/views/users.py:101
+#: app/views/users.py:110
 msgid "Edit user"
 msgstr "Modifier l'utilisateur"
-

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2023-05-12 23:33+0200\n"
+"POT-Creation-Date: 2023-05-25 00:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ca\n"
@@ -40,9 +40,35 @@ msgstr "Resta collegato."
 msgid "Log In"
 msgstr "Accedi"
 
-#: app/models/forms/register_form.py:10 app/models/forms/user_form.py:9
-msgid "Taylor Swift"
+#: app/models/forms/monitor_form.py:7
+msgid "led"
 msgstr ""
+
+#: app/models/forms/monitor_form.py:8
+msgid "Navarcles' Arduino: LED"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:9
+#, fuzzy
+msgid "State"
+msgstr "Inizia"
+
+#: app/models/forms/monitor_form.py:10
+msgid "-0.5"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:11
+msgid "1.5"
+msgstr ""
+
+#: app/models/forms/monitor_form.py:12
+msgid "Submit Monitor"
+msgstr ""
+
+#: app/models/forms/register_form.py:10 app/models/forms/user_form.py:9
+#, fuzzy
+msgid "User Name"
+msgstr "Nome del Server"
 
 #: app/models/forms/register_form.py:15 app/models/forms/user_form.py:14
 #: app/views/users.py:56
@@ -70,14 +96,10 @@ msgid "About Server"
 msgstr "Sull server"
 
 #: app/models/forms/server_form.py:10
-msgid "systemctl start `command`"
-msgstr "systemctl start `command`"
+msgid "http://127.0.0.1:5002/led"
+msgstr ""
 
 #: app/models/forms/server_form.py:11
-msgid "systemctl stop `command`"
-msgstr "systemctl stop `command`"
-
-#: app/models/forms/server_form.py:12
 #, fuzzy
 msgid "Submit Service"
 msgstr "Nuovo servizio"
@@ -128,11 +150,11 @@ msgstr "Contatto"
 msgid "Open main menu"
 msgstr "Apri menu principale"
 
-#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:31
+#: app/templates/includes/navbar.html.j2:17 app/views/__init__.py:36
 msgid "Dashboard"
 msgstr "Pannello di controllo"
 
-#: app/templates/includes/navbar.html.j2:20 app/views/__init__.py:41
+#: app/templates/includes/navbar.html.j2:20 app/views/monitors.py:43
 msgid "Monitoring"
 msgstr "Monitoraggio"
 
@@ -170,34 +192,85 @@ msgstr "Inattivo"
 msgid "Active"
 msgstr "Attivo"
 
-#: app/templates/pages/dashboard.html.j2:45
+#: app/templates/pages/dashboard.html.j2:46
 msgid "Start"
 msgstr "Inizia"
 
-#: app/templates/pages/dashboard.html.j2:50
+#: app/templates/pages/dashboard.html.j2:51
 msgid "Cancel"
 msgstr "Annulla"
 
-#: app/templates/pages/dashboard.html.j2:55
+#: app/templates/pages/dashboard.html.j2:56
 msgid "Processing"
 msgstr "In processo"
 
-#: app/templates/pages/dashboard.html.j2:60
+#: app/templates/pages/dashboard.html.j2:61
 msgid "Stop"
 msgstr "Arrestare"
 
-#: app/templates/pages/monitoring.html.j2:6
+#: app/templates/pages/monitoring.html.j2:10
 msgid "Statistics"
 msgstr "Statistiche"
 
-#: app/templates/pages/monitoring.html.j2:14
-#: app/templates/pages/monitoring.html.j2:42
-msgid "Temperature"
-msgstr "Temperatura"
+#: app/templates/pages/monitoring.html.j2:11 app/views/monitors.py:65
+msgid "New Monitor"
+msgstr ""
 
-#: app/templates/pages/monitoring.html.j2:18
-msgid "Round-Trip-Time"
-msgstr "Round-Trip-Time"
+#: app/templates/pages/monitoring.html.j2:26
+msgid "Last sample"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:13
+msgid "Add New Monitor"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:15
+msgid "Modify Monitor"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:24
+#, fuzzy
+msgid "Do you really wish to remove this monitor?"
+msgstr "Sei sicuro di voler eliminare questo server?"
+
+#: app/templates/pages/newmonitor.html.j2:27
+msgid "Remove Monitor"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:32
+#, fuzzy
+msgid "You need to be an admin to modify a monitor"
+msgstr "Devi essere un amministratore per modificare un servizio"
+
+#: app/templates/pages/newmonitor.html.j2:38
+#, fuzzy
+msgid "Monitor Information"
+msgstr "Informazione dell'utente"
+
+#: app/templates/pages/newmonitor.html.j2:44
+#, fuzzy
+msgid "Monitor Title"
+msgstr "Monitoraggio"
+
+#: app/templates/pages/newmonitor.html.j2:54
+msgid "Monitor Key"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:68
+msgid "Monitor Data Units"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:80
+msgid "Monitor Graph Details"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:88
+msgid "Minimum value"
+msgstr ""
+
+#: app/templates/pages/newmonitor.html.j2:102
+msgid "Maximum value"
+msgstr ""
 
 #: app/templates/pages/newserver.html.j2:13
 #, fuzzy
@@ -235,23 +308,37 @@ msgstr "Nome del Server"
 msgid "Server Image URL"
 msgstr "URL Immagine Server"
 
-#: app/templates/pages/newserver.html.j2:68
+#: app/templates/pages/newserver.html.j2:64
 msgid "Server Description"
 msgstr "Descrizione del Server"
 
-#: app/templates/pages/newserver.html.j2:80
+#: app/templates/pages/newserver.html.j2:75
 msgid "Server Commands"
 msgstr "Comandi del Server"
 
-#: app/templates/pages/newserver.html.j2:88
-msgid "Starting Command"
-msgstr "Comanda per iniziare"
+#: app/templates/pages/newserver.html.j2:82
+msgid "Endpoint URL"
+msgstr ""
 
-#: app/templates/pages/newserver.html.j2:102
-msgid "Stop Command"
-msgstr "Comanda per fermare"
+#: app/templates/pages/newserver.html.j2:94
+#, fuzzy
+msgid "Server History"
+msgstr "Lista di servizi"
 
-#: app/templates/pages/newuser.html.j2:14 app/views/users.py:115
+#: app/templates/pages/newserver.html.j2:101
+#, fuzzy
+msgid "started"
+msgstr "Inizia"
+
+#: app/templates/pages/newserver.html.j2:103
+msgid "stopped"
+msgstr ""
+
+#: app/templates/pages/newserver.html.j2:105
+msgid "by"
+msgstr ""
+
+#: app/templates/pages/newuser.html.j2:14 app/views/users.py:128
 #, fuzzy
 msgid "Your Profile"
 msgstr "Profilo"
@@ -407,11 +494,9 @@ msgid "Email"
 msgstr "Email"
 
 #: app/templates/pages/users/login.html.j2:42
-msgid ""
-"Sorry, not implemented!\n"
-"Ask an admin to change your password."
-msgstr ""
-"Chiedi a un amministratore di cambiare la tua password."
+#, fuzzy
+msgid "Sorry, not implemented!\\nAsk an admin to change your password."
+msgstr "Chiedi a un amministratore di cambiare la tua password."
 
 #: app/templates/pages/users/login.html.j2:42
 #, fuzzy
@@ -467,7 +552,8 @@ msgstr "ma non attivo!"
 msgid ""
 "Your account has been created, but it first need to be reviewed by an "
 "administrator."
-msgstr "Il tuo account è stato creato, ma prima deve essere esaminato da un "
+msgstr ""
+"Il tuo account è stato creato, ma prima deve essere esaminato da un "
 "amministratore."
 
 #: app/templates/pages/users/signup_success.html.j2:19
@@ -492,12 +578,16 @@ msgstr "Niente, devi solo aspettare. Se hai fretta, puoi mandare una mail a"
 msgid "indicating the reason of your hurry."
 msgstr "e indica il tuo motivo."
 
-#: app/views/servers.py:20
+#: app/views/monitors.py:79
+msgid "Edit Monitor"
+msgstr ""
+
+#: app/views/servers.py:23
 #, fuzzy
 msgid "New Server"
 msgstr "Nuovo Servizio"
 
-#: app/views/servers.py:34
+#: app/views/servers.py:38
 #, fuzzy
 msgid "Edit Server"
 msgstr "Edita Server"
@@ -507,7 +597,7 @@ msgstr "Edita Server"
 msgid "Registered!"
 msgstr "Utente registrato"
 
-#: app/views/users.py:101
+#: app/views/users.py:110
 #, fuzzy
 msgid "Edit user"
 msgstr "Edita Utente"
@@ -577,4 +667,25 @@ msgstr "Edita Utente"
 
 #~ msgid "Your account has been created"
 #~ msgstr "Il tuo account è stato creato"
+
+#~ msgid "Taylor Swift"
+#~ msgstr ""
+
+#~ msgid "systemctl start `command`"
+#~ msgstr "systemctl start `command`"
+
+#~ msgid "systemctl stop `command`"
+#~ msgstr "systemctl stop `command`"
+
+#~ msgid "Temperature"
+#~ msgstr "Temperatura"
+
+#~ msgid "Round-Trip-Time"
+#~ msgstr "Round-Trip-Time"
+
+#~ msgid "Starting Command"
+#~ msgstr "Comanda per iniziare"
+
+#~ msgid "Stop Command"
+#~ msgstr "Comanda per fermare"
 
