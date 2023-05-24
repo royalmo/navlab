@@ -17,9 +17,9 @@
 
   <article class="bg-white w-full max-w-[1250px] border-black border-2 rounded-md p-2 my-4 mx-auto md:p-7 cursor-pointer">
     <a href="{{ url_for( '.edit' , id=eachmonitor.id|int ) }}">
-      <h2 class="text-2xl font-bold text-gray-500">{{ eachmonitor.title }}</h2>
+      <h2 class="text-2xl font-bold text-gray-500">{{ eachmonitor.title|e }}</h2>
       <div class="relative w-full"> 
-        <canvas style="margin:1.5em;" id="monitor_{{ eachmonitor.key }}"></canvas>
+        <canvas style="margin:1.5em;" id="monitor_{{ eachmonitor.key|e }}"></canvas>
       </div>
       <p style="text-align:right;color:gray;"><em>{{ _('Last sample') }} ({{ eachmonitor.last_sample.time }}): {{ eachmonitor.last_sample.value }}</em></p>
     </a>
@@ -28,14 +28,14 @@
     var x_axis = {{ eachmonitor.x_axis }};
     var y_axis = {{ eachmonitor.y_axis }};
 
-    var ctx = document.getElementById('monitor_{{ eachmonitor.key }}').getContext('2d');
+    var ctx = document.getElementById('monitor_{{ eachmonitor.key|e }}').getContext('2d');
     var myChart = new Chart(ctx,
       {
         type: 'line',
         data: {
           labels: x_axis,
           datasets: [{
-            label: " {{ eachmonitor.label }}",
+            label: " {{ eachmonitor.label|e }}",
             data: y_axis,
 
             borderColor: "#1e56a0",

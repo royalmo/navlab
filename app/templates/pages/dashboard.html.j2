@@ -21,7 +21,7 @@
   {% for eachserver in serverlist %}
   <article class="{{ 'active' if eachserver.status else '' }}" data-id="{{ eachserver.id }}">
     <a href="{{ url_for( '.servers.edit' , id=eachserver.id|int ) }}">
-      <h2 class="p-2">{{ eachserver.name }}</h2>
+      <h2 class="p-2">{{ eachserver.name|e }}</h2>
       <div class="flex">
         <div class="w-8/12">
           <span class="state-off text-red-500 text-xl">
@@ -63,8 +63,8 @@
         </div>
         <div class="w-4/12 flex justify-center items-center">
           <picture>
-            {% if eachserver.image is not none %}
-              <source srcset="{{ eachserver.image }}" />
+            {% if eachserver.image|e is not none %}
+              <source srcset="{{ eachserver.image|e }}" />
             {% endif %}
             <img src="{{ url_for('static', filename='images/no-server-placeholder.png') }}" alt="placeholder"
               onerror="onError.call(this)" />
