@@ -16,7 +16,7 @@ from datetime import datetime
 
 app = Flask(__name__) # Punt de partida per crear una aplicació web amb flask 
 
-arduino = serial.Serial('/dev/ttyUSB0', 9600)
+arduino = serial.Serial('/dev/ttyACM0', 9600)
 
 
 @app.route('/led', methods=['GET', 'PUT'])
@@ -55,5 +55,5 @@ def potentiometer():
     })
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5001)
 
