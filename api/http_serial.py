@@ -36,7 +36,7 @@ def led():
         state = request.json.get('led') # Suposant que la request és 'led:0/1'
         if state is None:
             return 'Missing parameter', 400
-        if state not in ['0', '1']:
+        if str(state) not in ['0', '1']:
             return 'Invalid parameter', 400
         arduino.write(f'%L{state}\n'.encode())
         arduino.readline() # Si l'arduino m'envia alguna cosa l'he de llegir tot, netejant el buffer, i l'ignoro.

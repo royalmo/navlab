@@ -6,6 +6,7 @@ from ..extensions import db, login_required, admin_required
 from ..models import Server, ServerForm, SearchForm
 from app.models.server_history import ServerHistory
 from datetime import datetime
+from requests import post
 
 app = Blueprint('servers', __name__)
 
@@ -48,6 +49,11 @@ def remove(id):
 def start(id):
     server = Server.query.get_or_404(id)
     server.status = True
+
+    if server.endpoint_url is not None:
+        key = server.endpoint_url.split('/')[-1]
+        post(server.endpoint_url, data={key : 1})
+
     sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=True)
     db.session.add(sh)
     db.session.commit()
@@ -58,6 +64,11 @@ def start(id):
 def stop(id):
     server = Server.query.get_or_404(id)
     server.status = False
+
+    if server.endpoint_url is not None:
+        key = server.endpoint_url.split('/')[-1]
+        post(server.endpoint_url, data={key : 0})
+
     sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=False)
     db.session.add(sh)
     db.session.commit()
