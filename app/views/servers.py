@@ -75,7 +75,7 @@ def stop(id):
     return make_response("Server stopped", 204)
 
 @app.route('/server/raw')
-@admin_required
+@login_required
 def raw_data():
     Server.update_status()
 

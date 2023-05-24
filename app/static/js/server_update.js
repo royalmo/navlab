@@ -9,6 +9,8 @@ setInterval(async function () {
 
         const elm = document.querySelector(`#card-list>article[data-id="${current_server['id']}"]`);
         if (!elm) continue;
+
+        if (elm.classList.contains('cancellable') || elm.classList.contains('processing')) continue;
         
         elm.classList.toggle('active', current_server['status']);
     }
