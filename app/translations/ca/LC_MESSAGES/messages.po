@@ -568,7 +568,7 @@ msgstr "Què he de fer?"
 msgid ""
 "Nothing, you just need to wait. If you're in a hurry, however, you can "
 "send a mail to"
-msgstr "Res, només has d'esperar. Si tens presa, pots enviar un correu a"
+msgstr "Res, només has d'esperar. Si tens pressa, pots enviar un correu a"
 
 #: app/templates/pages/users/signup_success.html.j2:31
 msgid "indicating the reason of your hurry."

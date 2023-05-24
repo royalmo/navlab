@@ -44,7 +44,7 @@ def remove(id):
     return redirect(url_for('main.dashboard'))
 
 @app.route('/server/<int:id>/start', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def start(id):
     server = Server.query.get_or_404(id)
     server.status = True
@@ -54,7 +54,7 @@ def start(id):
     return make_response("Server started", 204)
 
 @app.route('/server/<int:id>/stop', methods=['GET', 'POST'])
-@login_required
+@admin_required
 def stop(id):
     server = Server.query.get_or_404(id)
     server.status = False
