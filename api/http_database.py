@@ -9,7 +9,8 @@ from flask import Flask, Response, request, jsonify
 import os
 from datetime import datetime
 
-DATABASE_PATH='../app/navlab.db'
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_PATH = os.path.join(CURRENT_DIR, '..', 'app', 'navlab.db')
 
 app=Flask(__name__)
 
@@ -76,11 +77,11 @@ def input_led():
 		time=r['time']
 		if not (value=='1' or value=='0'):
 			return Response(status=400)
-		datetime.strptime(time, '%Y-%m-%d %H:%M:%S.%f')
+		formatted_time=datetime.strptime(time, '%Y-%m-%d %H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S")
 	except : #json invalid or datetime invalid
 		return Response(status=400)
 	conn = sqlite3.connect(DATABASE_PATH)
-	conn.execute(f"insert into sample (monitor_key, date, value) values('led','{time}','{value}');") 
+	conn.execute(f"insert into sample (monitor_key, date, value) values('led','{formatted_time}','{value}');") 
 	conn.commit()
 	conn.close()
 	return Response(status=204)
@@ -98,14 +99,13 @@ def input_potenciometre():
 		r=request.json
 		value=int(r['potenciometre'])
 		time=r['time']
-		print(type(value))
 		if not (value>=0 and value<=255):
 			return Response(status=400)
-		datetime.strptime(time, '%Y-%m-%d %H:%M:%S.%f')
+		formatted_time=datetime.strptime(time, '%Y-%m-%d %H:%M:%S.%f').strftime("%Y-%m-%d %H:%M:%S")
 	except : #json invalid or datetime invalid
 		return Response(status=400)
 	conn = sqlite3.connect(DATABASE_PATH)
-	conn.execute(f"insert into sample (monitor_key, date, value) values('potenciometre','{time}','{value}');")
+	conn.execute(f"insert into sample (monitor_key, date, value) values('potenciometre','{formatted_time}','{value}');")
 	conn.commit()
 	conn.close()
 	return Response(status=204)
