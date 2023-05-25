@@ -36,22 +36,20 @@ msgstr "Resta collegato."
 
 #: app/models/forms/login_form.py:12 app/views/users.py:28
 #: app/views/users.py:30
-#, fuzzy
 msgid "Log In"
 msgstr "Accedi"
 
 #: app/models/forms/monitor_form.py:7
 msgid "led"
-msgstr ""
+msgstr "led"
 
 #: app/models/forms/monitor_form.py:8
 msgid "Navarcles' Arduino: LED"
 msgstr ""
 
 #: app/models/forms/monitor_form.py:9
-#, fuzzy
 msgid "State"
-msgstr "Inizia"
+msgstr "stato"
 
 #: app/models/forms/monitor_form.py:10
 msgid "-0.5"
@@ -63,12 +61,11 @@ msgstr ""
 
 #: app/models/forms/monitor_form.py:12
 msgid "Submit Monitor"
-msgstr ""
+msgstr "Inviare Monitor"
 
 #: app/models/forms/register_form.py:10 app/models/forms/user_form.py:9
-#, fuzzy
 msgid "User Name"
-msgstr "Nome del Server"
+msgstr "Nome del utente"
 
 #: app/models/forms/register_form.py:15 app/models/forms/user_form.py:14
 #: app/views/users.py:56
@@ -100,19 +97,16 @@ msgid "http://127.0.0.1:5002/led"
 msgstr ""
 
 #: app/models/forms/server_form.py:11
-#, fuzzy
 msgid "Submit Service"
-msgstr "Nuovo servizio"
+msgstr "Inviare servizio"
 
 #: app/models/forms/user_form.py:15
-#, fuzzy
 msgid "Admin?"
 msgstr "Amministratore?"
 
 #: app/models/forms/user_form.py:16
-#, fuzzy
 msgid "Active?"
-msgstr "Attiv?"
+msgstr "Attivo?"
 
 #: app/templates/errors/404.html.j2:13
 msgid "Error"
@@ -188,7 +182,6 @@ msgid "Off"
 msgstr "Inattivo"
 
 #: app/templates/pages/dashboard.html.j2:37
-#, fuzzy
 msgid "Active"
 msgstr "Attivo"
 
@@ -214,81 +207,73 @@ msgstr "Statistiche"
 
 #: app/templates/pages/monitoring.html.j2:11 app/views/monitors.py:65
 msgid "New Monitor"
-msgstr ""
+msgstr "Nuovo monitor"
 
 #: app/templates/pages/monitoring.html.j2:26
 msgid "Last sample"
-msgstr ""
+msgstr "Ultimo campione"
 
 #: app/templates/pages/newmonitor.html.j2:13
 msgid "Add New Monitor"
-msgstr ""
+msgstr "Aggiungi un monitor"
 
 #: app/templates/pages/newmonitor.html.j2:15
 msgid "Modify Monitor"
-msgstr ""
+msgstr "Modifica un monitor"
 
 #: app/templates/pages/newmonitor.html.j2:24
-#, fuzzy
 msgid "Do you really wish to remove this monitor?"
-msgstr "Sei sicuro di voler eliminare questo server?"
+msgstr "Sei sicuro di voler eliminare questo monitor?"
 
 #: app/templates/pages/newmonitor.html.j2:27
 msgid "Remove Monitor"
-msgstr ""
+msgstr "Rimuovi un monitor"
 
 #: app/templates/pages/newmonitor.html.j2:32
-#, fuzzy
 msgid "You need to be an admin to modify a monitor"
-msgstr "Devi essere un amministratore per modificare un servizio"
+msgstr "Devi essere un amministratore per modificare un monitor"
 
 #: app/templates/pages/newmonitor.html.j2:38
-#, fuzzy
 msgid "Monitor Information"
-msgstr "Informazione dell'utente"
+msgstr "Informazione del monitor"
 
 #: app/templates/pages/newmonitor.html.j2:44
-#, fuzzy
 msgid "Monitor Title"
-msgstr "Monitoraggio"
+msgstr "Titolo del Monitor"
 
 #: app/templates/pages/newmonitor.html.j2:54
 msgid "Monitor Key"
-msgstr ""
+msgstr "Chiave monitor"
 
 #: app/templates/pages/newmonitor.html.j2:68
 msgid "Monitor Data Units"
-msgstr ""
+msgstr "Unità monitor"
 
 #: app/templates/pages/newmonitor.html.j2:80
 msgid "Monitor Graph Details"
-msgstr ""
+msgstr "Dettagli grafica monitor"
 
 #: app/templates/pages/newmonitor.html.j2:88
 msgid "Minimum value"
-msgstr ""
+msgstr "Valor minimo"
 
 #: app/templates/pages/newmonitor.html.j2:102
 msgid "Maximum value"
-msgstr ""
+msgstr "Valore massimo"
 
 #: app/templates/pages/newserver.html.j2:13
-#, fuzzy
 msgid "Add New Service"
-msgstr "Aggiungi Nuovo Servizio"
+msgstr "Aggiungi nuovo servizio"
 
 #: app/templates/pages/newserver.html.j2:15
-#, fuzzy
 msgid "Modify Service"
 msgstr "Modifca Servizio"
 
 #: app/templates/pages/newserver.html.j2:24
-#, fuzzy
 msgid "Do you really wish to remove this server?"
 msgstr "Sei sicuro di voler eliminare questo server?"
 
 #: app/templates/pages/newserver.html.j2:27
-#, fuzzy
 msgid "Remove Service"
 msgstr "Eliminare Servizio"
 
@@ -321,25 +306,22 @@ msgid "Endpoint URL"
 msgstr ""
 
 #: app/templates/pages/newserver.html.j2:94
-#, fuzzy
 msgid "Server History"
-msgstr "Lista di servizi"
+msgstr "Storico del server"
 
 #: app/templates/pages/newserver.html.j2:101
-#, fuzzy
 msgid "started"
-msgstr "Inizia"
+msgstr "Iniziato"
 
 #: app/templates/pages/newserver.html.j2:103
 msgid "stopped"
-msgstr ""
+msgstr "Fermato"
 
 #: app/templates/pages/newserver.html.j2:105
 msgid "by"
 msgstr ""
 
 #: app/templates/pages/newuser.html.j2:14 app/views/users.py:128
-#, fuzzy
 msgid "Your Profile"
 msgstr "Profilo"
 
@@ -352,7 +334,6 @@ msgid "Save"
 msgstr "Salva"
 
 #: app/templates/pages/newuser.html.j2:24
-#, fuzzy
 msgid "User Information"
 msgstr "Informazione dell'utente"
 
@@ -383,7 +364,6 @@ msgstr "Maiuscola"
 
 #: app/templates/pages/newuser.html.j2:58
 #: app/templates/pages/users/signup.html.j2:43
-#, fuzzy
 msgid "Digit"
 msgstr "Cifra"
 
@@ -408,7 +388,6 @@ msgstr "Le password non coincidono"
 
 #: app/templates/pages/newuser.html.j2:82
 #: app/templates/pages/users/signup.html.j2:62
-#, fuzzy
 msgid "Passwords match"
 msgstr "Le password coincidono"
 
@@ -430,7 +409,6 @@ msgid "Registered users"
 msgstr "Utenti Registrati"
 
 #: app/templates/pages/userlist.html.j2:7
-#, fuzzy
 msgid "Your profile"
 msgstr "Profilo"
 
@@ -494,12 +472,10 @@ msgid "Email"
 msgstr "Email"
 
 #: app/templates/pages/users/login.html.j2:42
-#, fuzzy
 msgid "Sorry, not implemented!\\nAsk an admin to change your password."
 msgstr "Chiedi a un amministratore di cambiare la tua password."
 
 #: app/templates/pages/users/login.html.j2:42
-#, fuzzy
 msgid "Forgot password?"
 msgstr "Ha dimenticato la password?"
 
@@ -512,7 +488,6 @@ msgid "Sign up"
 msgstr "Registrati"
 
 #: app/templates/pages/users/signup.html.j2:12
-#, fuzzy
 msgid "Register your account"
 msgstr "Registra il tuo account"
 
@@ -526,12 +501,10 @@ msgid "log in"
 msgstr "Accedi"
 
 #: app/templates/pages/users/signup.html.j2:55
-#, fuzzy
 msgid "Confirmation Password"
 msgstr "Conferma la Password"
 
 #: app/templates/pages/users/signup.html.j2:71
-#, fuzzy
 msgid "Already have an account?"
 msgstr "Hai già un account?"
 
@@ -548,7 +521,6 @@ msgid "but not activated!"
 msgstr "ma non attivo!"
 
 #: app/templates/pages/users/signup_success.html.j2:15
-#, fuzzy
 msgid ""
 "Your account has been created, but it first need to be reviewed by an "
 "administrator."
@@ -580,112 +552,20 @@ msgstr "e indica il tuo motivo."
 
 #: app/views/monitors.py:79
 msgid "Edit Monitor"
-msgstr ""
+msgstr "Editare Monitor"
 
 #: app/views/servers.py:23
-#, fuzzy
 msgid "New Server"
 msgstr "Nuovo Servizio"
 
 #: app/views/servers.py:38
-#, fuzzy
 msgid "Edit Server"
 msgstr "Edita Server"
 
 #: app/views/users.py:63
-#, fuzzy
 msgid "Registered!"
 msgstr "Utente registrato"
 
 #: app/views/users.py:110
-#, fuzzy
 msgid "Edit user"
 msgstr "Edita Utente"
-
-#~ msgid "Add Healthcheck"
-#~ msgstr "Aggiungi Healthcheck"
-
-#~ msgid "Language must be English or Catalan"
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Add\n"
-#~ "                Healthcheck"
-#~ msgstr ""
-
-#~ msgid "You must be admin to have access"
-#~ msgstr "Devi essere amministratore per accedere"
-
-#~ msgid "systemctl status `command`"
-#~ msgstr "Comanda per estat"
-
-#~ msgid ""
-#~ "But dont worry, you can find plenty of other\n"
-#~ "                                things on our homepage."
-#~ msgstr ""
-
-#~ msgid ""
-#~ "Back to\n"
-#~ "                                homepage"
-#~ msgstr ""
-
-#~ msgid "Shutdown"
-#~ msgstr "Spegni"
-
-#~ msgid "New monitor"
-#~ msgstr "Nou monitoraggio"
-
-#~ msgid "Status Command"
-#~ msgstr "Comanda per stato"
-
-#~ msgid "Healthcheck Command"
-#~ msgstr "Comanda Healthcheck"
-
-#~ msgid "Password must be at least 8 characters long"
-#~ msgstr "La contrassenya ha de tenir una llargada mínima de 8 caràcters"
-
-#~ msgid "Password must contain at least one uppercase letter"
-#~ msgstr "La password deve essere lunga almeno 8 caratteri"
-
-#~ msgid "Password must contain at least one lowercase letter"
-#~ msgstr "La password deve contenere almeno una lettera minuscola"
-
-#~ msgid "Password must contain at least one number"
-#~ msgstr "La password deve contenere almeno un numero"
-
-#~ msgid "Password must contain at least one special character"
-#~ msgstr "La password deve contenere almeno un carattere speciale"
-
-#~ msgid "English"
-#~ msgstr "Inglese"
-
-#~ msgid "Catalan"
-#~ msgstr "Catalano"
-
-#~ msgid "Language"
-#~ msgstr "Lingua"
-
-#~ msgid "Your account has been created"
-#~ msgstr "Il tuo account è stato creato"
-
-#~ msgid "Taylor Swift"
-#~ msgstr ""
-
-#~ msgid "systemctl start `command`"
-#~ msgstr "systemctl start `command`"
-
-#~ msgid "systemctl stop `command`"
-#~ msgstr "systemctl stop `command`"
-
-#~ msgid "Temperature"
-#~ msgstr "Temperatura"
-
-#~ msgid "Round-Trip-Time"
-#~ msgstr "Round-Trip-Time"
-
-#~ msgid "Starting Command"
-#~ msgstr "Comanda per iniziare"
-
-#~ msgid "Stop Command"
-#~ msgstr "Comanda per fermare"
-
