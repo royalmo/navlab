@@ -1,4 +1,5 @@
-if (typeof host === 'undefined') host = '';
+if (typeof host === 'undefined') base_host = '';
+else base_host = host + '/api';
 
 var just_toggled = false;
 
@@ -8,7 +9,7 @@ setInterval(async function () {
         return;
     }
 
-    const response = await fetch(`${host}/server/raw`);
+    const response = await fetch(`${base_host}/server/raw`);
     if (!response.ok) return;
 
     const json_data = await response.json();
