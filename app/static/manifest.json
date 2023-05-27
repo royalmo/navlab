@@ -1,8 +1,7 @@
 {
     "name": "NavLab",
     "short_name": "NavLab",
-    "start_url": "/static/js/",
-    "scope": "/static/js/",
+    "start_url": "/dashboard",
     "display": "standalone",
     "background_color": "#fff",
     "description": "A dashboard for controlling different services.",
