@@ -1,3 +1,5 @@
+if (typeof host === 'undefined') host = '';
+
 document.querySelectorAll('.start-button').forEach(button => {
     button.addEventListener('click', async (e) => {
         e.preventDefault(); // Prevent the <a> tag from redirecting
@@ -9,7 +11,7 @@ document.querySelectorAll('.start-button').forEach(button => {
                 article.classList.add('processing');
 
                 const id = article.dataset.id;
-                const response = await fetch(`/server/${id}/start`);
+                const response = await fetch(`${host}/server/${id}/start`);
 
                 article.classList.remove('processing');
                 if (!response.ok) {
@@ -31,7 +33,7 @@ document.querySelectorAll('.stop-button').forEach(button => {
                 article.classList.add('processing');
 
                 const id = article.dataset.id;
-                const response = await fetch(`/server/${id}/stop`);
+                const response = await fetch(`${host}/server/${id}/stop`);
 
                 article.classList.remove('processing');
                 if (response.ok) {
