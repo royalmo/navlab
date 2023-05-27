@@ -74,13 +74,3 @@ def stop(id):
     db.session.add(sh)
     db.session.commit()
     return make_response("Server stopped", 204)
-
-@app.route('/server/raw')
-@auth_header_required
-def raw_data():
-    Server.update_status()
-
-    servers = Server.query.all()
-    data = [{'id' : server.id, 'status' : server.status} for server in servers]
-
-    return jsonify(data)

@@ -1,6 +1,3 @@
-if (typeof host === 'undefined') base_host = '';
-else base_host = host + '/api';
-
 function set_recently_toggled() {
     if (typeof just_toggled !== 'undefined') just_toggled = true;
 }
@@ -16,7 +13,7 @@ document.querySelectorAll('.start-button').forEach(button => {
                 article.classList.add('processing');
 
                 const id = article.dataset.id;
-                const response = await fetch(`${base_host}/server/${id}/start`);
+                const response = await fetch(`/server/${id}/start`);
 
                 article.classList.remove('processing');
                 if (!response.ok) {
@@ -39,7 +36,7 @@ document.querySelectorAll('.stop-button').forEach(button => {
                 article.classList.add('processing');
 
                 const id = article.dataset.id;
-                const response = await fetch(`${base_host}/server/${id}/stop`);
+                const response = await fetch(`/server/${id}/stop`);
 
                 article.classList.remove('processing');
                 if (response.ok) {
