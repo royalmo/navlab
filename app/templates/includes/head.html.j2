@@ -11,6 +11,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+  <script src="{{ url_for('static', filename='js/serviceworker_register.js') }}"></script>
 
   {% if title %}
     <title>{{ title }} | Navlab</title>
