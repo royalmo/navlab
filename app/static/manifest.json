@@ -1,0 +1,15 @@
+{
+    "name": "NavLab",
+    "short_name": "NavLab",
+    "start_url": "/dashboard",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "A dashboard for controlling different services.",
+    "icons": [
+	{
+	    "src": "/static/favicon.ico",
+	    "sizes": "256x256",
+	    "type": "image/svg+xml"
+	}
+    ]
+}

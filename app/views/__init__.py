@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, url_for, redirect, request
+from flask import Blueprint, render_template, url_for, redirect, request, make_response, send_from_directory
 from flask_login import current_user
 from ..extensions import login_required
 from flask_babel import gettext
@@ -38,3 +38,10 @@ def dashboard():
                            serverlist=servers,
                            search_form=search_form,
                            navbar_highlight_dashboard=True)
+
+@app.route('/serviceworker.js')
+def service_worker():
+    response = make_response(send_from_directory('static/js/','serviceworker.js'))
+    response.headers['Content-Type'] = 'application/javascript'
+    response.headers['Service-Worker-Allowed'] = '/'
+    return response
