@@ -24,20 +24,22 @@ def connect_arduino():
         ports = list_ports.comports()
         for port in ports:
             if port.device.startswith('/dev/ttyACM'):
-                arduino = serial.Serial(port.device, 9600)
+                arduino = serial.Serial(port.device, 9600, timeout=1)
                 print("Arduino connected on", port.device)
                 time.sleep(2)
+                return True
     except serial.SerialException:
         arduino = None
         print("Arduino not connected")
 
-@app.before_first_request
-def setup():
-    connect_arduino()
+    return False
+
+# @app.before_first_request
+# def setup():
+#     connect_arduino()
 
 @app.route('/led', methods=['GET', 'PUT'])
 def led():
-    global arduino
     if arduino is None:
         connect_arduino()
         return 'Arduino not connected', 503
@@ -46,12 +48,26 @@ def led():
         try:
             arduino.write(b'%L?')
             response = arduino.readline().strip().decode()
+            if len(response) == 0: #timeout
+                return 'Timeout', 503
             value = int(response[-1]) # Tenint en compte que la resposta de l'arduino és '%0/1'
             return jsonify({
                 'led': value 
             })
         except serial.SerialException:
-            connect_arduino()
+            if connect_arduino():
+                # Retry
+                try:
+                    arduino.write(b'%L?')
+                    response = arduino.readline().strip().decode()
+                    if len(response) == 0: #timeout
+                        return 'Timeout', 503
+                    value = int(response[-1]) # Tenint en compte que la resposta de l'arduino és '%0/1'
+                    return jsonify({
+                        'led': value 
+                    })
+                except serial.SerialException:
+                    pass
             return 'Arduino not connected', 503
     
     elif request.method == 'PUT':
@@ -62,30 +78,67 @@ def led():
             return 'Invalid parameter', 400
         try:
             arduino.write(f'%L{state}\n'.encode())
-            arduino.readline() # Si l'arduino m'envia alguna cosa l'he de llegir tot, netejant el buffer, i l'ignoro.
-            return '', 204
+            response = arduino.readline().strip().decode()
+            if len(response) == 0: #timeout
+                return 'Timeout', 503
+            value = int(response[-1])
+
+            if value == int(state):
+                return 'No content', 204
+            else:
+                return 'Not successful', 503
+
         except serial.SerialException:
-            connect_arduino()
+            if connect_arduino():
+                # Retry
+                try:
+                    arduino.write(f'%L{state}\n'.encode())
+                    response = arduino.readline().strip().decode()
+                    if len(response) == 0: #timeout
+                        return 'Timeout', 503
+                    value = int(response[-1])
+
+                    if value == int(state):
+                        return 'No content', 204
+                    else:
+                        return 'Not successful', 503
+
+                except serial.SerialException:
+                    pass
             return 'Arduino not connected', 503
 
 @app.route('/potenciometre')
 def potentiometer():
-    global arduino
     if arduino is None:
         connect_arduino()
         return 'Arduino not connected', 503
     try:
         arduino.write(b'%P?')
         response = arduino.readline().strip().decode()
+        if len(response) == 0: #timeout
+            return 'Timeout', 503
         value = int(response[1:]) # Suposant que la resposta de l'arduino és '%XXX'
         return jsonify({
             'potenciometre': value
         })
-    except:
-        connect_arduino()
+    except serial.SerialException:
+        if connect_arduino():
+            #Retry
+            try:
+                arduino.write(b'%P?')
+                response = arduino.readline().strip().decode()
+                if len(response) == 0: #timeout
+                    return 'Timeout', 503
+                value = int(response[1:]) # Suposant que la resposta de l'arduino és '%XXX'
+                return jsonify({
+                    'potenciometre': value
+                })
+            except serial.SerialException:
+                pass
         return 'Arduino not connected', 503
 
 if __name__ == '__main__':
+    connect_arduino()
     app.run(port=5001)
 
 

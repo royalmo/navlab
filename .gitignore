@@ -9,3 +9,5 @@ venv
 api/Arduino/libpbn/libpbn.a
 /app/static/media/**
 !/app/static/media/.keep
+api/Arduino/main
+**/*.o
