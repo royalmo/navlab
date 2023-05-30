@@ -1,6 +1,13 @@
 if (typeof host === 'undefined') host = '';
 
+var just_toggled = false;
+
 setInterval(async function () {
+    if (just_toggled) {
+        just_toggled = false;
+        return;
+    }
+
     const response = await fetch(`${host}/server/raw`);
     if (!response.ok) return;
 

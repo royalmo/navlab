@@ -1,5 +1,9 @@
 if (typeof host === 'undefined') host = '';
 
+function set_recently_toggled() {
+    if (typeof just_toggled !== 'undefined') just_toggled = true;
+}
+
 document.querySelectorAll('.start-button').forEach(button => {
     button.addEventListener('click', async (e) => {
         e.preventDefault(); // Prevent the <a> tag from redirecting
@@ -17,6 +21,7 @@ document.querySelectorAll('.start-button').forEach(button => {
                 if (!response.ok) {
                     article.classList.remove('active');
                 }
+                set_recently_toggled();
             }
         }, 3000);
     });
@@ -39,6 +44,7 @@ document.querySelectorAll('.stop-button').forEach(button => {
                 if (response.ok) {
                     article.classList.remove('active');
                 }
+                set_recently_toggled();
             }
         }, 3000);
     });
