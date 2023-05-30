@@ -77,7 +77,7 @@ def stop(id):
 @app.route('/server/raw')
 @login_required
 def raw_data():
-    Server.update_status()
+    Server.update_status(all=True)
 
     servers = Server.query.all()
     data = [{'id' : server.id, 'status' : server.status} for server in servers]
