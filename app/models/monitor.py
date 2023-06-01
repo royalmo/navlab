@@ -31,8 +31,8 @@ def get_monitor_data():
             'min_value' : monitor.min_value if monitor.min_value is not None else 'undefined',
             'max_value' : monitor.max_value if monitor.max_value is not None else 'undefined',
             'last_sample' : {
-                'time' : samples[0].date.strftime('%Y-%m-%d %H:%M:%S'),
-                'value' : y_axis[0]
+                'time' : samples[0].date.strftime('%Y-%m-%d %H:%M:%S') if len(samples) > 0 else '---',
+                'value' : y_axis[0] if len(y_axis) > 0 else '---'
             }
         })
     
