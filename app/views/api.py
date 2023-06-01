@@ -29,7 +29,7 @@ def servers():
 
 @app.route('/monitoring')
 @auth_header_required
-def servers():
+def monitors():
     return make_response(jsonify({'data' : get_monitor_data(), 'admin' : load_user_from_auth_header().admin}), 200)
 
 ########################
