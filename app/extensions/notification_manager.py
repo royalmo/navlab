@@ -5,7 +5,7 @@ def send_to_admins(title, message):
     # Importing it here so it doesn't give circular import error.
     from ..models import FirebaseToken, User
 
-    fts = FirebaseToken.query.join(FirebaseToken, FirebaseToken.user_id == User.id).filter(User.admin == True).all()
+    fts = db.session.query(FirebaseToken).join(User, User.id == FirebaseToken.user_id).filter(User.admin == True).all()
     if len(fts) == 0: return
 
     server_token = get_bearer_token()
