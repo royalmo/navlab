@@ -49,7 +49,7 @@ def register_token():
 
 @app.route('/unregister_token', methods=['POST'])
 @auth_header_required
-def register_token():
+def unregister_token():
     data = request.get_json()
     token = data.get('token')
 
