@@ -7,7 +7,7 @@ from requests import put
 from ..extensions import db, auth_header_required
 from ..extensions.login_manager import load_user_from_auth_header
 from ..models import Server, FirebaseToken, ServerHistory
-from .monitors import _get_monitor_data
+from ..models.monitor import get_monitor_data
 
 app = Blueprint('api', __name__)
 
@@ -30,7 +30,7 @@ def servers():
 @app.route('/monitoring')
 @auth_header_required
 def servers():
-    return make_response(jsonify({'data' : _get_monitor_data(), 'admin' : load_user_from_auth_header().admin}), 200)
+    return make_response(jsonify({'data' : get_monitor_data(), 'admin' : load_user_from_auth_header().admin}), 200)
 
 ########################
 
