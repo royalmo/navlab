@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, url_for, redirect, request, make_r
 from flask_login import login_user, logout_user, current_user
 from flask_babel import gettext,get_locale
 
-from ..extensions import db, bcrypt, login_required, mailer, admin_required, firebase
+from ..extensions import db, bcrypt, login_required, mailer, admin_required, notification_manager
 from ..models import User, LoginForm, RegisterForm, SearchForm, SelectForm, UserForm
 
 app = Blueprint('users', __name__)
@@ -48,7 +48,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         mailer.new_user(new_user)
-        firebase.notify_new_user(new_user)
+        notification_manager.notify_new_user(new_user)
         return redirect(url_for('.register_success', lang=form.language.data))
     
     form.language.default=get_locale()

@@ -1,4 +1,4 @@
-from ..extensions import db, firebase
+from ..extensions import db, notification_manager
 from .sample import Sample
 from .server_history import ServerHistory
 
@@ -41,7 +41,7 @@ class Server(db.Model):
             key = self.endpoint_url.split('/')[-1]
             put(self.endpoint_url, json={key : 1})
 
-        firebase.notify_server_started(self, user)
+        notification_manager.notify_server_started(self, user)
 
         sh = ServerHistory(server_id=self.id, user_id=user.id,
                            timestamp=datetime.now(), active=True)
@@ -55,7 +55,7 @@ class Server(db.Model):
             key = self.endpoint_url.split('/')[-1]
             put(self.endpoint_url, json={key : 0})
 
-        firebase.notify_server_stopped(self, user)
+        notification_manager.notify_server_stopped(self, user)
 
         sh = ServerHistory(server_id=self.id, user_id=user.id,
                            timestamp=datetime.now(), active=False)
