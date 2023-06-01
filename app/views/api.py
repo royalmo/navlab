@@ -7,8 +7,11 @@ from requests import put
 from ..extensions import db, auth_header_required
 from ..extensions.login_manager import load_user_from_auth_header
 from ..models import Server, FirebaseToken, ServerHistory
+from .monitors import _get_monitor_data
 
 app = Blueprint('api', __name__)
+
+########################
 
 @app.route('/servers')
 @auth_header_required
@@ -24,6 +27,13 @@ def servers():
     ]
     return make_response(jsonify({'data' : response, 'admin' : load_user_from_auth_header().admin}), 200)
 
+@app.route('/monitoring')
+@auth_header_required
+def servers():
+    return make_response(jsonify({'data' : _get_monitor_data(), 'admin' : load_user_from_auth_header().admin}), 200)
+
+########################
+
 @app.route('/register_token', methods=['POST'])
 @auth_header_required
 def register_token():
@@ -36,6 +46,21 @@ def register_token():
     db.session.commit()
 
     return make_response('OK', 200)
+
+@app.route('/unregister_token', methods=['POST'])
+@auth_header_required
+def register_token():
+    data = request.get_json()
+    token = data.get('token')
+
+    # ft = FirebaseToken(user_id=load_user_from_auth_header().id, token=token)
+
+    # db.session.add(ft)
+    # db.session.commit()
+
+    return make_response('OK', 200)
+
+########################
 
 @app.route('/server/<int:id>/start', methods=['GET', 'POST'])
 @auth_header_required
