@@ -48,6 +48,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         mailer.new_user(new_user)
+        User.notify_new_user(new_user)
         return redirect(url_for('.register_success', lang=form.language.data))
     
     form.language.default=get_locale()

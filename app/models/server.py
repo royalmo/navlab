@@ -1,7 +1,10 @@
 from ..extensions import db
 from .sample import Sample
+from .server_history import ServerHistory
+from .user import User
 
-from requests import get
+from requests import get, put
+from datetime import datetime
 
 class Server(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,4 +33,32 @@ class Server(db.Model):
                     srv.status = bool(int(d[key]))
                 except: pass # Ignoring errors
 
+        db.session.commit()
+
+    def start(self, user):
+        self.status = True
+
+        if self.endpoint_url is not None:
+            key = self.endpoint_url.split('/')[-1]
+            put(self.endpoint_url, json={key : 1})
+
+        User.notify_server_started(self, user)
+
+        sh = ServerHistory(server_id=self.id, user_id=user.id,
+                           timestamp=datetime.now(), active=True)
+        db.session.add(sh)
+        db.session.commit()
+
+    def stop(self, user):
+        self.status = False
+
+        if self.endpoint_url is not None:
+            key = self.endpoint_url.split('/')[-1]
+            put(self.endpoint_url, json={key : 0})
+
+        User.notify_server_stopped(self, user)
+
+        sh = ServerHistory(server_id=self.id, user_id=user.id,
+                           timestamp=datetime.now(), active=False)
+        db.session.add(sh)
         db.session.commit()

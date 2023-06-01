@@ -9,3 +9,24 @@ class FirebaseToken(db.Model):
 
     def get_user(self):
         return User.query.get(self.user_id)
+    
+    @classmethod
+    def register_token(model, current_user, token):
+        ft = model.query.filter(model.token == token).first()
+        if not ft:
+            ft = model(user_id=current_user.id, token=token)
+            db.session.add(ft)
+        else:
+            ft.user_id = current_user.id
+
+        db.session.commit()
+
+    @classmethod
+    def unregister_token(model, current_user, token):
+        ft = model.query.filter(model.token == token).first()
+
+        # Preventing someone deleting randomly tokens
+        if ft and ft.user_id == current_user.id:
+            db.session.delete(ft)
+
+        db.session.commit()

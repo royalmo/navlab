@@ -37,26 +37,22 @@ def monitors():
 @app.route('/register_token', methods=['POST'])
 @auth_header_required
 def register_token():
+    current_user = load_user_from_auth_header()
     data = request.get_json()
     token = data.get('token')
 
-    ft = FirebaseToken(user_id=load_user_from_auth_header().id, token=token)
-
-    db.session.add(ft)
-    db.session.commit()
+    FirebaseToken.register_token(current_user, token)
 
     return make_response('OK', 200)
 
 @app.route('/unregister_token', methods=['POST'])
 @auth_header_required
 def unregister_token():
+    current_user = load_user_from_auth_header()
     data = request.get_json()
     token = data.get('token')
 
-    # ft = FirebaseToken(user_id=load_user_from_auth_header().id, token=token)
-
-    # db.session.add(ft)
-    # db.session.commit()
+    FirebaseToken.unregister_token(current_user, token)
 
     return make_response('OK', 200)
 
@@ -69,16 +65,7 @@ def start(id):
     if not current_user.admin:
         return make_response('Forbidden', 403)
 
-    server = Server.query.get_or_404(id)
-    server.status = True
-
-    if server.endpoint_url is not None:
-        key = server.endpoint_url.split('/')[-1]
-        put(server.endpoint_url, json={key : 1})
-
-    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=True)
-    db.session.add(sh)
-    db.session.commit()
+    Server.query.get_or_404(id).start(current_user)
     return make_response("Server started", 204)
 
 @app.route('/server/<int:id>/stop', methods=['GET', 'POST'])
@@ -88,14 +75,5 @@ def stop(id):
     if not current_user.admin:
         return make_response('Forbidden', 403)
 
-    server = Server.query.get_or_404(id)
-    server.status = False
-
-    if server.endpoint_url is not None:
-        key = server.endpoint_url.split('/')[-1]
-        put(server.endpoint_url, json={key : 0})
-
-    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=False)
-    db.session.add(sh)
-    db.session.commit()
+    Server.query.get_or_404(id).stop(current_user)
     return make_response("Server stopped", 204)
