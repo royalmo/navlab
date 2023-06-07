@@ -1,7 +1,5 @@
-if (typeof host === 'undefined') host = '';
-
 setInterval(async function () {
-    const response = await fetch(`${host}/monitoring/raw`);
+    const response = await fetch("/monitoring/raw");
     if (!response.ok) return;
 
     const json_data = await response.json();

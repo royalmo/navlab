@@ -41,6 +41,9 @@ def admin_login_required(func):
             return make_response('Forbidden', 403)
     return wrapper
 
+def load_user_from_auth_header():
+    return User.query.filter_by(email=request.authorization.username).first()
+
 def auth_header_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
@@ -48,7 +51,7 @@ def auth_header_required(func):
         if not auth:
             return make_response('Unauthorized', 401)
 
-        user = User.query.filter_by(email=auth.username).first()
+        user = load_user_from_auth_header()
         if not bcrypt.check_password_hash(user.password, auth.password):
             return make_response('Unauthorized', 401)
 

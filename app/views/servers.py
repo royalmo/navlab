@@ -47,31 +47,13 @@ def remove(id):
 @app.route('/server/<int:id>/start', methods=['GET', 'POST'])
 @admin_required
 def start(id):
-    server = Server.query.get_or_404(id)
-    server.status = True
-
-    if server.endpoint_url is not None:
-        key = server.endpoint_url.split('/')[-1]
-        put(server.endpoint_url, json={key : 1})
-
-    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=True)
-    db.session.add(sh)
-    db.session.commit()
+    Server.query.get_or_404(id).start(current_user)
     return make_response("Server started", 204)
 
 @app.route('/server/<int:id>/stop', methods=['GET', 'POST'])
 @admin_required
 def stop(id):
-    server = Server.query.get_or_404(id)
-    server.status = False
-
-    if server.endpoint_url is not None:
-        key = server.endpoint_url.split('/')[-1]
-        put(server.endpoint_url, json={key : 0})
-
-    sh = ServerHistory(server_id=server.id, user_id=current_user.id, timestamp=datetime.now(),active=False)
-    db.session.add(sh)
-    db.session.commit()
+    Server.query.get_or_404(id).stop(current_user)
     return make_response("Server stopped", 204)
 
 @app.route('/server/raw')

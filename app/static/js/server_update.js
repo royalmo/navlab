@@ -1,5 +1,3 @@
-if (typeof host === 'undefined') host = '';
-
 var just_toggled = false;
 
 setInterval(async function () {
@@ -8,7 +6,7 @@ setInterval(async function () {
         return;
     }
 
-    const response = await fetch(`${host}/server/raw`);
+    const response = await fetch("/server/raw");
     if (!response.ok) return;
 
     const json_data = await response.json();

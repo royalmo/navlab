@@ -3,41 +3,15 @@ from flask_login import current_user
 from flask_babel import gettext
 
 from ..extensions import db, login_required, admin_required
-from ..models import Monitor, Sample, MonitorForm
+from ..models import Monitor, MonitorForm
+from ..models.monitor import get_monitor_data
 
 app = Blueprint('monitors', __name__)
-
-def _get_monitor_data():
-    monitors = Monitor.query.all()
-    data = []
-    for monitor in monitors:
-        samples = Sample.query.filter_by(monitor_key=monitor.key).order_by(Sample.date.desc()).limit(100).all()
-
-        x_axis = [sample.date.strftime('%Y-%m-%d %H:%M:%S') for sample in samples]
-        y_axis = [sample.value for sample in samples]
-
-        # Reversing axis because we want time to be from past to future
-        data.append({
-            'id' : monitor.id,
-            'title' : monitor.title,
-            'key' : monitor.key,
-            'x_axis' : x_axis[::-1],
-            'y_axis' : y_axis[::-1],
-            'label' : monitor.label,
-            'min_value' : monitor.min_value if monitor.min_value is not None else 'undefined',
-            'max_value' : monitor.max_value if monitor.max_value is not None else 'undefined',
-            'last_sample' : {
-                'time' : samples[0].date.strftime('%Y-%m-%d %H:%M:%S'),
-                'value' : y_axis[0]
-            }
-        })
-    
-    return data
 
 @app.route('/monitoring')
 @login_required
 def monitoring():
-    data = _get_monitor_data()
+    data = get_monitor_data()
 
     return render_template('pages/monitoring.html.j2',
                            title=gettext("Monitoring"),
@@ -48,7 +22,7 @@ def monitoring():
 @app.route('/monitoring/raw')
 @login_required
 def monitoring_raw():
-    data = _get_monitor_data()
+    data = get_monitor_data()
 
     return jsonify(data)
 
