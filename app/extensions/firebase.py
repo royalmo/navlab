@@ -33,8 +33,7 @@ def send_notification(title, message, client_token, server_token):
             "token": client_token,
             "notification": {
                 "title": title,
-                "body": message,
-                "icon": "anchor"
+                "body": message
             },
             "data": {}
         }
